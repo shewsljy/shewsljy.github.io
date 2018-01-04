@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Code World
+subtitle: 坐看流云轻度
 description:
-author: John Doe
-language:
-timezone:
+author: 家宇
+language: zh-Hans
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.jiayuli.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
