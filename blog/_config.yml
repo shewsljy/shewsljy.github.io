@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: jiayu's blog
-subtitle: 坐看流云轻度
-description: 基于github,hexo的blog
-author: 家宇
-language: zh
-timezone: Asia/Shanghai
+title: Hexo
+subtitle:
+description:
+author: John Doe
+language:
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.jiayuli.cn
+url: http://yoursite.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -77,6 +77,4 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/shewsljy/shewsljy.github.io
-  branch: master
+  type:
