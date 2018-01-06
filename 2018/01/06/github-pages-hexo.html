@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Blog,Github Pages,Hexo," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="家宇的技术贴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jiayu&#39;s Blog">
-<meta property="og:url" content="http://blog.jiayuli.cn/index.html">
+<meta name="description" content="前言很多同行会把自己的代码托管于GitHub，同时部分Coder在各Blog平台上分享技术贴。现可以通过Github Pages将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。 准备工作所需的平台以及技术，相关教程自行搜索学习  GitHub Git Node.js Hexo Markdown  实现原理GitHub可以新建">
+<meta name="keywords" content="Blog,Github Pages,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub Pages + Hexo 实现静态 Blog">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/06/github-pages-hexo.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="家宇的技术贴">
+<meta property="og:description" content="前言很多同行会把自己的代码托管于GitHub，同时部分Coder在各Blog平台上分享技术贴。现可以通过Github Pages将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。 准备工作所需的平台以及技术，相关教程自行搜索学习  GitHub Git Node.js Hexo Markdown  实现原理GitHub可以新建">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-06T05:45:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jiayu&#39;s Blog">
-<meta name="twitter:description" content="家宇的技术贴">
+<meta name="twitter:title" content="GitHub Pages + Hexo 实现静态 Blog">
+<meta name="twitter:description" content="前言很多同行会把自己的代码托管于GitHub，同时部分Coder在各Blog平台上分享技术贴。现可以通过Github Pages将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。 准备工作所需的平台以及技术，相关教程自行搜索学习  GitHub Git Node.js Hexo Markdown  实现原理GitHub可以新建">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/06/github-pages-hexo.html"/>
 
 
 
 
 
-  <title>Jiayu's Blog</title>
+  <title>GitHub Pages + Hexo 实现静态 Blog | Jiayu's Blog</title>
   
 
 
@@ -143,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/06/github-pages-hexo.html" itemprop="url">GitHub Pages + Hexo 实现静态 Blog</a></h1>
+          <h1 class="post-title" itemprop="name headline">GitHub Pages + Hexo 实现静态 Blog</h1>
         
 
         <div class="post-meta">
@@ -375,9 +374,7 @@
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同行会把自己的代码托管于<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>，同时部分Coder在各Blog平台上分享技术贴。现可以通过<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同行会把自己的代码托管于<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>，同时部分Coder在各Blog平台上分享技术贴。现可以通过<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。</p>
 <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>所需的平台以及技术，相关教程自行搜索学习</p>
 <ul>
 <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
@@ -405,8 +402,6 @@
 <p><pre><br>deploy:<br>  type: git<br>  repo: <a href="https://github.com/abc/abc.github.io.git" target="_blank" rel="noopener">https://github.com/abc/abc.github.io.git</a><br>  branch: master<br></pre><br>执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></p>
 <p>访问<code>https://abc.github.io/</code>查看Blog最终效果。<br>大功告成!</p>
 
-          
-        
       
     </div>
     
@@ -421,167 +416,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/05/archlinux-bios.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/archlinux-bios.html" itemprop="url">Bios 方式安装 ArchLinux</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T17:00:40+08:00">
-                2018-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Arch/" itemprop="url" rel="index">
-                    <span itemprop="name">Arch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
           
-
+            <a href="/tags/Github-Pages/" rel="tag"># Github Pages</a>
           
-            
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>还未完稿，近日推出，敬请期待!</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/05/archlinux-bios.html" rel="next" title="Bios 方式安装 ArchLinux">
+                <i class="fa fa-chevron-left"></i> Bios 方式安装 ArchLinux
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -591,10 +459,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -602,6 +471,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -622,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -683,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">1.2.</span> <span class="nav-text">实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装教程"><span class="nav-number">2.</span> <span class="nav-text">安装教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">2.1.</span> <span class="nav-text">GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新建一个仓库"><span class="nav-number">2.1.1.</span> <span class="nav-text">新建一个仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仓库新建一个分支"><span class="nav-number">2.1.2.</span> <span class="nav-text">仓库新建一个分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#仓库开启GitHub-Pages功能"><span class="nav-number">2.1.3.</span> <span class="nav-text">仓库开启GitHub Pages功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Git拉取远程仓库到本地"><span class="nav-number">2.1.4.</span> <span class="nav-text">Git拉取远程仓库到本地</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地安装Hexo"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地安装Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化Blog"><span class="nav-number">2.2.2.</span> <span class="nav-text">初始化Blog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更换Blog主题"><span class="nav-number">2.2.3.</span> <span class="nav-text">更换Blog主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#推送至GitHub-Pages"><span class="nav-number">2.2.4.</span> <span class="nav-text">推送至GitHub Pages</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -816,6 +714,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
