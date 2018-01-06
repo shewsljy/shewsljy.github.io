@@ -1,6 +1,6 @@
 ---
-title: about
+title: 关于
 date: 2018-01-05 17:32:45
 type: about
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+此静态Blog将记录关于Linux方面的技术帖，并持续更新。
