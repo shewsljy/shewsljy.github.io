@@ -1,7 +1,7 @@
 ---
 title: GitHub Pages + Hexo 实现静态 Blog
-date: 2018-01-06 13:45:22
-updated: 2018-01-06 13:45:22
+date: 2018-01-05 13:45:22
+updated: 2018-01-05 13:45:22
 categories:
     - Blog
     - "Github Pages"
@@ -15,7 +15,7 @@ tags:
 很多同行会把自己的代码托管于[GitHub](https://github.com/)，同时部分Coder在各Blog平台上分享技术贴。现可以通过[Github Pages](https://pages.github.com/)将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。
 
 ### 准备工作
-所需的平台以及技术，相关教程自行搜索学习
+所需的平台以及技术，相关教程自行搜索学习。
 - [GitHub](https://github.com/)
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
