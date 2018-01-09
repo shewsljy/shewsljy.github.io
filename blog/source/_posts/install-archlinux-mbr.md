@@ -204,7 +204,7 @@ passwd
 ```
 
 #### 安装引导程序
-如果你使用`Intel CPU`，那么需要安装`intel-ucode`
+如果你使用`Intel CPU`，那么需要安装`intel-ucode`。注意的是，要安装到`/dev/sda`而不是`/dev/sda2`。
 ``` bash
 pacman -S intel-ucode grub os-prober
 grub-install --target=i386-pc /dev/sda
