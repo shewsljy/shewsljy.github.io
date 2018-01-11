@@ -1,7 +1,7 @@
 ---
 title: MBR 分区方式安装 ArchLinux
 date: 2018-01-06 17:00:40
-updated: 2018-01-06 17:00:40
+updated: 2018-01-11 16:30:24
 categories:
     - Linux
     - Arch
@@ -9,7 +9,7 @@ tags:
     - ArchLinux
 ---
 ## 前言
-鄙人电脑笔记本有些年头了，不太好使，故新加了块固态硬盘，并将原有的机械硬盘安装至光驱(光荣下岗)位置。固态硬盘安装了`Windows 10`系统，机械硬盘就安装个`ArchLinux`吧。固态硬盘当时的分区方式为MBR，为了和(不)谐(想)统(折)一(腾)，机械硬盘也沿用MBR分区方式。
+我的电脑笔记本有些年头了，不太好使，故新加了块固态硬盘，并将原有的机械硬盘安装至光驱(光荣下岗)位置。固态硬盘安装了`Windows 10`系统，机械硬盘就安装个`ArchLinux`吧。固态硬盘当时的分区方式为MBR，为了和(不)谐(想)统(折)一(腾)，机械硬盘也沿用MBR分区方式。
 
 ### 准备工作
 U盘、`ArchLinux`镜像以及正常(有线/无线)网络环境。
@@ -19,6 +19,8 @@ U盘、`ArchLinux`镜像以及正常(有线/无线)网络环境。
 
 ### 制作ArchLinux的U盘镜像
 在Windows上解压`USBWriter-1.3.zip`，并运行`USBWriter.exe`，选择`archlinux-2018.01.01-x86_64.iso`镜像单击`Writer`写入选定的U盘，等待进度条完成。So Easy!
+
+<!-- more -->
 
 ## 安装教程
 分为基础系统、图形界面两部分。为了更好展示，图片用`VirtualBox`虚拟机模拟安装的截图，所示步骤真机均验证通过。
@@ -229,3 +231,60 @@ reboot
 基础系统已经安装完毕，接下来进行图形界面安装。
 
 ### 安装图形界面
+桌面系统选择`KDE plasma`，个人喜好。
+
+#### 创建个人用户并开启sudo权限
+日常使用root用户是不安全的。Linux为我们提供了强大的用户与组的权限管理，提高了整个系统的安全性。新建一个用户，在桌面登录时会有选择，root不在范围内。
+``` bash
+useradd -m -G wheel -s /bin/bash jiayu
+visudo
+```
+`visudo`命令，在文件的后面部分找到`# %wheel ALL=(ALL)ALL`，然后将其改为`%wheel ALL=(ALL)ALL`。使得整个`wheel`组有sudo权限。
+
+#### 安装显卡驱动
+查看自己电脑的显卡型号:
+``` bash
+lspci | grep VGA
+```
+搜索匹配电脑显卡的驱动:
+``` bash
+pacman -Ss xf86-video
+```
+我电脑的显卡是`NVIDIA`，故安装对应的显卡驱动:
+``` bash
+pacman -S xf86-video-nouveau
+```
+
+#### 安装xorg
+安装桌面环境基础依赖`xorg-server`:
+``` bash
+pacman -S xorg-server
+```
+如有选择，回车默认。
+
+#### 安装KDE(Plasma)
+直接安装`plasma`桌面软件包组即可，`kde-l10n-zh_cn`是支持中文的包，`wqy-microhei`是中文字体:
+``` bash
+pacman -S plasma kde-l10n-zh_cn wqy-microhei
+```
+如有选择，回车默认。
+
+#### 安装登录管理器SDDM
+桌面环境有了，但是还需要进入这个桌面的登录控制器，这里选择与其匹配的`sddm`:
+``` bash
+pacman -S sddm
+systemctl enable sddm
+```
+并将`sddm`设置为开机自启动，这样起到的效果就是开机后会显示一个登录选择的界面。普通用户在选择列表中，输入相应的密码则转入`KDE`桌面系统中。
+{% asset_img sddm.png [登录选择器] %}
+
+#### 配置桌面网络
+由于之前使用的一直都是`netctl`这个自带的网络服务，而桌面环境推荐使用的是`NetworkManager`这个网络服务，所以需要禁用`netctl`并启用`NetworkManager`:
+``` bash
+systemctl disable netctl
+systemctl enable NetworkManager
+```
+
+#### 桌面效果
+这个就是桌面系统:
+{% asset_img kde.png [登录选择器] %}
