@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/01/06/install-archlinux-mbr/login.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/01/06/install-archlinux-mbr/sddm.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/01/06/install-archlinux-mbr/kde.png">
-<meta property="og:updated_time" content="2018-01-11T08:30:24.000Z">
+<meta property="og:updated_time" content="2018-01-12T09:30:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MBR 分区方式安装 ArchLinux">
 <meta name="twitter:description" content="前言我的电脑笔记本有些年头了，不太好使，故新加了块固态硬盘，并将原有的机械硬盘安装至光驱(光荣下岗)位置。固态硬盘安装了Windows 10系统，机械硬盘就安装个ArchLinux吧。固态硬盘当时的分区方式为MBR，为了和(不)谐(想)统(折)一(腾)，机械硬盘也沿用MBR分区方式。 准备工作U盘、ArchLinux镜像以及正常(有线/无线)网络环境。  U盘 容量4G起 USBWriter 制作">
@@ -461,12 +461,12 @@ zh_TW.UTF-8 UTF-8
 <p>我电脑的显卡是<code>NVIDIA</code>，故安装对应的显卡驱动:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S xf86-video-nouveau</span><br></pre></td></tr></table></figure></p>
 <h4 id="安装xorg"><a href="#安装xorg" class="headerlink" title="安装xorg"></a>安装xorg</h4><p>安装桌面环境基础依赖<code>xorg-server</code>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S xorg-server</span><br></pre></td></tr></table></figure></p>
 <p>如有选择，回车默认。</p>
-<h4 id="安装KDE-Plasma"><a href="#安装KDE-Plasma" class="headerlink" title="安装KDE(Plasma)"></a>安装KDE(Plasma)</h4><p>直接安装<code>plasma</code>桌面软件包组即可，<code>kde-l10n-zh_cn</code>是支持中文的包，<code>wqy-microhei</code>是中文字体:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S plasma kde-l10n-zh_cn wqy-microhei</span><br></pre></td></tr></table></figure></p>
+<h4 id="安装KDE-Plasma"><a href="#安装KDE-Plasma" class="headerlink" title="安装KDE(Plasma)"></a>安装KDE(Plasma)</h4><p>直接安装<code>plasma</code>桌面软件包组即可，<code>kde-l10n-zh_cn</code>是支持中文的包，<code>wqy-microhei</code>是中文字体，<code>konsole</code>是终端软件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S plasma kde-l10n-zh_cn wqy-microhei konsole</span><br></pre></td></tr></table></figure></p>
 <p>如有选择，回车默认。</p>
 <h4 id="安装登录管理器SDDM"><a href="#安装登录管理器SDDM" class="headerlink" title="安装登录管理器SDDM"></a>安装登录管理器SDDM</h4><p>桌面环境有了，但是还需要进入这个桌面的登录控制器，这里选择与其匹配的<code>sddm</code>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pacman -S sddm</span><br><span class="line">systemctl <span class="built_in">enable</span> sddm</span><br></pre></td></tr></table></figure></p>
 <p>并将<code>sddm</code>设置为开机自启动，这样起到的效果就是开机后会显示一个登录选择的界面。普通用户在选择列表中，输入相应的密码则转入<code>KDE</code>桌面系统中。<br><img src="/2018/01/06/install-archlinux-mbr/sddm.png" title="[登录选择器]"></p>
 <h4 id="配置桌面网络"><a href="#配置桌面网络" class="headerlink" title="配置桌面网络"></a>配置桌面网络</h4><p>由于之前使用的一直都是<code>netctl</code>这个自带的网络服务，而桌面环境推荐使用的是<code>NetworkManager</code>这个网络服务，所以需要禁用<code>netctl</code>并启用<code>NetworkManager</code>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> netctl</span><br><span class="line">systemctl <span class="built_in">enable</span> NetworkManager</span><br></pre></td></tr></table></figure></p>
-<h4 id="桌面效果"><a href="#桌面效果" class="headerlink" title="桌面效果"></a>桌面效果</h4><p>这个就是桌面系统:<br><img src="/2018/01/06/install-archlinux-mbr/kde.png" title="[登录选择器]"></p>
+<h4 id="桌面效果"><a href="#桌面效果" class="headerlink" title="桌面效果"></a>桌面效果</h4><p>这个就是桌面系统:<br><img src="/2018/01/06/install-archlinux-mbr/kde.png" title="[KDE桌面]"></p>
 
       
     </div>
