@@ -1,7 +1,7 @@
 ---
 title: MBR 分区方式安装 ArchLinux
 date: 2018-01-06 17:00:40
-updated: 2018-01-11 16:30:24
+updated: 2018-01-12 17:30:24
 categories:
     - Linux
     - Arch
@@ -287,4 +287,4 @@ systemctl enable NetworkManager
 
 #### 桌面效果
 这个就是桌面系统:
-{% asset_img kde.png [登录选择器] %}
+{% asset_img kde.png [KDE桌面] %}
