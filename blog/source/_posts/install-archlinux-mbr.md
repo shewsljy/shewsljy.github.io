@@ -263,9 +263,9 @@ pacman -S xorg-server
 如有选择，回车默认。
 
 #### 安装KDE(Plasma)
-直接安装`plasma`桌面软件包组即可，`kde-l10n-zh_cn`是支持中文的包，`wqy-microhei`是中文字体:
+直接安装`plasma`桌面软件包组即可，`kde-l10n-zh_cn`是支持中文的包，`wqy-microhei`是中文字体，`konsole`是终端软件:
 ``` bash
-pacman -S plasma kde-l10n-zh_cn wqy-microhei
+pacman -S plasma kde-l10n-zh_cn wqy-microhei konsole
 ```
 如有选择，回车默认。
 
