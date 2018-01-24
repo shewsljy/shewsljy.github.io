@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Firewalld," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="家宇的技术贴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jiayu&#39;s Blog">
-<meta property="og:url" content="http://blog.jiayuli.cn/index.html">
+<meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta name="keywords" content="Firewalld">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 7.4 防火墙(firewalld)设置">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/24/firewalld.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="家宇的技术贴">
+<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
+<meta property="og:updated_time" content="2018-01-24T09:08:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jiayu&#39;s Blog">
-<meta name="twitter:description" content="家宇的技术贴">
+<meta name="twitter:title" content="CentOS 7.4 防火墙(firewalld)设置">
+<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/24/firewalld.html"/>
 
 
 
 
 
-  <title>Jiayu's Blog</title>
+  <title>CentOS 7.4 防火墙(firewalld)设置 | Jiayu's Blog</title>
   
 
 
@@ -143,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +250,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/24/firewalld.html" itemprop="url">CentOS 7.4 防火墙(firewalld)设置</a></h1>
+          <h1 class="post-title" itemprop="name headline">CentOS 7.4 防火墙(firewalld)设置</h1>
         
 
         <div class="post-meta">
@@ -375,8 +376,7 @@
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
 <h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
 <pre>
 140.205.201.0/28
@@ -399,14 +399,22 @@
 106.11.222.192/26
 106.11.223.0/26
 </pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/24/firewalld.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+
+<a id="more"></a>
+<h2 id="firewalld相关配置"><a href="#firewalld相关配置" class="headerlink" title="firewalld相关配置"></a>firewalld相关配置</h2><p>分服务及配置两部分，都是用<code>root</code>执行相关命令。</p>
+<h3 id="firewalld服务"><a href="#firewalld服务" class="headerlink" title="firewalld服务"></a>firewalld服务</h3><p>安装、启动、停止、查看状态以及开机自启。<br>安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br></pre></td></tr></table></figure></p>
+<p>启动:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
+<p>查看状态:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure></p>
+<p>停止:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></p>
+<p>开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure></p>
+<p>取消开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure></p>
+<h3 id="firewalld配置"><a href="#firewalld配置" class="headerlink" title="firewalld配置"></a>firewalld配置</h3><p>配置规则、查看配置以及生效配置。<br>配置规则(屏蔽指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
+<p>配置规则(取消被屏蔽的指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
+<p>配置规则(开放80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=80/tcp</span><br></pre></td></tr></table></figure></p>
+<p>配置规则(关闭80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span><br></pre></td></tr></table></figure></p>
+<p>生效配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
+<p>查看配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
+<img src="/2018/01/24/firewalld/list_all.png" title="[查看firewalld配置规则]">
       
     </div>
     
@@ -421,355 +429,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/06/install-archlinux-mbr.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/06/install-archlinux-mbr.html" itemprop="url">MBR 分区方式安装 ArchLinux</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T17:00:40+08:00">
-                2018-01-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Arch/" itemprop="url" rel="index">
-                    <span itemprop="name">Arch</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Firewalld/" rel="tag"># Firewalld</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我的电脑笔记本有些年头了，不太好使，故新加了块固态硬盘，并将原有的机械硬盘安装至光驱(光荣下岗)位置。固态硬盘安装了<code>Windows 10</code>系统，机械硬盘就安装个<code>ArchLinux</code>吧。固态硬盘当时的分区方式为MBR，为了和(不)谐(想)统(折)一(腾)，机械硬盘也沿用MBR分区方式。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>U盘、<code>ArchLinux</code>镜像以及正常(有线/无线)网络环境。</p>
-<ul>
-<li>U盘 容量4G起</li>
-<li><a href="https://sourceforge.net/projects/usbwriter/files/USBWriter-1.3.zip/download/" target="_blank" rel="noopener">USBWriter</a> 制作U盘启动的工具</li>
-<li><a href="https://www.archlinux.org/download/" target="_blank" rel="noopener">ArchLinux</a> 可选择<a href="http://mirrors.163.com/archlinux/iso/2018.01.01/archlinux-2018.01.01-x86_64.iso" target="_blank" rel="noopener">国内镜像</a>下载</li>
-</ul>
-<h3 id="制作ArchLinux的U盘镜像"><a href="#制作ArchLinux的U盘镜像" class="headerlink" title="制作ArchLinux的U盘镜像"></a>制作ArchLinux的U盘镜像</h3><p>在Windows上解压<code>USBWriter-1.3.zip</code>，并运行<code>USBWriter.exe</code>，选择<code>archlinux-2018.01.01-x86_64.iso</code>镜像单击<code>Writer</code>写入选定的U盘，等待进度条完成。So Easy!</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/06/install-archlinux-mbr.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/06/install-archlinux-mbr.html" rel="next" title="MBR 分区方式安装 ArchLinux">
+                <i class="fa fa-chevron-left"></i> MBR 分区方式安装 ArchLinux
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/05/github-pages-hexo.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/github-pages-hexo.html" itemprop="url">GitHub Pages + Hexo 实现静态 Blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T13:45:22+08:00">
-                2018-01-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/" itemprop="url" rel="index">
-                    <span itemprop="name">Blog</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/Github-Pages/" itemprop="url" rel="index">
-                    <span itemprop="name">Github Pages</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/Github-Pages/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同行会把自己的代码托管于<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>，同时部分Coder在各Blog平台上分享技术贴。现可以通过<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>所需的平台以及技术，相关教程自行搜索学习。</p>
-<ul>
-<li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
-<li><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></li>
-<li><a href="https://daringfireball.net/projects/markdown/syntax/" target="_blank" rel="noopener">Markdown</a></li>
-</ul>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><code>GitHub</code>特殊仓库(xxx.github.io，<code>xxx</code>为用户账号名)，开启<code>GitHub Pages</code>(对该仓库做特殊处理，以支持静态页面)功能后，获得专属网络地址<code>https://xxx.github.io/</code>。<code>Hexo</code>是一个生成静态Blog的框架，通过本地生成静态内容推送至<code>xxx.github.io</code>仓库的<code>master</code>分支上，用户访问专属网络地址，就可以浏览其静态WEB内容。为了追溯内容变更历史，方便用户回退先前版本，在这个仓库新建一个分支专用于内容更改(撰写)，平时只需要维护专属分支上的内容即可。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/github-pages-hexo.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -779,10 +468,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -790,6 +480,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -810,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -871,6 +574,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">2.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">3.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">3.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">3.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1004,6 +723,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
