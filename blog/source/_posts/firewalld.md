@@ -1,10 +1,10 @@
 ---
-title: CentOS 7.4 防火墙(firewalld)设置
+title: CentOS 7 防火墙(firewalld)设置
 date: 2018-01-24 14:51:25
 updated: 2018-01-24 17:08:25
 categories:
     - Linux
-    - "CentOS 7.4"
+    - "CentOS 7"
     - Firewalld
 tags:
     - Firewalld

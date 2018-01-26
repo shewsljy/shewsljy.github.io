@@ -1,7 +1,7 @@
 ---
 title: Docker 在 CentOS 7.4 平台上的运用
 date: 2018-01-25 09:40:07
-updated: 2018-01-25 18:03:07
+updated: 2018-01-26 14:35:12
 categories:
     - Docker
 tags:
@@ -13,14 +13,14 @@ tags:
 ## CentOS 7.4 安装 Docker CE
 当然是选择Docker的社区版本Docker CE。安装之前先添加Docker的yum仓库源以及支持`devicemapper`存储驱动的依赖:
 ``` bash
-yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum update
-yum install docker-ce
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum update
+sudo yum install docker-ce
 ```
-安装docker-ce会要求添加`GPG key`，同意即可。安装完成后，`docker`组会自动创建，但是没添加用户。只能以`root`用户操作docker命令，此时可以将普通用户添加至`docker`组，操作命令加`sudo`即可。
+安装docker-ce会要求添加`GPG key`，同意即可。安装完成后，`docker`组会自动创建，但是没添加用户。只能以`root`用户操作docker命令，此时可以将普通用户添加至`docker`组，操作命令如下所示。
 ``` bash
-usermod -aG docker your-user
+sudo usermod -aG docker your-user
 ```
 下文皆以普通用户执行相关命令。
 
@@ -139,6 +139,28 @@ acstest/hello-world-java                                                        
 
 `OFFICIAL`代表官方维护的镜像，`STARS`代表该镜像的收藏量，`NAME`这列是镜像信息，`hello-world`前面带有`xxxxx/`代表该镜像是用户上传的，`AUTOMATED`代表自动接收最新的镜像版本。
 
+### 下载镜像到本地
+``` bash
+docker pull NAME
+```
+`NAME`是镜像名称。
+
+### 创建并运行容器
+``` bash
+docker run -it ubuntu bash
+```
+参数`-t`是开启伪终端，`-i`是进入交互模式，`bash`是指定容器内的shell。
+``` bash
+docker run -d --rm ubuntu echo 'hello world!'
+```
+参数`-d`是后台执行容器进程，终端只返回生成的容器ID；参数`--rm`是容器执行`echo 'hello world!'`这条命令后随即销毁。
+
+### 操作已有容器
+``` bash
+docker container start|stop|restart|rename|prune
+```
+启动|停止|重启|重命名|删除停止的容器。
+
 ### 查看容器
 ``` bash
 docker ps -a
@@ -152,8 +174,9 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ### 删除容器
 ``` bash
-docker rm 33de67c2e8ee
+docker rm CONTAINER_ID|CONTAINER_NAME
 ```
+参数值`CONTAINER_ID`是容器ID，也可为容器名称`CONTAINER_NAME`。
 
 ### 本地构建镜像
 以`hello-world`为例子，本地构建，需要从官网下载[hello](https://github.com/docker-library/hello-world/raw/master/amd64/hello-world/hello)这个二进制文件。放置到新建的`hello-world`目录下，同时新建名为`Dockerfile`的文件。目录文件结构如下:
@@ -232,3 +255,4 @@ For more examples and ideas, visit:
 </pre>
 
 这才对嘛！
+
