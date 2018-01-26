@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Firewalld," />
+  <meta name="keywords" content="Dockerfile," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
-<meta name="keywords" content="Firewalld">
+<meta name="description" content="前言这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。 Dockerfile下面是具体内容，#所在的行内容代表注释。  # FROM指定一个基础镜像，一般明确tag，没有则默认为latest # FROM &amp;lt;image&amp;gt;:&amp;lt;tag&amp;gt; FROM alpine:3.5  # LABEL用于为镜像添加元数据，元数据以键值对的形式指">
+<meta name="keywords" content="Dockerfile">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/24/firewalld.html">
+<meta property="og:title" content="通过 Dockerfile 构建 Docker 镜像">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/26/dockerfile.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta property="og:description" content="前言这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。 Dockerfile下面是具体内容，#所在的行内容代表注释。  # FROM指定一个基础镜像，一般明确tag，没有则默认为latest # FROM &amp;lt;image&amp;gt;:&amp;lt;tag&amp;gt; FROM alpine:3.5  # LABEL用于为镜像添加元数据，元数据以键值对的形式指">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
-<meta property="og:updated_time" content="2018-01-24T09:08:25.000Z">
+<meta property="og:updated_time" content="2018-01-26T10:10:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
-<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
+<meta name="twitter:title" content="通过 Dockerfile 构建 Docker 镜像">
+<meta name="twitter:description" content="前言这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。 Dockerfile下面是具体内容，#所在的行内容代表注释。  # FROM指定一个基础镜像，一般明确tag，没有则默认为latest # FROM &amp;lt;image&amp;gt;:&amp;lt;tag&amp;gt; FROM alpine:3.5  # LABEL用于为镜像添加元数据，元数据以键值对的形式指">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/24/firewalld.html"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/26/dockerfile.html"/>
 
 
 
 
 
-  <title>CentOS 7 防火墙(firewalld)设置 | Jiayu's Blog</title>
+  <title>通过 Dockerfile 构建 Docker 镜像 | Jiayu's Blog</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/24/firewalld.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/26/dockerfile.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS 7 防火墙(firewalld)设置</h1>
+          <h1 class="post-title" itemprop="name headline">通过 Dockerfile 构建 Docker 镜像</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T14:51:25+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T15:10:09+08:00">
+                2018-01-26
               </time>
             
 
@@ -317,30 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/CentOS-7/" itemprop="url" rel="index">
-                    <span itemprop="name">CentOS 7</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/CentOS-7/Firewalld/" itemprop="url" rel="index">
-                    <span itemprop="name">Firewalld</span>
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
                   </a>
                 </span>
 
@@ -376,45 +352,172 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
-<h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。</p>
+<h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>下面是具体内容，<code>#</code>所在的行内容代表注释。</p>
 <pre>
-140.205.201.0/28
-140.205.201.16/29
-140.205.201.32/28
-140.205.225.192/29
-140.205.225.200/30
-140.205.225.184/29
-140.205.225.183/32
-140.205.225.206/32
-140.205.225.205/32
-140.205.225.195/32
-140.205.225.204/32
-106.11.224.0/26
-106.11.224.64/26
-106.11.224.128/26
-106.11.224.192/26
-106.11.222.64/26
-106.11.222.128/26
-106.11.222.192/26
-106.11.223.0/26
+# FROM指定一个基础镜像，一般明确tag，没有则默认为latest
+# FROM &lt;image&gt;:&lt;tag&gt;
+FROM alpine:3.5
+
+# LABEL用于为镜像添加元数据，元数据以键值对的形式指定，指定多条元数据时不同元数据之间通过空格分隔
+# LABEL &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; ...
+# maintainer 镜像作者
+LABEL maintainer="NGINX Docker Maintainers &lt;docker-maint@nginx.com&gt;"
+
+# ENV用于设置环境变量，按数量多寡有两种设置形式
+# 单个ENV &lt;key&gt; &lt;value&gt;
+# 多个ENV &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; &lt;key&gt;=&lt;value&gt; ...
+ENV NGINX_VERSION 1.12.2
+
+# RUN命令将在当前image中执行任意合法命令并提交执行结果。命令执行提交后，就会自动执行Dockerfile中的下一个指令。
+# RUN指令缓存不会在下个命令执行时自动失效。--no-cache 标志可以被用于强制取消缓存使用。
+# RUN中可以设置变量，只在当前RUN中使用。
+# RUN &lt;key&gt;=&lt;value&gt; && &lt;key&gt;=&lt;value&gt; && &lt;key&gt;=&lt;value&gt; ...
+# apk add --no-cache 不使用本地缓存安装包数据库，直接从远程获取安装包信息安装。这样我们就不必通过 apk update 获取安装包数据库了。
+# apk add --virtual .build-deps 将本次安装的所有包封装成一个名为 .build-deps 的虚拟包。这样做的好处是可以通过 apk del .build-deps一键清除这些包。
+
+RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
+    && CONFIG="\
+        --prefix=/etc/nginx \
+        --sbin-path=/usr/sbin/nginx \
+        --modules-path=/usr/lib/nginx/modules \
+        --conf-path=/etc/nginx/nginx.conf \
+        --error-log-path=/var/log/nginx/error.log \
+        --http-log-path=/var/log/nginx/access.log \
+        --pid-path=/var/run/nginx.pid \
+        --lock-path=/var/run/nginx.lock \
+        --http-client-body-temp-path=/var/cache/nginx/client_temp \
+        --http-proxy-temp-path=/var/cache/nginx/proxy_temp \
+        --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
+        --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
+        --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
+        --user=nginx \
+        --group=nginx \
+        --with-http_ssl_module \
+        --with-http_realip_module \
+        --with-http_addition_module \
+        --with-http_sub_module \
+        --with-http_dav_module \
+        --with-http_flv_module \
+        --with-http_mp4_module \
+        --with-http_gunzip_module \
+        --with-http_gzip_static_module \
+        --with-http_random_index_module \
+        --with-http_secure_link_module \
+        --with-http_stub_status_module \
+        --with-http_auth_request_module \
+        --with-http_xslt_module=dynamic \
+        --with-http_image_filter_module=dynamic \
+        --with-http_geoip_module=dynamic \
+        --with-threads \
+        --with-stream \
+        --with-stream_ssl_module \
+        --with-stream_ssl_preread_module \
+        --with-stream_realip_module \
+        --with-stream_geoip_module=dynamic \
+        --with-http_slice_module \
+        --with-mail \
+        --with-mail_ssl_module \
+        --with-compat \
+        --with-file-aio \
+        --with-http_v2_module \
+    " \
+    && addgroup -S nginx \
+    && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
+    && apk add --no-cache --virtual .build-deps \
+        gcc \
+        libc-dev \
+        make \
+        openssl-dev \
+        pcre-dev \
+        zlib-dev \
+        linux-headers \
+        curl \
+        gnupg \
+        libxslt-dev \
+        gd-dev \
+        geoip-dev \
+    && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
+    && curl -fSL http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc  -o nginx.tar.gz.asc \
+    && export GNUPGHOME="$(mktemp -d)" \
+    && found=''; \
+    for server in \
+        ha.pool.sks-keyservers.net \
+        hkp://keyserver.ubuntu.com:80 \
+        hkp://p80.pool.sks-keyservers.net:80 \
+        pgp.mit.edu \
+    ; do \
+        echo "Fetching GPG key $GPG_KEYS from $server"; \
+        gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
+    done; \
+    test -z "$found" && echo >&2 "error: failed to fetch GPG key $GPG_KEYS" && exit 1; \
+    gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
+    && rm -r "$GNUPGHOME" nginx.tar.gz.asc \
+    && mkdir -p /usr/src \
+    && tar -zxC /usr/src -f nginx.tar.gz \
+    && rm nginx.tar.gz \
+    && cd /usr/src/nginx-$NGINX_VERSION \
+    && ./configure $CONFIG --with-debug \
+    && make -j$(getconf _NPROCESSORS_ONLN) \
+    && mv objs/nginx objs/nginx-debug \
+    && mv objs/ngx_http_xslt_filter_module.so objs/ngx_http_xslt_filter_module-debug.so \
+    && mv objs/ngx_http_image_filter_module.so objs/ngx_http_image_filter_module-debug.so \
+    && mv objs/ngx_http_geoip_module.so objs/ngx_http_geoip_module-debug.so \
+    && mv objs/ngx_stream_geoip_module.so objs/ngx_stream_geoip_module-debug.so \
+    && ./configure $CONFIG \
+    && make -j$(getconf _NPROCESSORS_ONLN) \
+    && make install \
+    && rm -rf /etc/nginx/html/ \
+    && mkdir /etc/nginx/conf.d/ \
+    && mkdir -p /usr/share/nginx/html/ \
+    && install -m644 html/index.html /usr/share/nginx/html/ \
+    && install -m644 html/50x.html /usr/share/nginx/html/ \
+    && install -m755 objs/nginx-debug /usr/sbin/nginx-debug \
+    && install -m755 objs/ngx_http_xslt_filter_module-debug.so /usr/lib/nginx/modules/ngx_http_xslt_filter_module-debug.so \
+    && install -m755 objs/ngx_http_image_filter_module-debug.so /usr/lib/nginx/modules/ngx_http_image_filter_module-debug.so \
+    && install -m755 objs/ngx_http_geoip_module-debug.so /usr/lib/nginx/modules/ngx_http_geoip_module-debug.so \
+    && install -m755 objs/ngx_stream_geoip_module-debug.so /usr/lib/nginx/modules/ngx_stream_geoip_module-debug.so \
+    && ln -s ../../usr/lib/nginx/modules /etc/nginx/modules \
+    && strip /usr/sbin/nginx* \
+    && strip /usr/lib/nginx/modules/*.so \
+    && rm -rf /usr/src/nginx-$NGINX_VERSION \
+    \
+    # Bring in gettext so we can get `envsubst`, then throw
+    # the rest away. To do this, we need to install `gettext`
+    # then move `envsubst` out of the way so `gettext` can
+    # be deleted completely, then move `envsubst` back.
+    && apk add --no-cache --virtual .gettext gettext \
+    && mv /usr/bin/envsubst /tmp/ \
+    \
+    && runDeps="$( \
+        scanelf --needed --nobanner --format '%n#p' /usr/sbin/nginx /usr/lib/nginx/modules/*.so /tmp/envsubst \
+            | tr ',' '\n' \
+            | sort -u \
+            | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
+    )" \
+    && apk add --no-cache --virtual .nginx-rundeps $runDeps \
+    && apk del .build-deps \
+    && apk del .gettext \
+    && mv /tmp/envsubst /usr/local/bin/ \
+    \
+    # forward request and error logs to docker log collector
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# COPY 将文件从路径 &lt;src&gt; 复制添加到容器内部路径 &lt;dest&gt;。
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+
+# EXPOSE 声明docker运行容器时提供服务的端口。
+EXPOSE 80
+
+# STOPSIGNAL 进程信号处理
+STOPSIGNAL SIGTERM
+
+# CMD 容器启动执行的命令
+CMD ["nginx", "-g", "daemon off;"]
 </pre>
 
-<a id="more"></a>
-<h2 id="firewalld相关配置"><a href="#firewalld相关配置" class="headerlink" title="firewalld相关配置"></a>firewalld相关配置</h2><p>分服务及配置两部分，都是用<code>root</code>执行相关命令。</p>
-<h3 id="firewalld服务"><a href="#firewalld服务" class="headerlink" title="firewalld服务"></a>firewalld服务</h3><p>安装、启动、停止、查看状态以及开机自启。<br>安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br></pre></td></tr></table></figure></p>
-<p>启动:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
-<p>查看状态:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure></p>
-<p>停止:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></p>
-<p>开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<p>取消开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<h3 id="firewalld配置"><a href="#firewalld配置" class="headerlink" title="firewalld配置"></a>firewalld配置</h3><p>配置规则、查看配置以及生效配置。<br>配置规则(屏蔽指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(取消被屏蔽的指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(开放80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>配置规则(关闭80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>生效配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
-<p>查看配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/01/24/firewalld/list_all.png" title="[查看firewalld配置规则]">
       
     </div>
     
@@ -431,7 +534,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Firewalld/" rel="tag"># Firewalld</a>
+            <a href="/tags/Dockerfile/" rel="tag"># Dockerfile</a>
           
         </div>
       
@@ -444,8 +547,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/06/install-archlinux-mbr.html" rel="next" title="MBR 分区方式安装 ArchLinux">
-                <i class="fa fa-chevron-left"></i> MBR 分区方式安装 ArchLinux
+              <a href="/2018/01/26/ssh.html" rel="next" title="禁用 root 通过 SSH 登录服务器">
+                <i class="fa fa-chevron-left"></i> 禁用 root 通过 SSH 登录服务器
               </a>
             
           </div>
@@ -453,10 +556,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/25/docker.html" rel="prev" title="Docker 在 CentOS 7.4 平台上的运用">
-                Docker 在 CentOS 7.4 平台上的运用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">2.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">3.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">3.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">3.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">2.</span> <span class="nav-text">Dockerfile</span></a></li></ol></div>
             
 
           </div>

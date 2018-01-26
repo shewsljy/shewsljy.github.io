@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="前言如果有在服务器上部署过若干应用(服务)经历的同行，相信都会被其所需的环境给折腾到。编程语言环境：跑个JAVA程序，JRE需要安装，若是需编译代码，还得装个JDK。PHP，Python皆如此。部署WEB应用，HTTP服务器需要安装，可选有Nginx，Apache Tomcat，Apache HTTP Server。存储服务的Mysql···还需要规划相应的用户来运行其进程，繁琐至极。Docker">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-25T10:03:07.000Z">
+<meta property="og:updated_time" content="2018-01-26T06:35:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 在 CentOS 7.4 平台上的运用">
 <meta name="twitter:description" content="前言如果有在服务器上部署过若干应用(服务)经历的同行，相信都会被其所需的环境给折腾到。编程语言环境：跑个JAVA程序，JRE需要安装，若是需编译代码，还得装个JDK。PHP，Python皆如此。部署WEB应用，HTTP服务器需要安装，可选有Nginx，Apache Tomcat，Apache HTTP Server。存储服务的Mysql···还需要规划相应的用户来运行其进程，繁琐至极。Docker">
@@ -353,8 +353,8 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果有在服务器上部署过若干应用(服务)经历的同行，相信都会被其所需的环境给折腾到。编程语言环境：跑个JAVA程序，JRE需要安装，若是需编译代码，还得装个JDK。PHP，Python皆如此。部署WEB应用，HTTP服务器需要安装，可选有Nginx，Apache Tomcat，Apache HTTP Server。存储服务的Mysql···还需要规划相应的用户来运行其进程，繁琐至极。Docker的出现，可以很好的解决这一点。</p>
-<h2 id="CentOS-7-4-安装-Docker-CE"><a href="#CentOS-7-4-安装-Docker-CE" class="headerlink" title="CentOS 7.4 安装 Docker CE"></a>CentOS 7.4 安装 Docker CE</h2><p>当然是选择Docker的社区版本Docker CE。安装之前先添加Docker的yum仓库源以及支持<code>devicemapper</code>存储驱动的依赖:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">yum update</span><br><span class="line">yum install docker-ce</span><br></pre></td></tr></table></figure></p>
-<p>安装docker-ce会要求添加<code>GPG key</code>，同意即可。安装完成后，<code>docker</code>组会自动创建，但是没添加用户。只能以<code>root</code>用户操作docker命令，此时可以将普通用户添加至<code>docker</code>组，操作命令加<code>sudo</code>即可。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -aG docker your-user</span><br></pre></td></tr></table></figure></p>
+<h2 id="CentOS-7-4-安装-Docker-CE"><a href="#CentOS-7-4-安装-Docker-CE" class="headerlink" title="CentOS 7.4 安装 Docker CE"></a>CentOS 7.4 安装 Docker CE</h2><p>当然是选择Docker的社区版本Docker CE。安装之前先添加Docker的yum仓库源以及支持<code>devicemapper</code>存储驱动的依赖:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br><span class="line">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">sudo yum update</span><br><span class="line">sudo yum install docker-ce</span><br></pre></td></tr></table></figure></p>
+<p>安装docker-ce会要求添加<code>GPG key</code>，同意即可。安装完成后，<code>docker</code>组会自动创建，但是没添加用户。只能以<code>root</code>用户操作docker命令，此时可以将普通用户添加至<code>docker</code>组，操作命令如下所示。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker your-user</span><br></pre></td></tr></table></figure></p>
 <p>下文皆以普通用户执行相关命令。</p>
 <a id="more"></a>
 <h2 id="启动及配置Docker加速器地址"><a href="#启动及配置Docker加速器地址" class="headerlink" title="启动及配置Docker加速器地址"></a>启动及配置Docker加速器地址</h2><p>启动命令如下:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure></p>
@@ -431,6 +431,13 @@ acstest/hello-world-java                                                        
 </pre>
 
 <p><code>OFFICIAL</code>代表官方维护的镜像，<code>STARS</code>代表该镜像的收藏量，<code>NAME</code>这列是镜像信息，<code>hello-world</code>前面带有<code>xxxxx/</code>代表该镜像是用户上传的，<code>AUTOMATED</code>代表自动接收最新的镜像版本。</p>
+<h3 id="下载镜像到本地"><a href="#下载镜像到本地" class="headerlink" title="下载镜像到本地"></a>下载镜像到本地</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull NAME</span><br></pre></td></tr></table></figure>
+<p><code>NAME</code>是镜像名称。</p>
+<h3 id="创建并运行容器"><a href="#创建并运行容器" class="headerlink" title="创建并运行容器"></a>创建并运行容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it ubuntu bash</span><br></pre></td></tr></table></figure>
+<p>参数<code>-t</code>是开启伪终端，<code>-i</code>是进入交互模式，<code>bash</code>是指定容器内的shell。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --rm ubuntu <span class="built_in">echo</span> <span class="string">'hello world!'</span></span><br></pre></td></tr></table></figure></p>
+<p>参数<code>-d</code>是后台执行容器进程，终端只返回生成的容器ID；参数<code>--rm</code>是容器执行<code>echo &#39;hello world!&#39;</code>这条命令后随即销毁。</p>
+<h3 id="操作已有容器"><a href="#操作已有容器" class="headerlink" title="操作已有容器"></a>操作已有容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container start|stop|restart|rename|prune</span><br></pre></td></tr></table></figure>
+<p>启动|停止|重启|重命名|删除停止的容器。</p>
 <h3 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
 <pre>
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
@@ -438,7 +445,8 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 </pre>
 
 <p>先前通过<code>docker run hello-world</code>这一条命令，创建了该容器。<code>CONTAINER ID</code>是创建时自动生成的容器ID，<code>IMAGE</code>顾名思义是容器使用的镜像，<code>COMMAND</code>是容器运行时其执行的命令，可以看出镜像中根目录下的<code>hello</code>是一个二进制文件，<code>NAMES</code>的值为<code>kind_ritchie</code>是自动生成的容器别名，也可以在创建时指定。</p>
-<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm 33de67c2e8ee</span><br></pre></td></tr></table></figure>
+<h3 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm CONTAINER_ID|CONTAINER_NAME</span><br></pre></td></tr></table></figure>
+<p>参数值<code>CONTAINER_ID</code>是容器ID，也可为容器名称<code>CONTAINER_NAME</code>。</p>
 <h3 id="本地构建镜像"><a href="#本地构建镜像" class="headerlink" title="本地构建镜像"></a>本地构建镜像</h3><p>以<code>hello-world</code>为例子，本地构建，需要从官网下载<a href="https://github.com/docker-library/hello-world/raw/master/amd64/hello-world/hello" target="_blank" rel="noopener">hello</a>这个二进制文件。放置到新建的<code>hello-world</code>目录下，同时新建名为<code>Dockerfile</code>的文件。目录文件结构如下:</p>
 <pre>
 hello-world
@@ -537,8 +545,8 @@ For more examples and ideas, visit:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/24/firewalld.html" rel="next" title="CentOS 7.4 防火墙(firewalld)设置">
-                <i class="fa fa-chevron-left"></i> CentOS 7.4 防火墙(firewalld)设置
+              <a href="/2018/01/24/firewalld.html" rel="next" title="CentOS 7 防火墙(firewalld)设置">
+                <i class="fa fa-chevron-left"></i> CentOS 7 防火墙(firewalld)设置
               </a>
             
           </div>
@@ -546,6 +554,10 @@ For more examples and ideas, visit:
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/26/ssh.html" rel="prev" title="禁用 root 通过 SSH 登录服务器">
+                禁用 root 通过 SSH 登录服务器 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -622,7 +634,7 @@ For more examples and ideas, visit:
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -633,7 +645,7 @@ For more examples and ideas, visit:
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -644,7 +656,7 @@ For more examples and ideas, visit:
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -677,7 +689,7 @@ For more examples and ideas, visit:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7-4-安装-Docker-CE"><span class="nav-number">2.</span> <span class="nav-text">CentOS 7.4 安装 Docker CE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动及配置Docker加速器地址"><span class="nav-number">3.</span> <span class="nav-text">启动及配置Docker加速器地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">4.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方示例-hello-world"><span class="nav-number">4.1.</span> <span class="nav-text">官方示例 hello-world</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看本地镜像"><span class="nav-number">4.2.</span> <span class="nav-text">查看本地镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索镜像"><span class="nav-number">4.3.</span> <span class="nav-text">搜索镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看容器"><span class="nav-number">4.4.</span> <span class="nav-text">查看容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除容器"><span class="nav-number">4.5.</span> <span class="nav-text">删除容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地构建镜像"><span class="nav-number">4.6.</span> <span class="nav-text">本地构建镜像</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS-7-4-安装-Docker-CE"><span class="nav-number">2.</span> <span class="nav-text">CentOS 7.4 安装 Docker CE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动及配置Docker加速器地址"><span class="nav-number">3.</span> <span class="nav-text">启动及配置Docker加速器地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker常用命令"><span class="nav-number">4.</span> <span class="nav-text">Docker常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方示例-hello-world"><span class="nav-number">4.1.</span> <span class="nav-text">官方示例 hello-world</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看本地镜像"><span class="nav-number">4.2.</span> <span class="nav-text">查看本地镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索镜像"><span class="nav-number">4.3.</span> <span class="nav-text">搜索镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载镜像到本地"><span class="nav-number">4.4.</span> <span class="nav-text">下载镜像到本地</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建并运行容器"><span class="nav-number">4.5.</span> <span class="nav-text">创建并运行容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作已有容器"><span class="nav-number">4.6.</span> <span class="nav-text">操作已有容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看容器"><span class="nav-number">4.7.</span> <span class="nav-text">查看容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除容器"><span class="nav-number">4.8.</span> <span class="nav-text">删除容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地构建镜像"><span class="nav-number">4.9.</span> <span class="nav-text">本地构建镜像</span></a></li></ol></li></ol></div>
             
 
           </div>
