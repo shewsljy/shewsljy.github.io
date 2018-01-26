@@ -34,6 +34,8 @@ ENV NGINX_VERSION 1.12.2
 # apk add --no-cache 不使用本地缓存安装包数据库，直接从远程获取安装包信息安装。这样我们就不必通过 apk update 获取安装包数据库了。
 # apk add --virtual .build-deps 将本次安装的所有包封装成一个名为 .build-deps 的虚拟包。这样做的好处是可以通过 apk del .build-deps一键清除这些包。
 
+<!-- more -->
+
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
 		--prefix=/etc/nginx \
