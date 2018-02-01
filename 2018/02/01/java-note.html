@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Firewalld," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
-<meta name="keywords" content="Firewalld">
+<meta name="description" content="前言零碎的Java学习笔记，不定时更新。 main方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void 类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Java">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/24/firewalld.html">
+<meta property="og:title" content="Java 学习笔记">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/02/01/java-note.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta property="og:description" content="前言零碎的Java学习笔记，不定时更新。 main方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void 类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Java">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
-<meta property="og:updated_time" content="2018-01-24T09:08:25.000Z">
+<meta property="og:updated_time" content="2018-02-01T07:58:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
-<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
+<meta name="twitter:title" content="Java 学习笔记">
+<meta name="twitter:description" content="前言零碎的Java学习笔记，不定时更新。 main方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void 类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Java">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/24/firewalld.html"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/02/01/java-note.html"/>
 
 
 
 
 
-  <title>CentOS 7 防火墙(firewalld)设置 | Jiayu's Blog</title>
+  <title>Java 学习笔记 | Jiayu's Blog</title>
   
 
 
@@ -265,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/24/firewalld.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/02/01/java-note.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -282,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS 7 防火墙(firewalld)设置</h1>
+          <h1 class="post-title" itemprop="name headline">Java 学习笔记</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T14:51:25+08:00">
-                2018-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T15:58:18+08:00">
+                2018-02-01
               </time>
             
 
@@ -317,30 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/CentOS-7/" itemprop="url" rel="index">
-                    <span itemprop="name">CentOS 7</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/CentOS-7/Firewalld/" itemprop="url" rel="index">
-                    <span itemprop="name">Firewalld</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -376,45 +352,89 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
-<h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>零碎的Java学习笔记，不定时更新。</p>
+<h2 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h2><p>在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void 类型的，方法必须接收一个字符串数组的参数等等。<br>在看Java中的main()方法之前，先看一个最简单的Java应用程序HelloWorld，我将通过这个例子说明Java类中main()方法的奥秘，程序的代码如下：</p>
 <pre>
-140.205.201.0/28
-140.205.201.16/29
-140.205.201.32/28
-140.205.225.192/29
-140.205.225.200/30
-140.205.225.184/29
-140.205.225.183/32
-140.205.225.206/32
-140.205.225.205/32
-140.205.225.195/32
-140.205.225.204/32
-106.11.224.0/26
-106.11.224.64/26
-106.11.224.128/26
-106.11.224.192/26
-106.11.222.64/26
-106.11.222.128/26
-106.11.222.192/26
-106.11.223.0/26
+public class HelloWorld {
+    public static void main(String args[]) {
+        System.out.println(" Hello World!" );
+    }
+}
 </pre>
 
 <a id="more"></a>
-<h2 id="firewalld相关配置"><a href="#firewalld相关配置" class="headerlink" title="firewalld相关配置"></a>firewalld相关配置</h2><p>分服务及配置两部分，都是用<code>root</code>执行相关命令。</p>
-<h3 id="firewalld服务"><a href="#firewalld服务" class="headerlink" title="firewalld服务"></a>firewalld服务</h3><p>安装、启动、停止、查看状态以及开机自启。<br>安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br></pre></td></tr></table></figure></p>
-<p>启动:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
-<p>查看状态:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure></p>
-<p>停止:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></p>
-<p>开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<p>取消开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<h3 id="firewalld配置"><a href="#firewalld配置" class="headerlink" title="firewalld配置"></a>firewalld配置</h3><p>配置规则、查看配置以及生效配置。<br>配置规则(屏蔽指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(取消被屏蔽的指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(开放80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>配置规则(关闭80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>生效配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
-<p>查看配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/01/24/firewalld/list_all.png" title="[查看firewalld配置规则]">
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>HelloWorld 类中有main()方法，说明这是个java应用程序，通过JVM直接启动运行的程序。<br>既然是类，java允许类不加public关键字约束，当然类的定义只能限制为public或者无限制关键字（默认的）。</p>
+<h3 id="main-方法声明"><a href="#main-方法声明" class="headerlink" title="main()方法声明"></a>main()方法声明</h3><p>这个main()方法的声明为：public static void main(String args[])。必须这么定义，这是Java的规范。<br>为什么要这么定义，和JVM的运行有关系。<br>当一个类中有main()方法，执行命令“java 类名”则会启动虚拟机执行该类中的main方法。<br>由于JVM在运行这个Java应用程序的时候，首先会调用main方法，调用时不实例化这个类的对象，而是通过类名直接调用因此需要是限制为public static。<br>对于java中的main方法，jvm有限制，不能有返回值，因此返回值类型为void。<br>main方法中还有一个输入参数，类型为String[]，这个也是java的规范，main()方法中必须有一个入参，类细必须String[]，至于字符串数组的名字，这个是可以自己设定的，根据习惯，这个字符串数组的名字一般和sun java规范范例中mian参数名保持一致，取名为args。<br>因此，main()方法定义必须是：“public static void main(String 字符串数组参数名[])”。</p>
+<h3 id="main-方法可以-throws-Exception"><a href="#main-方法可以-throws-Exception" class="headerlink" title="main()方法可以 throws Exception"></a>main()方法可以 throws Exception</h3><p>比如写个public static void main(String args[]) throws Exception来定义main方法是可以的。</p>
+<h3 id="main-方法中字符串参数数组作用"><a href="#main-方法中字符串参数数组作用" class="headerlink" title="main()方法中字符串参数数组作用"></a>main()方法中字符串参数数组作用</h3><p>main()方法中字符串参数数组作用是接收命令行输入参数的，命令行的参数之间用空格隔开。<br>下面给出一个例子，看看如何初始化和使用这个数组的。</p>
+<pre>
+public class TestMain {
+    public static void main(String args[]){
+        System.out.println(" 打印main方法中的输入参数！" );
+        for(int i=0; i< args.length; i++){
+            System.out.println(args[i]);
+        }
+    }
+}
+</pre>
+
+<p>执行方法和运行结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac TestMain.java</span><br><span class="line">java TestMain 1 2 3</span><br></pre></td></tr></table></figure></p>
+<p>输出为：</p>
+<pre>
+打印main方法中的输入参数！
+1
+2
+3
+</pre>
+
+<!-- ### HelloWorld的另外一个版本
+<pre>
+public class HelloWorld2 {
+    static {
+        System.out.println(" Hello Wordld!" );
+    }
+    public static void main(String args[]){
+        System.exit(0);
+    }
+}
+</pre>
+
+这个main()方法执行的内容就一句" System.exit(0); " ，目的是让程序正常结束。那“HelloWorld！”是从哪里打印的，秘密就是在static打印的，因为static代码块的内容会在main调用前调用。 -->
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>在 Java 中， 有 3 种标记注释的方式。</p>
+<ul>
+<li>单行注释</li>
+<li>多行注释</li>
+<li>文档注释</li>
+</ul>
+<p>最常用的方式是使用<code>//</code>，其注释内容从<code>//</code>开始到本行结尾。<br>当需要长篇的注释时，既可以在每行的注释前面标记<code>//</code>，也可以使用<code>/*</code>和<code>*/</code>将一段比较长的注释括起来。<br>最后，第 3 种注释可以用来自动地生成文档。这种注释以<code>/**</code>开始，以<code>*/</code>结束。</p>
+<pre>
+/**
+ * @description 文档注释
+ * @author jiayu
+ * @date 2018/2/1 15:47
+ * @param [args]
+ * @return void
+ */
+public static void main(String[] args) {
+    //单行注释
+    /*
+    多行注释
+    多行注释
+    多行注释
+    */
+    System.out.println("We will not use 'Hello, world!'");//单行注释
+}
+</pre>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Java是一种强类型语言。这就意味着必须为每一个变量声明一种类型: 在Java中，一共有8种基本类型 ( primitive type ), 其中有 4 种整型、 2 种浮点类型、 1 种用于表示 Unicode 编码的字符单元的字符类型 char (请参见论述 char 类型的章节)和 1 种用于表示真值的 boolean 类型。</p>
+<h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>整型用于表示没有小数部分的数值，Java 提供了 4 种整型。</p>
+<pre>
+类型      存储需求
+byte      1 字节
+short     2 字节
+int       4 字节
+long      8 字节
+</pre>
       
     </div>
     
@@ -431,7 +451,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Firewalld/" rel="tag"># Firewalld</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -444,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/06/install-archlinux-mbr.html" rel="next" title="MBR 分区方式安装 ArchLinux">
-                <i class="fa fa-chevron-left"></i> MBR 分区方式安装 ArchLinux
+              <a href="/2018/01/26/dockerfile.html" rel="next" title="通过 Dockerfile 构建 Docker 镜像">
+                <i class="fa fa-chevron-left"></i> 通过 Dockerfile 构建 Docker 镜像
               </a>
             
           </div>
@@ -453,10 +473,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/25/docker.html" rel="prev" title="Docker 在 CentOS 7.4 平台上的运用">
-                Docker 在 CentOS 7.4 平台上的运用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -588,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">2.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">3.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">3.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">3.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main方法"><span class="nav-number">2.</span> <span class="nav-text">main方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">2.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法声明"><span class="nav-number">2.2.</span> <span class="nav-text">main()方法声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法可以-throws-Exception"><span class="nav-number">2.3.</span> <span class="nav-text">main()方法可以 throws Exception</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法中字符串参数数组作用"><span class="nav-number">2.4.</span> <span class="nav-text">main()方法中字符串参数数组作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型"><span class="nav-number">4.1.</span> <span class="nav-text">整型</span></a></li></ol></li></ol></div>
             
 
           </div>
