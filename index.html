@@ -355,11 +355,11 @@
       
         
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>零碎的Java学习笔记，不定时更新。</p>
-<h2 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h2><p>在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void 类型的，方法必须接收一个字符串数组的参数等等。<br>在看Java中的main()方法之前，先看一个最简单的Java应用程序HelloWorld，我将通过这个例子说明Java类中main()方法的奥秘，程序的代码如下：</p>
+<h2 id="main-方法"><a href="#main-方法" class="headerlink" title="main()方法"></a>main()方法</h2><p>在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是<code>main</code>，方法必须是<code>public static void</code>类型的，方法必须接收一个字符串数组的参数等等。<br>在看Java中的main()方法之前，先看一个最简单的Java应用程序HelloWorld，将通过这个例子说明Java类中main()方法的奥秘，程序的代码如下：</p>
 <pre>
 public class HelloWorld {
-    public static void main(String args[]) {
-        System.out.println(" Hello World!" );
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }
 </pre>
