@@ -283,13 +283,35 @@ Size s = Size.MEDIUM;
 从概念上讲，Java字符串就是`Unicode`字符序列。Java没有内置的字符串类型，而是在标准Java类库中提供了一个预定义类，很自然地叫做 `String`。每个用双引号括起来的字符串都是`String`类的一个实例。
 
 ### 子串
-`String`类的`substring`方法可以从一个较大的字符串提取出一个子串。
+`String`类的`substring`方法可以从一个较大的字符串提取出一个子串。例如：
+<pre>
+String greeting = "Hello";
+String s = greeting.substring(0, 3);
+</pre>
+
+创建了一个由字符`Hel`组成的字符串。`substring`方法的第二个参数是不想复制的第一个位置，`"Hello".substring(0, 3)`表示提取字符串`Hello`中的`0`、`1`、`2`的字符`Hel`，效果为左开右闭类似[0, 3)。字符串`s.substring(a, b)`的长度为`b-a`。
 
 ### 拼接
 Java语言允许使用`+`号连接(拼接)两个字符串。当将一个字符串与一个非字符串的值进行拼接时，后者被转换成字符串。
+如果需要把多个字符串放在一起，用一个定界符分隔，可以使用静态`join`方法：
+<pre>
+//subtring 截取字符创 输出：Hel
+String hello = "Hello!";
+String subhel = hello.substring(0, 3);
+System.out.println(subhel);
+//+ 拼接字符串，将前后两个字符串连接起来 输出：Hello World!
+String a = "Hello";
+String b = " World!";
+String c = a + b;
+System.out.println(c);
+//join 拼接多个字符串，以某个字符将各个字符串连接起来 输出：S/M/L/XL
+String all = String.join("/", "S", "M", "L", "XL");
+System.out.println(all);
+</pre>
 
 ### 不可变字符串
-`String`类没有提供用于修改字符串的方法。
+`String`类没有提供用于修改字符串的方法。由于不能修改`Java`字符串中的字符，所以在`String`类对象为不可变字符串，如同数字3永远是数字3一样，字符串`Hello`永远包含字符`H`、`e`、`l`、`l`和`o`的代码单元序列，而不能修改其中的任何一个字符。当然，可以修改字符串变量，让它引用另外一个字符串。
+不可变字符串有一个优点：编译器可以让字符串共享。可以想象将各种字符串存放在公共的存储池中，字符串变量指向存储池中相应的位置。如果复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。
 
 ### 检测字符串是否相等
 可以使用`equals`方法检测两个字符串是否相等。对于表达式：`s.equals(t)`，如果字符串`s`与字符串`t`相等，则返回`true`；否则，返回`false`。需要注意，`s`与`t`可以是字符串变量，也可以是字符串字面量。例如，该表达式是合法的：`"Hello".equals(greeting)`
@@ -321,4 +343,71 @@ if (str == null)
 检查字符串既不是`null`也不为空串，首先要检查`str`不为`null`，这种情况下就需要使用以下条件：
 <pre>
 if (str != null && str.length() != 0)
+</pre>
+
+### 码点与代码单元
+Java字符串由`char`值序列组成。`char`数据类型是一个采用`UTF-16`编码表示`Unicode`码点的代码单元。大多数的常用`Unicode`字符使用一个代码单元就可以表示，而辅助字符需要一对代码单元表示。
+`length()`方法将返回采用`UTF-16`编码表示的给定字符串所需要的代码单元数量；要想得到实际的长度，即码点数量，可以调用`codePointCount()`；调用`s.charAt(n)`将返回位置`n`的代码单元，`n`介于`0 ~ s.length()-1`之间；要想得到第i个码点，应该使用`offsetByCodePoints()`以及`codePointAt()`。
+<pre>
+//length() 返回字符串的长度
+String greeting = "Hello";
+int n = greeting.length();// n的值为5
+System.out.println(n);
+
+//codePointCount(int startlndex, int endlndex) 返回 startlndex 和 endludex- l 之间的代码点数量
+int cpCount = greeting.codePointCount(0, greeting.length());// cpCount的值为5
+System.out.println(cpCount);
+
+//charAt(int index) 返回给定位置的代码单元。除非对底层的代码单元感兴趣， 否则不需要调用这个方法。
+char first = greeting.charAt(0); // first 为 'H'
+System.out.println(first);
+char last = greeting.charAt(4); // last 为 'o'
+System.out.println(last);
+
+//offsetByCodePoints(int startlndex, int cpCount) 返回从 startlndex 代码点开始， 位移 cpCount 后的码点索引。
+int index = greeting.offsetByCodePoints(0,0); //拿到'H'的码点索引
+System.out.println(index);
+//codePointAt( int Index) 返回从给定位置开始的码点
+int cp = greeting.codePointAt(index); //'H'对应ASCII码位
+System.out.println(cp);
+</pre>
+
+### 构建字符串
+有些时候，需要由较短的字符串构建字符串。例如，按键或来自文件中的单词。采用字符串连接的方式达到此目的效率比较低。每次连接字符串，都会构建一个新的`String`对象，既耗时，又浪费空间。使用`StringBuilder`类就可以避免这个问题的发生。如果需要用许多小段的字符串构建一个字符串，那么应该按照下列步骤进行。 
+<pre>
+//构建一个空的字符串构建器
+StringBuilder builder = new StringBuilder();
+
+//需要添加一部分内容时，就调用 append() 方法
+builder.append('H');//char
+builder.append("ello, World!");//string
+
+//构建字符串时就凋用 toString 方法， 将可以得到一个 String 对象， 其中包含了构建器中的字符序列
+String completedString = builder.toString();
+
+//输出 Hello, World!
+System.out.println(completedString);
+</pre>
+
+## 输入输出
+有些Java程序能够接收输入，并以适当的格式输出，现在介绍简单的用于输入输出的控制台。
+
+### 读取输入
+打印输出到`标准输出流(System.out，控制台窗口)`是一件非常容易的事情，只要调用`System.out.println()`即可。然而，读取`标准输人流(System.in)`就没有那么简单了。要想通过控制台进行输人，首先需要构造一个`Scanner`对象，并与`标准输人流(System.in)`关联。
+<pre>
+//构造一个Scanner对象，并与"标准输人流"System.in关联。
+Scanner in = new Scanner(System.in);
+
+// get first input
+System.out.print("What is your name? ");
+// nextLine() 读取输入的下一行内容，包含空格。next() 读取一个单词(以空白符作为分隔符)的内容
+String name = in.nextLine();
+
+// get second input
+System.out.print("How old are you? ");
+// nextInt() 读取并转换下一个表示整数的字符序列。
+int age = in.nextInt();
+
+// display output on console
+System.out.println("Hello, " + name + ". Next year, you'll be " + (age + 1));
 </pre>
