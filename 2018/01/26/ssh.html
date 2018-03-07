@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="前言一直在用root账号密码的方式登录服务器，最近发觉每天都有此类信息提示:  Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty There were 12 failed login attempts since the last successful login.   显示从上一次登">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-26T02:30:05.000Z">
+<meta property="og:updated_time" content="2018-03-07T03:26:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="禁用 root 通过 SSH 登录服务器">
 <meta name="twitter:description" content="前言一直在用root账号密码的方式登录服务器，最近发觉每天都有此类信息提示:  Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty There were 12 failed login attempts since the last successful login.   显示从上一次登">
@@ -333,7 +333,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-26T10:30:05+08:00">2018-01-26</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T11:26:05+08:00">2018-03-07</time>
             
           </span>
 
@@ -396,9 +396,34 @@ Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:nott
 There were 12 failed login attempts since the last successful login.
 </pre>
 
-<p>显示从上一次登陆成功到本次登陆成功，中间有若干次尝试登陆<code>root</code>账户失败的情况。我的SSH端口22没改，为了防止暴力破解导致服务器被黑，需禁用<code>root</code>账号登录，改用授以<code>sudo</code>权限普通用户登录的方式。</p>
-<h2 id="禁用root账号登录"><a href="#禁用root账号登录" class="headerlink" title="禁用root账号登录"></a>禁用root账号登录</h2><p>将<code>/etc/ssh/sshd_config</code>中的<code>PermitRootLogin yes</code>改为<code>PermitRootLogin no</code>，并重启<code>sshd</code>服务:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure></p>
-<p>世界清静多了。</p>
+<p>显示从上一次登陆成功到本次登陆成功，中间有若干次尝试登陆<code>root</code>账户失败的情况。我的SSH端口22没改，为了防止暴力破解导致服务器被黑，需禁用<code>root</code>账号登录，并更改SSH服务的22端口。用拥有<code>sudo</code>权限的普通用户登录服务器。</p>
+<h2 id="授以普通用户sudo权限"><a href="#授以普通用户sudo权限" class="headerlink" title="授以普通用户sudo权限"></a>授以普通用户sudo权限</h2><p>假设普通用户名为<code>username</code>，先用<code>root</code>用户执行<code>visudo</code>命令，在<code>root    ALL=(ALL)       ALL</code>这一行下添加<code>username   ALL=(ALL)       ALL</code>，如：</p>
+<pre>
+root    ALL=(ALL)       ALL
+username   ALL=(ALL)       ALL
+</pre>
+
+<p>若是想要普通用户执行<code>sudo</code>命令时免密码输入，则可修改为：</p>
+<pre>
+root    ALL=(ALL)       ALL
+username   ALL=(ALL)       NOPASSWD: ALL
+</pre>
+
+<h2 id="禁用root账号SSH登录"><a href="#禁用root账号SSH登录" class="headerlink" title="禁用root账号SSH登录"></a>禁用root账号SSH登录</h2><p>这个推荐用拥有<code>sudo</code>权限的普通用户操作，将<code>/etc/ssh/sshd_config</code>中的<code>PermitRootLogin yes</code>改为<code>PermitRootLogin no</code>，并重启<code>sshd</code>服务：</p>
+<pre>
+PermitRootLogin no
+</pre>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+<h2 id="更改SSH服务默认的22端口"><a href="#更改SSH服务默认的22端口" class="headerlink" title="更改SSH服务默认的22端口"></a>更改SSH服务默认的22端口</h2><p>这个推荐用拥有<code>sudo</code>权限的普通用户操作，将<code>/etc/ssh/sshd_config</code>中<code>#Port 22</code>前面的注释<code>#</code>去除，另增一行<code>Port 10022</code>，并重启<code>sshd</code>服务：</p>
+<pre>
+Port 22
+Port 10022
+</pre>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+<p>这里开启双端口是为了保险，防止新的<code>10022</code>端口被其他服务占用导致重启<code>sshd</code>服务后连不上去(虽说可以用<code>netstat -an|grep 10022</code>查看是否被占用，但留条退路也是应该的)。通过新端口连上去后，就可以把<code>Port 22</code>注释掉，并再次重启<code>sshd</code>服务。</p>
+<h2 id="防火墙开放新端口"><a href="#防火墙开放新端口" class="headerlink" title="防火墙开放新端口"></a>防火墙开放新端口</h2><p>如果还设置了防火墙，记得开放新端口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=10022/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line">sudo firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -615,7 +640,7 @@ There were 12 failed login attempts since the last successful login.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用root账号登录"><span class="nav-number">2.</span> <span class="nav-text">禁用root账号登录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授以普通用户sudo权限"><span class="nav-number">2.</span> <span class="nav-text">授以普通用户sudo权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用root账号SSH登录"><span class="nav-number">3.</span> <span class="nav-text">禁用root账号SSH登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改SSH服务默认的22端口"><span class="nav-number">4.</span> <span class="nav-text">更改SSH服务默认的22端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙开放新端口"><span class="nav-number">5.</span> <span class="nav-text">防火墙开放新端口</span></a></li></ol></div>
             
 
           </div>
