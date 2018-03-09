@@ -403,6 +403,7 @@ root    ALL=(ALL)       ALL
 username   ALL=(ALL)       ALL
 </pre>
 
+<a id="more"></a>
 <p>若是想要普通用户执行<code>sudo</code>命令时免密码输入，则可修改为：</p>
 <pre>
 root    ALL=(ALL)       ALL
@@ -414,14 +415,14 @@ username   ALL=(ALL)       NOPASSWD: ALL
 PermitRootLogin no
 </pre>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
 <h2 id="更改SSH服务默认的22端口"><a href="#更改SSH服务默认的22端口" class="headerlink" title="更改SSH服务默认的22端口"></a>更改SSH服务默认的22端口</h2><p>这个推荐用拥有<code>sudo</code>权限的普通用户操作，将<code>/etc/ssh/sshd_config</code>中<code>#Port 22</code>前面的注释<code>#</code>去除，另增一行<code>Port 10022</code>，并重启<code>sshd</code>服务：</p>
 <pre>
 Port 22
 Port 10022
 </pre>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
 <p>这里开启双端口是为了保险，防止新的<code>10022</code>端口被其他服务占用导致重启<code>sshd</code>服务后连不上去(虽说可以用<code>netstat -an|grep 10022</code>查看是否被占用，但留条退路也是应该的)。通过新端口连上去后，就可以把<code>Port 22</code>注释掉，并再次重启<code>sshd</code>服务。</p>
 <h2 id="防火墙开放新端口"><a href="#防火墙开放新端口" class="headerlink" title="防火墙开放新端口"></a>防火墙开放新端口</h2><p>如果还设置了防火墙，记得开放新端口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=10022/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line">sudo firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
 
