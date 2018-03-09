@@ -24,6 +24,8 @@ root    ALL=(ALL)       ALL
 username   ALL=(ALL)       ALL
 </pre>
 
+<!-- more -->
+
 若是想要普通用户执行`sudo`命令时免密码输入，则可修改为：
 <pre>
 root    ALL=(ALL)       ALL
@@ -38,7 +40,7 @@ PermitRootLogin no
 
 ``` bash
 sudo vi /etc/ssh/sshd_config
-sudo service sshd restart
+sudo systemctl restart sshd
 ```
 
 ## 更改SSH服务默认的22端口
@@ -50,7 +52,7 @@ Port 10022
 
 ``` bash
 sudo vi /etc/ssh/sshd_config
-sudo service sshd restart
+sudo systemctl restart sshd
 ```
 这里开启双端口是为了保险，防止新的`10022`端口被其他服务占用导致重启`sshd`服务后连不上去(虽说可以用`netstat -an|grep 10022`查看是否被占用，但留条退路也是应该的)。通过新端口连上去后，就可以把`Port 22`注释掉，并再次重启`sshd`服务。
 
