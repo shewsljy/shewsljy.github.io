@@ -1,0 +1,62 @@
+# 设置语言
+language: node_js
+
+# 设置相应的版本
+node_js: stable
+
+# 缓存不经常更改的内容
+cache:
+    directories:
+        - node_modules
+
+# 更改时区
+before_install:
+    - export TZ='Asia/Shanghai'
+
+# 安装hexo及插件
+install:
+  - npm install
+
+# 清除并生成静态文件
+script:
+  - hexo clean
+  - hexo generate
+
+# 部署思路
+# 1. 这个仓库有3个分支，master，hexo，blog。
+#    其中hexo与master的关系：通过hexo在本地环境将hexo分支代码编译生成静态文件，推送到远端的master分支上；
+#    现在把本地编译以及推送的工作交给了travis-ci，所以启用了新的分支blog，旧的hexo分支保留
+# 2. travis-ci可以在github上拉取代码，设置只对blog分支代码的push操作有响应。
+#    当我在本地将blog分支的代码push到github时，travis-ci监测到，就会把这个blog分支的代码拉取到它的服务器上，
+#    服务器通过之行`npm install`，`hexo clean`，`hexo generate`，对代码进行编译，生成静态文件。
+# 3. 然后服务器再把master分支的代码拉取下来，挪移master分支的提交记录到编译好的静态文件目录中，
+#    提供提交信息后，把静态文件目录中的内容推送至github上的master分支上。
+after_script:
+  - git clone https://${GH_REF} .deploy_git  # GH_REF是最下面配置的仓库地址
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/   # 这一步之前的操作是为了保留master分支的提交记录，不然每次git init的话只有1条commit
+  - cd ./public
+  - git config user.name "shewsljy"  #修改name
+  - git config user.email "1214942360@qq.com"  #修改email
+  - git add .
+  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master  #GH_TOKEN是在Travis跟Github的通信串码
+
+branches:
+  only:
+    - blog  #只监测blog分支
+env:
+ global:
+   - GH_REF: github.com/shewsljy/shewsljy.github.io.git  #设置GH_REF，注意更改yourname
+   - secure: `x9MM3cRysPJYDcM1l+R3g4ngKoVhhArJNf8HYr31NnjJsDO8cBu6TLzXzmVzT0s3bPkLLJzXW06M9odJ3n7fsDHV9O1i1YAnZxvI6AfIZPR9dZwoN02mTzNQPJk3VLI6YGq4uwi0aVaTUhnrtUATt/RxwVnDPbSbi3ueNqeHEd0WoE3fIrcwju46cp9NfnivzclxGonn9+AgWu/U45r+bNeMOTyuXs6UELiGE1SF1c/Gp8+Mi++sLcon/9RZyzjASf6o7r/ta7GlkyuhhJlSzW7wPh0TuLVQmnkPhVYXvkNXv7PmPq8+dKkbu+0aVabhrghdEMt/nNu4+dN/EBAMeqF+LgqsbMu9sxw8IkiYq8By9vcNhhNx25FMWFoyiISHYMQ0kOhXMZUczrEIOXRbFlcLjCpCeU5dzGGH4OxfYKyoOTERz+Ie2kJuePj7/BrjZQ4v8lln+I7hSKJwjXEueX88allo+aH6CUcQnw1+XixT8W6pKvAfF3Pbw4TVYFgmHp2VJdong46WVGus26FQvzGHkYB0K1N6ewrqsJ3cmigkkWPeyg+CGT8QKIwv4R78XhBRBR9wb8I6D0RJB0r+vIUfgfpYzeqBJfjXGhvh7s11+8narsbwcu/xIxj054l62W7YK/59uUvR4NK35ZHtW8QC2iiDwHtM4J4+yuWklR8=`
+
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+# https://docs.travis-ci.com/user/notifications/
+notifications:
+  email:
+    - 1214942360@qq.com
+  on_success: change
+  on_failure: always
