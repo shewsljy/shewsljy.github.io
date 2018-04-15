@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言零碎的Java学习笔记，不定时更新。 main()方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Jav">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/02/01/java-note/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言零碎的Java学习笔记，不定时更新。 main()方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Jav">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-02-07T09:20:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 学习笔记">
+<meta name="twitter:description" content="前言零碎的Java学习笔记，不定时更新。 main()方法在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是main，方法必须是public static void类型的，方法必须接收一个字符串数组的参数等等。在看Java中的main()方法之前，先看一个最简单的Jav">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/01/java-note/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java 学习笔记 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/01/java-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T15:58:18+08:00">2018-02-01</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>零碎的Java学习笔记，不定时更新。</p>
+<h2 id="main-方法"><a href="#main-方法" class="headerlink" title="main()方法"></a>main()方法</h2><p>在Java中，main()方法是Java应用程序的入口方法，也就是说，程序在运行的时候，第一个执行的方法就是main()方法，这个方法和其他的方法有很大的不同，比如方法的名字必须是<code>main</code>，方法必须是<code>public static void</code>类型的，方法必须接收一个字符串数组的参数等等。<br>在看Java中的main()方法之前，先看一个最简单的Java应用程序HelloWorld，将通过这个例子说明Java类中main()方法的奥秘，程序的代码如下：</p>
+<pre>
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+</pre>
+
+<a id="more"></a>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>HelloWorld类中有main()方法，说明这是个java应用程序，通过JVM直接启动运行的程序。<br>既然是类，java允许类不加<code>public</code>关键字约束，当然类的定义只能限制为<code>public</code>或者无限制关键字（默认的）。</p>
+<h3 id="main-方法声明"><a href="#main-方法声明" class="headerlink" title="main()方法声明"></a>main()方法声明</h3><p>这个main()方法的声明为：<code>public static void main(String[] args)</code>。必须这么定义，这是Java的规范。<br>为什么要这么定义，和JVM的运行有关系。<br>当一个类中有main()方法，执行命令<code>java 类名</code>则会启动虚拟机执行该类中名为<code>main</code>的方法。<br>由于JVM在运行这个Java应用程序的时候，首先会调用main()方法，调用时不实例化这个类的对象，而是通过类名直接调用因此需要是限制为<code>public static</code>。<br>对于java中的main()方法，jvm有限制，不能有返回值，因此返回值类型为<code>void</code>。<br>main()方法中还有一个输入参数，类型为<code>String[]</code>，这个也是java的规范，main()方法中必须有一个入参，类型必须<code>String[]</code>，至于字符串数组的名字，这个是可以自己设定的，根据习惯，这个字符串数组的名字一般和<code>sun java</code>规范范例中<code>mian</code>参数名保持一致，取名为<code>args</code>。<br>因此，main()方法定义必须是：<code>public static void main(String[] 字符串数组参数名)</code>。</p>
+<h3 id="main-方法可以抛异常"><a href="#main-方法可以抛异常" class="headerlink" title="main()方法可以抛异常"></a>main()方法可以抛异常</h3><p>比如写个<code>public static void main(String[] args) throws Exception</code>来定义main()方法是可以的。</p>
+<h3 id="main-方法中字符串参数数组作用"><a href="#main-方法中字符串参数数组作用" class="headerlink" title="main()方法中字符串参数数组作用"></a>main()方法中字符串参数数组作用</h3><p>main()方法中字符串参数数组作用是接收命令行输入参数的，命令行的参数之间用空格隔开。<br>下面给出一个例子，看看如何初始化和使用这个数组的。</p>
+<pre>
+public class TestMain {
+    public static void main(String[] args){
+        System.out.println("打印main方法中的输入参数!");
+        for(int i=0; i< args.length; i++){
+            System.out.println(args[i]);
+        }
+    }
+}
+</pre>
+
+<p>执行方法和运行结果<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac TestMain.java</span><br><span class="line">java TestMain 1 2 3</span><br></pre></td></tr></table></figure></p>
+<p>输出为：</p>
+<pre>
+打印main方法中的输入参数!
+1
+2
+3
+</pre>
+
+<!-- ### HelloWorld的另外一个版本
+<pre>
+public class HelloWorld2 {
+    static {
+        System.out.println("Hello Wordld!");
+    }
+    public static void main(String[] args){
+        System.exit(0);
+    }
+}
+</pre>
+
+这个main()方法执行的内容就一句`System.exit(0);`，目的是让程序正常结束。那`HelloWorld!`是从哪里打印的，秘密就是在`static`打印的，因为`static`代码块的内容会在main()调用前调用。 -->
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>在Java中， 有3种标记注释的方式。</p>
+<ul>
+<li>单行注释</li>
+<li>多行注释</li>
+<li>文档注释</li>
+</ul>
+<p>最常用的方式是使用<code>//</code>，其注释内容从<code>//</code>开始到本行结尾。<br>当需要长篇的注释时，既可以在每行的注释前面标记<code>//</code>，也可以使用<code>/*</code>和<code>*/</code>将一段比较长的注释括起来。<br>第3种注释可以用来自动地生成文档。这种注释以<code>/**</code>开始，以<code>*/</code>结束。</p>
+<pre>
+/**
+ * @description 文档注释
+ * @author jiayu
+ * @date 2018/2/1 15:47
+ * @param [args]
+ * @return void
+ */
+public static void main(String[] args) {
+    //单行注释
+    /*
+    多行注释
+    多行注释
+    多行注释
+    */
+    System.out.println("We will not use 'Hello, World!'");//单行注释
+}
+</pre>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>Java是一种强类型语言。这就意味着必须为每一个变量声明一种类型: 在Java中，一共有8种基本类型<code>primitive type</code>，其中有4种整型、2种浮点类型、1种用于表示<code>Unicode</code>编码的字符单元的字符类型<code>char</code>和1种用于表示真值的<code>boolean</code>类型。</p>
+<h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>整型用于表示没有小数部分的数值，Java提供了4种整型。<br><code>byte</code>的取值范围为（-128~127），占用1个字节（-2的7次方到2的7次方-1）<br><code>short</code>的取值范围为（-32768~32767），占用2个字节（-2的15次方到2的15次方-1）<br><code>int</code>的取值范围为（-2147483648~2147483647），占用4个字节（-2的31次方到2的31次方-1）<br><code>long</code>的取值范围为（-9223372036854774808~9223372036854774807），占用8个字节（-2的63次方到2的63次方-1）<br>在通常情况下，<code>int</code>类型最常用。但如果表示星球上的居住人数，就需要使用<code>long</code>类型，其类型的数值有一个后缀<code>L</code>或<code>l</code>(例如，<code>2200000000L</code>)。<code>byte</code>和<code>short</code>类型主要用于特定的应用场合，例如，底层的文件处理或者需要控制占用存储空间量的大数组。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">存储需求</th>
+<th style="text-align:center">取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">1 字节</td>
+<td style="text-align:center">-128~127</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">2 字节</td>
+<td style="text-align:center">-32768~32767</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">4 字节</td>
+<td style="text-align:center">-2147483648~2147483647</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">8 字节</td>
+<td style="text-align:center">-2的63次方~2的63次方-1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><p>浮点类型用于表示有小数部分的数值，在Java中有两种浮点类型。<br><code>float</code>的取值范围为（3.402823e+38 ~ 1.401298e-45），占用4个字节（e+38表示是乘以10的38次方，同样，e-45表示乘以10的负45次方）<br><code>double</code>的取值范围为（1.797693e+308~ 4.9000000e-324），占用8个字节<br><code>double</code>表示这种类型的数值精度是<code>float</code>类型的两倍(有人称之为双精度数值)。绝大部分应用程序都采用<code>double</code>类型。在很多情况下，<code>float</code>类型的精度很难满足需求。实际上，只有很少的情况适合使用<code>float</code>类型，例如，需要单精度数据的库，或者需要存储大量数据。<br><code>float</code>类型的数值有一个后缀<code>F</code>或<code>f</code>(例如，<code>3.14F</code>)，没有后缀<code>F</code>或<code>f</code>的浮点数值(如<code>3.14</code>)默认为<code>double</code>类型。当然，也可以在浮点数值后面添加后缀<code>D</code>或<code>d</code>(例如，<code>3.14D</code>)。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">存储需求</th>
+<th style="text-align:center">取值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">4 字节</td>
+<td style="text-align:center">3.402823e+38~1.401298e-45</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">8 字节</td>
+<td style="text-align:center">1.797693e+308~4.9000000e-324</td>
+</tr>
+</tbody>
+</table>
+<h3 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h3><p><code>char</code>类型原本用于表示单个字符。不过，现在情况已经有所变化。有些<code>Unicode</code>字符可以用一个<code>char</code>值描述，另外一些<code>Unicode</code>字符则需要两个<code>char</code>值。<code>char</code>类型的字面量值要用单引号括起来。在Java中，<code>char</code>类型描述了<code>UTF-16</code>编码中的一个代码单元。建议不要在程序中使用<code>char</code>类型，除非确实需要处理<code>UTF-16</code>代码单元，最好将字符串作为抽象数据类型处理。</p>
+<h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型"></a>boolean类型</h3><p><code>boolean</code>(布尔)类型有两个值:<code>false</code>和<code>true</code>，用来判定逻辑条件，整型值和布尔值之间不能进行相互转换。</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>在Java中，每个变量都有一个类型(type)。在声明变量时，变量的类型位于变量名之前，每个声明以分号结束。</p>
+<pre>
+double salary;
+int vacationDays;
+long earthPopulation;
+boolean done;
+</pre>
+
+<p>变量名必须是一个以字母开头并由字母或数字构成的序列，字母包括大写字母<code>A~Z</code>、小写字母<code>a~z</code>、美元符号<code>$</code>、下划线<code>_</code>或在某种语言中表示字母的任何<code>Unicode</code>字符，数字包括<code>0~9</code>和在某种语言中表示数字的任何<code>Unicode</code>字符。</p>
+<h3 id="变量初始化"><a href="#变量初始化" class="headerlink" title="变量初始化"></a>变量初始化</h3><p>声明一个变量之后，必须用赋值语句对变量进行显式初始化，千万不要使用未初始化的变量。要想对一个已经声明过的变量进行赋值，就需要将变量名放在等号(=)左侧，相应取值的Java表达式放在等号的右侧。变量的声明尽可能地靠近变量第一次使用的地方，这是一种良好的程序编写风格。</p>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>在Java中， 利用关键字<code>final</code>指示常量。关键字<code>final</code>表示这个变量只能被赋值一次。一旦被赋值之后，就不能够再更改了。习惯上，常量名使用全大写。经常希望某个常量可以在一个类中的多个方法中使用，通常将这些常量称为类常量。可以使用关键字<code>static final</code>设置一个类常量。如果一个常量被声明为<code>public</code>，那么其他类的方法也可以使用这个常量。 </p>
+<pre>
+public class Final {
+    //类中的常量
+    static final double PI_VALUE_IN_CLASS = 3.144;
+
+    public static void main(String[] args) {
+        //方法中的常量
+        final double PI_VALUE_METHOD = 3.14;
+
+        //访问当前方法中的常量
+        System.out.println("Final类中main()方法常量:" + PI_VALUE_METHOD);
+        //访问当前类中的常量
+        System.out.println("Final类常量:" + PI_VALUE_IN_CLASS);
+        //访问其他类中的常量
+        System.out.println("OtherFinal类常量:" + OtherFinal.PI_VALUE_OUT_CLASS);
+    }
+}
+class OtherFinal {
+    //类中的常量，设置public后其他类可以通过"OtherFinal.常量名"访问
+    public static final double PI_VALUE_OUT_CLASS = 3.1444;
+}
+</pre>
+
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>在Java中，使用算术运算符<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>表示加、减、乘、除运算。当参与<code>/</code>运算的两个操作数都是整数时，表示整数除法；否则，表示浮点除法。整数的求余操作(有时称为取模 )用<code>%</code>表示。<br>整数被<code>0</code>除将会产生一个异常，而浮点数被<code>0</code>除将会得到无穷大或<code>NaN</code>结果。<br>正整数除以<code>0</code>的结果为正无穷大。计算<code>0/0</code>或者负数的平方根结果为<code>NaN</code>。</p>
+<h3 id="数学函数与常量"><a href="#数学函数与常量" class="headerlink" title="数学函数与常量"></a>数学函数与常量</h3><p>在<code>Math</code>类中，包含了各种各样的数学函数。求<code>x</code>的平方根<code>Math.sqrt(x)</code>，求<code>x</code>的<code>a</code>次幂运算<code>Math.pow(x, a)</code>。<br>Math类提供了一些常用的三角函数：</p>
+<pre>
+Math.sin
+Math.cos
+Math.tan
+Math.atan
+Math.atan2
+</pre>
+
+<p>还有指数函数以及它的反函数(自然对数)以及以10为底的对数：</p>
+<pre>
+Math.exp
+Math.log
+Math.loglO
+</pre>
+
+<p>最后，Java还提供了两个用于表示<code>π</code>和<code>e</code>常量的近似值：</p>
+<pre>
+Math.PI
+Math.E
+</pre>
+
+<h3 id="数值类型之间的转换"><a href="#数值类型之间的转换" class="headerlink" title="数值类型之间的转换"></a>数值类型之间的转换</h3><p>经常需要将一种数值类型转换为另一种数值类型。两个数值进行二元操作时(例如<code>n+f</code>，<code>n</code>是整数，<code>f</code>是浮点数)，先要将两个操作数转换为同一种类型， 然后再进行计算。<br>如果两个操作数中有一个是<code>double</code>类型，另一个操作数就会转换为<code>double</code>类型；<br>否则，如果其中一个操作数是<code>float</code>类型，另一个操作数将会转换为<code>float</code>类型；<br>否则，如果其中一个操作数是<code>long</code>类型，另一个操作数将会转换为<code>long</code>类型；<br>否则，两个操作数都将被转换为<code>int</code>类型。</p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>在必要的时候，<code>int</code>类型的值将会自动地转换为<code>double</code>类型。但另一方面，有时也需要将<code>double</code>转换成<code>int</code>。在Java中，允许进行这种数值之间的类型转换。当然，有可能会丢失一些信息。在这种情况下，需要通过强制类型转换(cast)实现这个操作。 强制类型转换的语法格式是在圆括号中给出想要转换的目标类型，后面紧跟待转换的变量名。</p>
+<pre>
+double x = 9.997;
+int nx = (int) x;
+</pre>
+
+<h3 id="结合赋值和运算符-二元运算符"><a href="#结合赋值和运算符-二元运算符" class="headerlink" title="结合赋值和运算符(二元运算符)"></a>结合赋值和运算符(二元运算符)</h3><p>可以在赋值中使用二元运算符，这是一种很方便的简写形式。例如，<code>x += 4;</code> 等价于<code>x = x + 4;</code>，一般地，要把运算符放在<code>=</code>号左边，如<code>*=</code>或<code>%=</code>。<br>如果运算符得到一个值，其类型与左侧操作数的类型不同，就会发生强制类型转换。例如，如果<code>x</code>是一个<code>int</code>，则语句<code>x += 3.5;</code>是合法的，将把<code>x</code>设置为<code>(int)(x + 3.5)</code>。</p>
+<h3 id="自增与自减运算符"><a href="#自增与自减运算符" class="headerlink" title="自增与自减运算符"></a>自增与自减运算符</h3><p>在Java中，提供了自增、自减运算符。这些运算符有两种形式，<code>n++</code>、<code>n--</code>是运算符放在操作数后面的<code>后缀</code>形式；还有一种<code>前缀</code>形式：<code>++n</code>、<code>--n</code>。后缀和前缀形式都会使变量值<code>加1</code>或<code>减1</code>。但用在表达式中时，二者就有区别了。前缀形式中变量值会先完成<code>加1</code>或<code>减1</code>的操作，再参与表达式运算; 而后缀形式中变量先使用原来的值进行表达式运算，再进行<code>加1</code>或<code>减1</code>的操作。</p>
+<pre>
+int m = 7;
+int n = 7;
+int a = 2 * ++m; // m的值7先自增1变为8，乘以二后得16，再赋值给a
+int b = 2 * n++; // n的值7先乘以二得14，赋值给b，最后n自增1为8
+</pre>
+
+<h3 id="关系和boolean运算符"><a href="#关系和boolean运算符" class="headerlink" title="关系和boolean运算符"></a>关系和boolean运算符</h3><p>关系运算符中，要检测相等性，可以使用两个等号<code>==</code>；使用<code>!=</code>检测不相等。还有经常使用的<code>&lt;(小于)</code>、<code>&gt;(大于)</code>、<code>&lt;=(小于等于)</code>和<code>&gt;=(大于等于)</code>运算符。<br>使用<code>&amp;&amp;</code>表示逻辑<code>与</code>运算符，使用<code>||</code>表示逻辑<code>或</code>运算符。从<code>!=</code>运算符可以想到，感叹号<code>!</code>就是逻辑非运算符。<code>&amp;&amp;</code>和<code>||</code>运算符是按照<code>短路</code>方式来求值的：如果第一个操作数已经能够确定表达式的值，第二个操作数就不必计算了。<br>Java支持三元操作符<code>?:</code>，这个操作符有时很有用。如果条件为<code>true</code>，表达式<code>condition ? expression1 : expression2</code>就为第一个表达式的值，否则计算为第二个表达式的值。<code>x&lt;y ? x:y</code>会返回<code>x</code>和<code>y</code>中较小的一个。</p>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>处理整型类型时，可以直接对组成整型数值的各个位完成操作。这意味着可以使用掩码技术得到整数中的各个位。<br>位运算符包括：<code>&amp;(&quot;and&quot;)</code>、<code>|(&quot;or&quot;)</code>、<code>^(&quot;xor&quot;)</code>、<code>~(&quot;not&quot;)</code><br>还有<code>&gt;&gt;</code>和<code>&lt;&lt;</code>运算符将位模式左移或右移，<code>&gt;&gt;&gt;</code>运算符会用<code>0</code>填充高位，这与<code>&gt;&gt;</code>不同，它会用符号位填充高位。</p>
+<h3 id="括号与运算符级别"><a href="#括号与运算符级别" class="headerlink" title="括号与运算符级别"></a>括号与运算符级别</h3><p>给出了运算符的优先级。 如果不使用圆括号，就按照给出的运算符优先级次序进行计算。同一个级别的运算符按照从左到右的次序进行计算(除了表中给出的右结合运算符外)。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">[] . ()(方法调用)</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">! ~ ++ -- +(一元运算) -(一元运算) ()(强制类型转换) new</td>
+<td style="text-align:center">从右向左</td>
+</tr>
+<tr>
+<td style="text-align:center">* / %</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">+ -</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt; &lt;= &gt; &gt;= instanceof</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">== !=</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&#124;</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">&#124;&#124;</td>
+<td style="text-align:center">从左向右</td>
+</tr>
+<tr>
+<td style="text-align:center">?:</td>
+<td style="text-align:center">从右向左</td>
+</tr>
+<tr>
+<td style="text-align:center">= += -= *= /= %= &amp;= &#124;= ^= &lt;&lt;= &gt;&gt;= &gt;&gt;&gt;=</td>
+<td style="text-align:center">从右向左</td>
+</tr>
+</tbody>
+</table>
+<h3 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h3><p>有时候，变量的取值只在一个有限的集合内。针对这种情况，可以自定义枚举类型，枚举类型包括有限个命名的值。例如：</p>
+<pre>
+enum Size { SMALL, MEDIUM, LARGE, EXTRA_LARCE };
+//现在， 可以声明这种类型的变量:
+Size s = Size.MEDIUM;
+</pre>
+
+<p><code>Size</code>类型的变量只能存储这个类型声明中给定的某个枚举值，或者<code>null</code>值，<code>null</code>表示这个变量没有设置任何值。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>从概念上讲，Java字符串就是<code>Unicode</code>字符序列。Java没有内置的字符串类型，而是在标准Java类库中提供了一个预定义类，很自然地叫做 <code>String</code>。每个用双引号括起来的字符串都是<code>String</code>类的一个实例。</p>
+<h3 id="子串"><a href="#子串" class="headerlink" title="子串"></a>子串</h3><p><code>String</code>类的<code>substring</code>方法可以从一个较大的字符串提取出一个子串。例如：</p>
+<pre>
+String greeting = "Hello";
+String s = greeting.substring(0, 3);
+</pre>
+
+<p>创建了一个由字符<code>Hel</code>组成的字符串。<code>substring</code>方法的第二个参数是不想复制的第一个位置，<code>&quot;Hello&quot;.substring(0, 3)</code>表示提取字符串<code>Hello</code>中的<code>0</code>、<code>1</code>、<code>2</code>的字符<code>Hel</code>，效果为左开右闭类似[0, 3)。字符串<code>s.substring(a, b)</code>的长度为<code>b-a</code>。</p>
+<h3 id="拼接"><a href="#拼接" class="headerlink" title="拼接"></a>拼接</h3><p>Java语言允许使用<code>+</code>号连接(拼接)两个字符串。当将一个字符串与一个非字符串的值进行拼接时，后者被转换成字符串。<br>如果需要把多个字符串放在一起，用一个定界符分隔，可以使用静态<code>join</code>方法：</p>
+<pre>
+//subtring 截取字符创 输出：Hel
+String hello = "Hello!";
+String subhel = hello.substring(0, 3);
+System.out.println(subhel);
+//+ 拼接字符串，将前后两个字符串连接起来 输出：Hello World!
+String a = "Hello";
+String b = " World!";
+String c = a + b;
+System.out.println(c);
+//join 拼接多个字符串，以某个字符将各个字符串连接起来 输出：S/M/L/XL
+String all = String.join("/", "S", "M", "L", "XL");
+System.out.println(all);
+</pre>
+
+<h3 id="不可变字符串"><a href="#不可变字符串" class="headerlink" title="不可变字符串"></a>不可变字符串</h3><p><code>String</code>类没有提供用于修改字符串的方法。由于不能修改<code>Java</code>字符串中的字符，所以在<code>String</code>类对象为不可变字符串，如同数字3永远是数字3一样，字符串<code>Hello</code>永远包含字符<code>H</code>、<code>e</code>、<code>l</code>、<code>l</code>和<code>o</code>的代码单元序列，而不能修改其中的任何一个字符。当然，可以修改字符串变量，让它引用另外一个字符串。<br>不可变字符串有一个优点：编译器可以让字符串共享。可以想象将各种字符串存放在公共的存储池中，字符串变量指向存储池中相应的位置。如果复制一个字符串变量，原始字符串与复制的字符串共享相同的字符。</p>
+<h3 id="检测字符串是否相等"><a href="#检测字符串是否相等" class="headerlink" title="检测字符串是否相等"></a>检测字符串是否相等</h3><p>可以使用<code>equals</code>方法检测两个字符串是否相等。对于表达式：<code>s.equals(t)</code>，如果字符串<code>s</code>与字符串<code>t</code>相等，则返回<code>true</code>；否则，返回<code>false</code>。需要注意，<code>s</code>与<code>t</code>可以是字符串变量，也可以是字符串字面量。例如，该表达式是合法的：<code>&quot;Hello&quot;.equals(greeting)</code><br>要想检测两个字符串是否相等，而不区分大小写，可以使用<code>equalsIgnoreCase</code>方法。<code>&quot;Hello&quot;.equalsIgnoreCase(&quot;hello&quot;)</code><br>一定不要使用<code>==</code>运算符检测两个字符串是否相等！这个运算符只能够确定两个字串是否放置在同一个位置上。当然，如果字符串放置在同一个位置上，它们必然相等。但是，完全有可能将内容相同的多个字符串的拷贝放置在不同的位置上。</p>
+<pre>
+String greeting = "Hello"; //声明并赋值给变量"greeting"，值为"Hello"
+if (greeting == "Hello") ...
+    // 所在位置相等，两个字符串相等
+if (greeting.substring(0, 3) == "Hel") ...
+    // 所在位置不等，两个字符串相等
+</pre>
+
+<p>如果虚拟机始终将相同的字符串共享，就可以使用<code>==</code>运算符检测是否相等。但实际上只有字符串常量是共享的，而<code>+</code>或<code>substring</code>等操作产生的结果并不是共享的。因此，千万不要使用<code>==</code>运算符测试字符串的相等性，以免在程序中出现糟糕的bug。</p>
+<h3 id="空串与null串"><a href="#空串与null串" class="headerlink" title="空串与null串"></a>空串与null串</h3><p>空串<code>&quot;&quot;</code>是长度为0的字符串。可以调用代码检查一个字符串是否为空：</p>
+<pre>
+if (str.length() == 0)
+或者
+if (str.equals(""))
+</pre>
+
+<p>空串是一个Java对象，有自己的串长度(0) 和内容(空)。不过，<code>String</code>变量还可以存放一个特殊的值，名为<code>null</code>，这表示目前没有任何对象与该变量关联。要检查一个字符串是否为<code>null</code>, 要使用以下条件：</p>
+<pre>
+if (str == null)
+</pre>
+
+<p>检查字符串既不是<code>null</code>也不为空串，首先要检查<code>str</code>不为<code>null</code>，这种情况下就需要使用以下条件：</p>
+<pre>
+if (str != null && str.length() != 0)
+</pre>
+
+<h3 id="码点与代码单元"><a href="#码点与代码单元" class="headerlink" title="码点与代码单元"></a>码点与代码单元</h3><p>Java字符串由<code>char</code>值序列组成。<code>char</code>数据类型是一个采用<code>UTF-16</code>编码表示<code>Unicode</code>码点的代码单元。大多数的常用<code>Unicode</code>字符使用一个代码单元就可以表示，而辅助字符需要一对代码单元表示。<br><code>length()</code>方法将返回采用<code>UTF-16</code>编码表示的给定字符串所需要的代码单元数量；要想得到实际的长度，即码点数量，可以调用<code>codePointCount()</code>；调用<code>s.charAt(n)</code>将返回位置<code>n</code>的代码单元，<code>n</code>介于<code>0 ~ s.length()-1</code>之间；要想得到第i个码点，应该使用<code>offsetByCodePoints()</code>以及<code>codePointAt()</code>。</p>
+<pre>
+//length() 返回字符串的长度
+String greeting = "Hello";
+int n = greeting.length();// n的值为5
+System.out.println(n);
+
+//codePointCount(int startlndex, int endlndex) 返回 startlndex 和 endludex- l 之间的代码点数量
+int cpCount = greeting.codePointCount(0, greeting.length());// cpCount的值为5
+System.out.println(cpCount);
+
+//charAt(int index) 返回给定位置的代码单元。除非对底层的代码单元感兴趣， 否则不需要调用这个方法。
+char first = greeting.charAt(0); // first 为 'H'
+System.out.println(first);
+char last = greeting.charAt(4); // last 为 'o'
+System.out.println(last);
+
+//offsetByCodePoints(int startlndex, int cpCount) 返回从 startlndex 代码点开始， 位移 cpCount 后的码点索引。
+int index = greeting.offsetByCodePoints(0,0); //拿到'H'的码点索引
+System.out.println(index);
+//codePointAt( int Index) 返回从给定位置开始的码点
+int cp = greeting.codePointAt(index); //'H'对应ASCII码位
+System.out.println(cp);
+</pre>
+
+<h3 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h3><p>有些时候，需要由较短的字符串构建字符串。例如，按键或来自文件中的单词。采用字符串连接的方式达到此目的效率比较低。每次连接字符串，都会构建一个新的<code>String</code>对象，既耗时，又浪费空间。使用<code>StringBuilder</code>类就可以避免这个问题的发生。如果需要用许多小段的字符串构建一个字符串，那么应该按照下列步骤进行。 </p>
+<pre>
+//构建一个空的字符串构建器
+StringBuilder builder = new StringBuilder();
+
+//需要添加一部分内容时，就调用 append() 方法
+builder.append('H');//char
+builder.append("ello, World!");//string
+
+//构建字符串时就凋用 toString 方法， 将可以得到一个 String 对象， 其中包含了构建器中的字符序列
+String completedString = builder.toString();
+
+//输出 Hello, World!
+System.out.println(completedString);
+</pre>
+
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>有些Java程序能够接收输入，并以适当的格式输出，现在介绍简单的用于输入输出的控制台。</p>
+<h3 id="读取输入"><a href="#读取输入" class="headerlink" title="读取输入"></a>读取输入</h3><p>打印输出到<code>标准输出流(System.out，控制台窗口)</code>是一件非常容易的事情，只要调用<code>System.out.println()</code>即可。然而，读取<code>标准输人流(System.in)</code>就没有那么简单了。要想通过控制台进行输人，首先需要构造一个<code>Scanner</code>对象，并与<code>标准输人流(System.in)</code>关联。</p>
+<pre>
+//构造一个Scanner对象，并与"标准输人流"System.in关联。
+Scanner in = new Scanner(System.in);
+
+// get first input
+System.out.print("What is your name? ");
+// nextLine() 读取输入的下一行内容，包含空格。next() 读取一个单词(以空白符作为分隔符)的内容
+String name = in.nextLine();
+
+// get second input
+System.out.print("How old are you? ");
+// nextInt() 读取并转换下一个表示整数的字符序列。
+int age = in.nextInt();
+
+// display output on console
+System.out.println("Hello, " + name + ". Next year, you'll be " + (age + 1));
+</pre>
+
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>Java沿用了C语言库函数中的<code>printf</code>方法。在<code>printf</code>中，可以使用多个参数，<br><code>System.out.printf(&quot;Hello, %s. Next year, you&#39;ll be %d&quot;, name, age);</code><br>每一个以<code>%</code>字符开始的格式说明符都用相应的参数替换。格式说明符尾部的转换符将指示被格式化的数值类型：<code>f</code>表示浮点数，<code>s</code>表示字符串，<code>d</code>表示十进制整数。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">转换符</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:center">十进制整数</td>
+<td style="text-align:center">159</td>
+</tr>
+<tr>
+<td style="text-align:center">x</td>
+<td style="text-align:center">十六进制整数</td>
+<td style="text-align:center">9f</td>
+</tr>
+<tr>
+<td style="text-align:center">o</td>
+<td style="text-align:center">八进制整数</td>
+<td style="text-align:center">237</td>
+</tr>
+<tr>
+<td style="text-align:center">f</td>
+<td style="text-align:center">定点浮点数</td>
+<td style="text-align:center">15.9</td>
+</tr>
+<tr>
+<td style="text-align:center">e</td>
+<td style="text-align:center">指数浮点数</td>
+<td style="text-align:center">1.59e+01</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:center">通用浮点数</td>
+<td style="text-align:center">—</td>
+</tr>
+<tr>
+<td style="text-align:center">a</td>
+<td style="text-align:center">十六进制浮点数</td>
+<td style="text-align:center">0x1.fccdp3</td>
+</tr>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:center">字符串</td>
+<td style="text-align:center">Hello</td>
+</tr>
+<tr>
+<td style="text-align:center">c</td>
+<td style="text-align:center">字符</td>
+<td style="text-align:center">H</td>
+</tr>
+<tr>
+<td style="text-align:center">b</td>
+<td style="text-align:center">布尔</td>
+<td style="text-align:center">true</td>
+</tr>
+<tr>
+<td style="text-align:center">h</td>
+<td style="text-align:center">散列码</td>
+<td style="text-align:center">42628b2</td>
+</tr>
+<tr>
+<td style="text-align:center">tx或Tx</td>
+<td style="text-align:center">日期时间(T强制大写)</td>
+<td style="text-align:center">已经过时，应改用java.time类</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">百分号</td>
+<td style="text-align:center">%</td>
+</tr>
+<tr>
+<td style="text-align:center">n</td>
+<td style="text-align:center">与平台有关的行分隔符</td>
+<td style="text-align:center">—</td>
+</tr>
+</tbody>
+</table>
+<p>还可以给出控制格式化输出的各种标志。逗号标志增加了分组的分隔符，<code>Systen.out.printf(&quot;%,.2f&quot;, 10000.0 / 3.0);</code>会打印<code>3, 333.33</code>；</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标志</th>
+<th style="text-align:center">目的</th>
+<th style="text-align:center">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">打印正数和负数的符号</td>
+<td style="text-align:center">+3333.33</td>
+</tr>
+<tr>
+<td style="text-align:center">空格</td>
+<td style="text-align:center">在正数之前添加空格</td>
+<td style="text-align:center">&#124; 3333.33&#124;</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">数字前面补0</td>
+<td style="text-align:center">003333.33</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">左对齐</td>
+<td style="text-align:center">&#124;3333.33 &#124;</td>
+</tr>
+<tr>
+<td style="text-align:center">(</td>
+<td style="text-align:center">将负数括在括号内</td>
+<td style="text-align:center">(3333.33)</td>
+</tr>
+<tr>
+<td style="text-align:center">,</td>
+<td style="text-align:center">添加分组分隔符</td>
+<td style="text-align:center">3,333.33</td>
+</tr>
+<tr>
+<td style="text-align:center">#(对于f格式)</td>
+<td style="text-align:center">包含小数点</td>
+<td style="text-align:center">3,333.</td>
+</tr>
+<tr>
+<td style="text-align:center">#(对于x或0格式)</td>
+<td style="text-align:center">添加前缀0x或0</td>
+<td style="text-align:center">0xcafe</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">给定被格式化的参数索引</td>
+<td style="text-align:center">%1$d,%1$x(159 9F)</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">格式化前面说明的数值</td>
+<td style="text-align:center">%d%&lt;x(159 9F)</td>
+</tr>
+</tbody>
+</table>
+<p>可以使用静态的<code>String.format</code>方法创建一个格式化的字符串，而不打印输出：<code>String message = String.format(&quot;Hello, %s. Next year, you&#39;ll be %d&quot;, name, age);</code></p>
+<h3 id="文件输入与输出"><a href="#文件输入与输出" class="headerlink" title="文件输入与输出"></a>文件输入与输出</h3><p>要想对文件进行读取，就需要一个用<code>File</code>对象构造一个<code>Scanner</code>对象：<code>Scanner in = new Scanner(Paths.get(&quot;myfile.txt&quot;), &quot;UTF-8&quot;);</code>。如果文件名中包含反斜杠符号，就要记住在每个反斜杠之前再加一个额外的反斜杠：<code>c:\\mydirectory\\myfile.txt</code>。<br>要想写入文件，就需要构造一个<code>PrintWriter</code>对象。在构造器中，只需要提供文件名：<code>PrintWriter out = new PrintWriter(&quot;myfile.txt&quot;, &quot;UTF-8&quot;);</code>，如果文件不存在，创建该文件。</p>
+<h2 id="控制流程"><a href="#控制流程" class="headerlink" title="控制流程"></a>控制流程</h2><p>与任何程序设计语言一样，Java使用条件语句和循环结构确定控制流程。</p>
+<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>在深入学习控制结构之前，需要了解块<code>(block)</code>的概念。块(即复合语句)是指由一对大括号括起来的若干条简单的Java语句。一个块可以嵌套在另一个块中。块确定了变量的作用域，但是，不能在嵌套的两个块中声明同名的变量。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/dockerfile/" rel="next" title="通过 Dockerfile 构建 Docker 镜像">
+                <i class="fa fa-chevron-left"></i> 通过 Dockerfile 构建 Docker 镜像
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/15/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-方法"><span class="nav-number">2.</span> <span class="nav-text">main()方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">2.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法声明"><span class="nav-number">2.2.</span> <span class="nav-text">main()方法声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法可以抛异常"><span class="nav-number">2.3.</span> <span class="nav-text">main()方法可以抛异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#main-方法中字符串参数数组作用"><span class="nav-number">2.4.</span> <span class="nav-text">main()方法中字符串参数数组作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整型"><span class="nav-number">4.1.</span> <span class="nav-text">整型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点类型"><span class="nav-number">4.2.</span> <span class="nav-text">浮点类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#char类型"><span class="nav-number">4.3.</span> <span class="nav-text">char类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boolean类型"><span class="nav-number">4.4.</span> <span class="nav-text">boolean类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量初始化"><span class="nav-number">5.1.</span> <span class="nav-text">变量初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">5.2.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">6.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学函数与常量"><span class="nav-number">6.1.</span> <span class="nav-text">数学函数与常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值类型之间的转换"><span class="nav-number">6.2.</span> <span class="nav-text">数值类型之间的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制类型转换"><span class="nav-number">6.3.</span> <span class="nav-text">强制类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结合赋值和运算符-二元运算符"><span class="nav-number">6.4.</span> <span class="nav-text">结合赋值和运算符(二元运算符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自增与自减运算符"><span class="nav-number">6.5.</span> <span class="nav-text">自增与自减运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系和boolean运算符"><span class="nav-number">6.6.</span> <span class="nav-text">关系和boolean运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算符"><span class="nav-number">6.7.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#括号与运算符级别"><span class="nav-number">6.8.</span> <span class="nav-text">括号与运算符级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举类型"><span class="nav-number">6.9.</span> <span class="nav-text">枚举类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">7.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子串"><span class="nav-number">7.1.</span> <span class="nav-text">子串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接"><span class="nav-number">7.2.</span> <span class="nav-text">拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变字符串"><span class="nav-number">7.3.</span> <span class="nav-text">不可变字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测字符串是否相等"><span class="nav-number">7.4.</span> <span class="nav-text">检测字符串是否相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空串与null串"><span class="nav-number">7.5.</span> <span class="nav-text">空串与null串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码点与代码单元"><span class="nav-number">7.6.</span> <span class="nav-text">码点与代码单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建字符串"><span class="nav-number">7.7.</span> <span class="nav-text">构建字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出"><span class="nav-number">8.</span> <span class="nav-text">输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#读取输入"><span class="nav-number">8.1.</span> <span class="nav-text">读取输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化输出"><span class="nav-number">8.2.</span> <span class="nav-text">格式化输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件输入与输出"><span class="nav-number">8.3.</span> <span class="nav-text">文件输入与输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流程"><span class="nav-number">9.</span> <span class="nav-text">控制流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#块作用域"><span class="nav-number">9.1.</span> <span class="nav-text">块作用域</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
