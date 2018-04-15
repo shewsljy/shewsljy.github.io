@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -75,7 +75,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -103,10 +103,10 @@
 <meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 在 CentOS 7.4 平台上的运用">
-<meta property="og:url" content="http://yoursite.com/2018/01/25/docker/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/25/docker/index.html">
+<meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="前言如果有在服务器上部署过若干应用(服务)经历的同行，相信都会被其所需的环境给折腾到。编程语言环境：跑个JAVA程序，JRE需要安装，若是需编译代码，还得装个JDK。PHP，Python皆如此。部署WEB应用，HTTP服务器需要安装，可选有Nginx，Apache Tomcat，Apache HTTP Server。存储服务的Mysql···还需要规划相应的用户来运行其进程，繁琐至极。Docker">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-01-26T06:35:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker 在 CentOS 7.4 平台上的运用">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/25/docker/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/25/docker/"/>
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Docker 在 CentOS 7.4 平台上的运用 | Hexo</title>
+  <title>Docker 在 CentOS 7.4 平台上的运用 | Jiayu's Blog</title>
   
 
 
@@ -167,7 +167,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -185,17 +185,17 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Jiayu's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">坐看流云轻度</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -216,7 +216,37 @@
   
   <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
       
@@ -226,7 +256,7 @@
   
   <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
       
@@ -279,16 +309,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/25/docker/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/25/docker/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="家宇">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Jiayu's Blog">
     </span>
 
     
@@ -313,9 +343,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-25T09:40:07+08:00">2018-01-25</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T09:40:07+08:00">2018-01-25</time>
             
 
             
@@ -333,7 +363,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
@@ -629,10 +659,10 @@ For more examples and ideas, visit:
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -641,8 +671,8 @@ For more examples and ideas, visit:
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">家宇</p>
+              <p class="site-description motion-element" itemprop="description">点滴皆为源泉</p>
           </div>
 
           
@@ -653,7 +683,7 @@ For more examples and ideas, visit:
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -662,7 +692,7 @@ For more examples and ideas, visit:
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -686,8 +716,8 @@ For more examples and ideas, visit:
                       
                     
                     <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">categories</span>
-                  
+                    <span class="site-state-item-name">分类</span>
+                  </a>
                 </div>
               
 
@@ -695,7 +725,7 @@ For more examples and ideas, visit:
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -717,8 +747,8 @@ For more examples and ideas, visit:
                       
                     
                     <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">tags</span>
-                  
+                    <span class="site-state-item-name">标签</span>
+                  </a>
                 </div>
               
             </nav>
@@ -772,11 +802,11 @@ For more examples and ideas, visit:
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">家宇</span>
 
   
 
@@ -786,7 +816,7 @@ For more examples and ideas, visit:
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -794,7 +824,7 @@ For more examples and ideas, visit:
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.1.0</div>
 
 
 

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -75,7 +75,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
@@ -103,21 +103,25 @@
 <meta name="keywords" content="Dockerfile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过 Dockerfile 构建 Docker 镜像">
-<meta property="og:url" content="http://yoursite.com/2018/01/26/dockerfile/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/26/dockerfile/index.html">
+<meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="前言这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。 Dockerfile下面是具体内容，#所在的行内容代表注释。">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/26/dockerfile/welcome.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/26/dockerfile/nginx.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/26/dockerfile/rebuild.png">
 <meta property="og:updated_time" content="2018-03-09T05:13:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过 Dockerfile 构建 Docker 镜像">
 <meta name="twitter:description" content="前言这里通过Docker官方维护的Nginx镜像来讲解如何通过Dockerfile构建Docker镜像。 Dockerfile下面是具体内容，#所在的行内容代表注释。">
+<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/26/dockerfile/welcome.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/26/dockerfile/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/26/dockerfile/"/>
 
 
 
@@ -127,7 +131,7 @@
   };
 </script>
 
-  <title>通过 Dockerfile 构建 Docker 镜像 | Hexo</title>
+  <title>通过 Dockerfile 构建 Docker 镜像 | Jiayu's Blog</title>
   
 
 
@@ -167,7 +171,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -185,17 +189,17 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Jiayu's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">坐看流云轻度</p>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -216,7 +220,37 @@
   
   <li class="menu-item menu-item-home">
     <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
 
       
@@ -226,7 +260,7 @@
   
   <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
 
       
@@ -279,16 +313,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/dockerfile/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/26/dockerfile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="家宇">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Jiayu's Blog">
     </span>
 
     
@@ -313,9 +347,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-26T15:10:09+08:00">2018-01-26</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T15:10:09+08:00">2018-01-26</time>
             
 
             
@@ -333,7 +367,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
@@ -639,8 +673,8 @@ CONTAINER ID        IMAGE                         COMMAND                  CREAT
 </pre>
 
 <p><code>--name mynginx</code>是给容器起名字，<code>-d</code>是让容器后台运行，<code>-p 80:80</code>是做了宿主机跟容器的端口映射，格式为&lt;host_port&gt;:&lt;container_port&gt;，最后跟着&lt;image_name&gt;:&lt;tag_name&gt;</p>
-<h2 id="访问nginx"><a href="#访问nginx" class="headerlink" title="访问nginx"></a>访问nginx</h2><p>运行命令<code>curl http://localhost</code>：<br></p>
-<p>浏览器访问<code>http://localhost</code>：<br></p>
+<h2 id="访问nginx"><a href="#访问nginx" class="headerlink" title="访问nginx"></a>访问nginx</h2><p>运行命令<code>curl http://localhost</code>：<br><img src="/2018/01/26/dockerfile/welcome.png" title="[curl访问]"></p>
+<p>浏览器访问<code>http://localhost</code>：<br><img src="/2018/01/26/dockerfile/nginx.png" title="[浏览器访问]"></p>
 <p>通过命令<code>docker logs mynginx</code>查看nginx日志。<code>mynginx</code>是容器名称，也可以换成容器ID。</p>
 <pre>
 172.17.0.1 - - [09/Mar/2018:04:26:24 +0000] "GET / HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0" "-"
@@ -649,7 +683,7 @@ CONTAINER ID        IMAGE                         COMMAND                  CREAT
 </pre>
 
 <h2 id="改造Dockerfile为己用"><a href="#改造Dockerfile为己用" class="headerlink" title="改造Dockerfile为己用"></a>改造Dockerfile为己用</h2><p>如果完全按照官方维护nginx的Dockerfile来构建镜像，感觉不是很合适自己的实际情况。比如，时间默认为UTC，日志通过<code>docker logs</code>命令获取，配置文件在容器中，不方便修改等。可以适当的更改Dockerfile，让其符合习惯。</p>
-<h3 id="更改配置"><a href="#更改配置" class="headerlink" title="更改配置"></a>更改配置</h3><p>更改时区，增加端口，日志不通过docker命令获取：<br></p>
+<h3 id="更改配置"><a href="#更改配置" class="headerlink" title="更改配置"></a>更改配置</h3><p>更改时区，增加端口，日志不通过docker命令获取：<br><img src="/2018/01/26/dockerfile/rebuild.png" title="[更改配置]"></p>
 <h3 id="启动方式"><a href="#启动方式" class="headerlink" title="启动方式"></a>启动方式</h3><p>运行<code>docker build -t nginx:mybuild-alpine-1.12.2 .</code>重新构建镜像后，将配置、html目录以及日志放置在宿主机中，执行命令前，在宿主机的相关目录下添加配置文件(nginx.conf，default.conf)，html文件(index.html，50x.html)。logs目录下的日志文件是运行时候自己生成的。</p>
 <pre>
 dockerdata
@@ -764,10 +798,10 @@ dockerdata
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -776,8 +810,8 @@ dockerdata
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">家宇</p>
+              <p class="site-description motion-element" itemprop="description">点滴皆为源泉</p>
           </div>
 
           
@@ -788,7 +822,7 @@ dockerdata
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">8</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -797,7 +831,7 @@ dockerdata
                 
                 
                 <div class="site-state-item site-state-categories">
-                  
+                  <a href="/categories/index.html">
                     
                     
                       
@@ -821,8 +855,8 @@ dockerdata
                       
                     
                     <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">categories</span>
-                  
+                    <span class="site-state-item-name">分类</span>
+                  </a>
                 </div>
               
 
@@ -830,7 +864,7 @@ dockerdata
                 
                 
                 <div class="site-state-item site-state-tags">
-                  
+                  <a href="/tags/index.html">
                     
                     
                       
@@ -852,8 +886,8 @@ dockerdata
                       
                     
                     <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">tags</span>
-                  
+                    <span class="site-state-item-name">标签</span>
+                  </a>
                 </div>
               
             </nav>
@@ -907,11 +941,11 @@ dockerdata
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">家宇</span>
 
   
 
@@ -921,7 +955,7 @@ dockerdata
 
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -929,7 +963,7 @@ dockerdata
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.1.0</div>
 
 
 
