@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/04/15/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -328,8 +328,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/15/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2018/05/09/aliyun-debian/" itemprop="url">
+                  阿里云上的debian设置
                 </a>
               
             
@@ -349,15 +349,56 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T14:59:53+08:00">2018-04-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T16:07:38+08:00">2018-05-09</time>
             
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-09T16:07:38+08:00">2018-05-09</time>
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Debian/" itemprop="url" rel="index"><span itemprop="name">Debian</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -388,15 +429,197 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>阿里云上的系统换成了<code>Debian</code>，记录下来。</p>
+<h2 id="阿里云ECS创建密钥对"><a href="#阿里云ECS创建密钥对" class="headerlink" title="阿里云ECS创建密钥对"></a>阿里云ECS创建密钥对</h2><p>推荐使用密钥登录，增强服务器安全性。在阿里云ECS<code>密钥对管理</code>中点击<code>创建密钥对</code>，输入符合格式的名称后确定，并下载该密钥对到本地。<br><img src="/2018/05/09/aliyun-debian/创建密钥对.png" title="[创建密钥对]"></p>
+<h2 id="阿里云ECS服务器换系统"><a href="#阿里云ECS服务器换系统" class="headerlink" title="阿里云ECS服务器换系统"></a>阿里云ECS服务器换系统</h2><p>停止阿里云ECS实例后，在<code>配置信息</code>，点击<code>更换系统盘</code>(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。<br><img src="/2018/05/09/aliyun-debian/确认更换系统盘.png" title="[更换系统盘]"></p>
+<p><code>安全设置</code>选择<code>设置密钥</code>，<code>密钥对</code>则选择先前创建的，确认更换。<br><img src="/2018/05/09/aliyun-debian/更换系统.png" title="[设置密钥登陆]"></p>
+<p>经过短信校验码核实后，等待实例自行启动。<br><img src="/2018/05/09/aliyun-debian/更换系统盘成功.png" title="[更换系统盘成功]"></p>
+<h2 id="Securecrt使用密钥登录"><a href="#Securecrt使用密钥登录" class="headerlink" title="Securecrt使用密钥登录"></a>Securecrt使用密钥登录</h2><p>先前下载的是<code>.pem</code>类型的密钥，需要生成公钥。<br>打开<code>Securecrt</code>，进入转换私钥的选项，途径为：<br><img src="/2018/05/09/aliyun-debian/生成私钥菜单.png" title="[生成私钥菜单]"></p>
+<p>浏览文件夹，选择下载的密钥：<br><img src="/2018/05/09/aliyun-debian/选择下载文件.png" title="[选择下载文件]"></p>
+<p>选中后，输入文件名，保存：<br><img src="/2018/05/09/aliyun-debian/保存私钥.png" title="[保存私钥]"></p>
+<p>生成了私/公钥，公钥待用：<br><img src="/2018/05/09/aliyun-debian/密钥列表.png" title="[密钥列表]"></p>
+<p><code>Securecrt</code>创建新的会话，设置为：<br><img src="/2018/05/09/aliyun-debian/会话设置.png" title="[会话设置]"></p>
+<p>密钥配置选择刚生成公钥：<br><img src="/2018/05/09/aliyun-debian/选择公钥.png" title="[选择公钥]"></p>
+<p>配置后便可密钥登陆。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/07/http-https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="家宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiayu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/http-https/" itemprop="url">
+                  http-https
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-07T15:09:29+08:00">2018-05-07</time>
+            
+
+            
+            
+              
+                
+              
+            
+
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-07T15:09:29+08:00">2018-05-07</time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Http/" itemprop="url" rel="index"><span itemprop="name">Http</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Http/https/" itemprop="url" rel="index"><span itemprop="name">https</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
+<h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过letsencrypt申请免费的证书</p>
+<h3 id="CentOS7开启epel源"><a href="#CentOS7开启epel源" class="headerlink" title="CentOS7开启epel源"></a>CentOS7开启epel源</h3><p>epel(Extra Packages for Enterprise Linux)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装certbot-nginx"><a href="#安装certbot-nginx" class="headerlink" title="安装certbot-nginx"></a>安装certbot-nginx</h3><p>因为配置是在nginx上，所以选择了相对应的版本。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum-config-manager --<span class="built_in">enable</span> rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional</span><br><span class="line">sudo yum install certbot-nginx</span><br></pre></td></tr></table></figure></p>
+<p>此时，界面显示:</p>
+<p><pre><br>Failed:<br>  python-urllib3.noarch 0:1.10.2-3.el7<br></pre><br>和系统自带的urllib3有冲突，解决方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pip uninstall urllib3</span><br><span class="line">sudo yum install python-urllib3</span><br><span class="line">sudo pip install --upgrade urllib3</span><br><span class="line">sudo pip install pyOpenSSL</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -495,7 +718,23 @@
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-07T17:20:21+08:00">2018-02-07</time>
             
           </span>
 
@@ -658,7 +897,23 @@ public class HelloWorld {
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-09T13:13:32+08:00">2018-03-09</time>
             
           </span>
 
@@ -814,7 +1069,23 @@ public class HelloWorld {
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T11:26:05+08:00">2018-03-07</time>
             
           </span>
 
@@ -987,7 +1258,23 @@ username   ALL=(ALL)       ALL
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-26T14:35:12+08:00">2018-01-26</time>
             
           </span>
 
@@ -1145,7 +1432,23 @@ username   ALL=(ALL)       ALL
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T17:08:25+08:00">2018-01-24</time>
             
           </span>
 
@@ -1336,7 +1639,23 @@ username   ALL=(ALL)       ALL
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T17:30:24+08:00">2018-01-12</time>
             
           </span>
 
@@ -1505,7 +1824,23 @@ username   ALL=(ALL)       ALL
 
             
             
+              
+                
+              
+            
 
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-11T16:45:32+08:00">2018-01-11</time>
             
           </span>
 
@@ -1666,7 +2001,7 @@ username   ALL=(ALL)       ALL
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1699,7 +2034,13 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1730,7 +2071,15 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
