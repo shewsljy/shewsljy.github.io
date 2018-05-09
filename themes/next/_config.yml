@@ -261,7 +261,7 @@ auto_excerpt:
 post_meta:
   item_text: true
   created_at: true
-  updated_at: false
+  updated_at: true
   # Only show 'updated' if different from 'created'.
   updated_diff: false
   # If true, post's time format will be hexo config's date_format + ' ' + time_format.
