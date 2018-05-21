@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 CentOS7开启epel源epel(Extra Packages for Enterprise Linux)1sudo yum install epel-release 安装certbot-nginx因为配置是在nginx上，所以选择了相对应的版本。1">
+  <meta name="description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
 <meta name="keywords" content="Http,Https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http-https">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/05/07/http-https/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 CentOS7开启epel源epel(Extra Packages for Enterprise Linux)1sudo yum install epel-release 安装certbot-nginx因为配置是在nginx上，所以选择了相对应的版本。1">
+<meta property="og:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-05-07T07:09:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http-https">
-<meta name="twitter:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 CentOS7开启epel源epel(Extra Packages for Enterprise Linux)1sudo yum install epel-release 安装certbot-nginx因为配置是在nginx上，所以选择了相对应的版本。1">
+<meta name="twitter:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
 
 
 
@@ -425,10 +425,8 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
 <h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过letsencrypt申请免费的证书</p>
-<h3 id="CentOS7开启epel源"><a href="#CentOS7开启epel源" class="headerlink" title="CentOS7开启epel源"></a>CentOS7开启epel源</h3><p>epel(Extra Packages for Enterprise Linux)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装certbot-nginx"><a href="#安装certbot-nginx" class="headerlink" title="安装certbot-nginx"></a>安装certbot-nginx</h3><p>因为配置是在nginx上，所以选择了相对应的版本。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum-config-manager --<span class="built_in">enable</span> rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional</span><br><span class="line">sudo yum install certbot-nginx</span><br></pre></td></tr></table></figure></p>
-<p>此时，界面显示:</p>
-<p><pre><br>Failed:<br>  python-urllib3.noarch 0:1.10.2-3.el7<br></pre><br>和系统自带的urllib3有冲突，解决方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pip uninstall urllib3</span><br><span class="line">sudo yum install python-urllib3</span><br><span class="line">sudo pip install --upgrade urllib3</span><br><span class="line">sudo pip install pyOpenSSL</span><br></pre></td></tr></table></figure></p>
+<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod u+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br><span class="line">./certbot-auto --nginx</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 
       
     </div>
@@ -550,7 +548,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -589,7 +587,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -628,7 +632,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -664,7 +674,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请免费的证书"><span class="nav-number">2.</span> <span class="nav-text">申请免费的证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS7开启epel源"><span class="nav-number">2.1.</span> <span class="nav-text">CentOS7开启epel源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装certbot-nginx"><span class="nav-number">2.2.</span> <span class="nav-text">安装certbot-nginx</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请免费的证书"><span class="nav-number">2.</span> <span class="nav-text">申请免费的证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载certbot-auto脚本"><span class="nav-number">2.1.</span> <span class="nav-text">下载certbot-auto脚本</span></a></li></ol></li></ol></div>
             
 
           </div>

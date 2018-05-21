@@ -99,13 +99,13 @@
 
 
 
-  <meta name="description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。 阿里云ECS服务器换系统停止阿里云ECS实例后，在配置信息，点击更换系统盘(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。 安全设置选择设置密钥，密钥对则选择先前创建的，确认更换。 经过短">
+  <meta name="description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
 <meta name="keywords" content="Linux,Debian">
 <meta property="og:type" content="article">
 <meta property="og:title" content="阿里云上的debian设置">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。 阿里云ECS服务器换系统停止阿里云ECS实例后，在配置信息，点击更换系统盘(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。 安全设置选择设置密钥，密钥对则选择先前创建的，确认更换。 经过短">
+<meta property="og:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/创建密钥对.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/确认更换系统盘.png">
@@ -120,7 +120,7 @@
 <meta property="og:updated_time" content="2018-05-09T08:07:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阿里云上的debian设置">
-<meta name="twitter:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。 阿里云ECS服务器换系统停止阿里云ECS实例后，在配置信息，点击更换系统盘(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。 安全设置选择设置密钥，密钥对则选择先前创建的，确认更换。 经过短">
+<meta name="twitter:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
 <meta name="twitter:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/创建密钥对.png">
 
 
@@ -436,6 +436,7 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>阿里云上的系统换成了<code>Debian</code>，记录下来。</p>
 <h2 id="阿里云ECS创建密钥对"><a href="#阿里云ECS创建密钥对" class="headerlink" title="阿里云ECS创建密钥对"></a>阿里云ECS创建密钥对</h2><p>推荐使用密钥登录，增强服务器安全性。在阿里云ECS<code>密钥对管理</code>中点击<code>创建密钥对</code>，输入符合格式的名称后确定，并下载该密钥对到本地。<br><img src="/2018/05/09/aliyun-debian/创建密钥对.png" title="[创建密钥对]"></p>
+<a id="more"></a>
 <h2 id="阿里云ECS服务器换系统"><a href="#阿里云ECS服务器换系统" class="headerlink" title="阿里云ECS服务器换系统"></a>阿里云ECS服务器换系统</h2><p>停止阿里云ECS实例后，在<code>配置信息</code>，点击<code>更换系统盘</code>(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。<br><img src="/2018/05/09/aliyun-debian/确认更换系统盘.png" title="[更换系统盘]"></p>
 <p><code>安全设置</code>选择<code>设置密钥</code>，<code>密钥对</code>则选择先前创建的，确认更换。<br><img src="/2018/05/09/aliyun-debian/更换系统.png" title="[设置密钥登陆]"></p>
 <p>经过短信校验码核实后，等待实例自行启动。<br><img src="/2018/05/09/aliyun-debian/更换系统盘成功.png" title="[更换系统盘成功]"></p>
@@ -446,6 +447,8 @@
 <p><code>Securecrt</code>创建新的会话，设置为：<br><img src="/2018/05/09/aliyun-debian/会话设置.png" title="[会话设置]"></p>
 <p>密钥配置选择刚生成公钥：<br><img src="/2018/05/09/aliyun-debian/选择公钥.png" title="[选择公钥]"></p>
 <p>配置后便可密钥登陆。</p>
+<h2 id="更新Debian系统软件"><a href="#更新Debian系统软件" class="headerlink" title="更新Debian系统软件"></a>更新Debian系统软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt list --upgradable</span><br><span class="line">apt upgrade</span><br><span class="line">apt autoremove</span><br><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<p>创建swap：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1024k count=2000</span><br><span class="line">chmod 600 /swapfile</span><br><span class="line">mkswap /swapfile</span><br><span class="line">swapon /swapfile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/swapfile swap swap defaults 0 0"</span> &gt;&gt; /etc/fstab</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -490,6 +493,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/14/nginx/" rel="prev" title="nginx">
+                nginx <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -563,7 +570,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -602,7 +609,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -641,7 +654,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -677,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS创建密钥对"><span class="nav-number">2.</span> <span class="nav-text">阿里云ECS创建密钥对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS服务器换系统"><span class="nav-number">3.</span> <span class="nav-text">阿里云ECS服务器换系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Securecrt使用密钥登录"><span class="nav-number">4.</span> <span class="nav-text">Securecrt使用密钥登录</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS创建密钥对"><span class="nav-number">2.</span> <span class="nav-text">阿里云ECS创建密钥对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS服务器换系统"><span class="nav-number">3.</span> <span class="nav-text">阿里云ECS服务器换系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Securecrt使用密钥登录"><span class="nav-number">4.</span> <span class="nav-text">Securecrt使用密钥登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Debian系统软件"><span class="nav-number">5.</span> <span class="nav-text">更新Debian系统软件</span></a></li></ol></div>
             
 
           </div>

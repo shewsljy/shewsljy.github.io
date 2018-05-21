@@ -99,19 +99,19 @@
 
 
 
-  <meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+  <meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
 <meta name="keywords" content="Firewalld">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 7 防火墙(firewalld)设置">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/01/24/firewalld/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
 <meta property="og:updated_time" content="2018-01-24T09:08:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 查找云盾扫描">
+<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
 <meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
 
 
@@ -433,6 +433,7 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
+<h2 id="手动方式卸载云盾安骑士Agent"><a href="#手动方式卸载云盾安骑士Agent" class="headerlink" title="手动方式卸载云盾安骑士Agent"></a>手动方式卸载云盾安骑士Agent</h2><p>执行以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://update.aegis.aliyun.com/download/uninstall.sh</span><br><span class="line">chmod u+x uninstall.sh</span><br><span class="line">./uninstall.sh</span><br><span class="line"><span class="built_in">kill</span> -9 aliyun-service</span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/aegis</span><br><span class="line">rm -rf /usr/sbin/aliyun*</span><br><span class="line">chkconfig --del netconsole</span><br><span class="line">chkconfig --del agentwatch</span><br><span class="line">rm -rf /etc/init.d/agentwatch</span><br><span class="line">rm -rf /etc/systemd/system/aliyun.service</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure></p>
 <h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
 <pre>
 140.205.201.0/28
@@ -471,6 +472,7 @@
 <p>生效配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
 <p>查看配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
 <img src="/2018/01/24/firewalld/list_all.png" title="[查看firewalld配置规则]">
+
       
     </div>
 
@@ -589,7 +591,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -628,7 +630,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -667,7 +675,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -703,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">2.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">3.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">3.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">3.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动方式卸载云盾安骑士Agent"><span class="nav-number">2.</span> <span class="nav-text">手动方式卸载云盾安骑士Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">3.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">4.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">4.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">4.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
             
 
           </div>

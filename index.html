@@ -309,6 +309,400 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/16/tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="家宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiayu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/16/tomcat/" itemprop="url">
+                  tomcat
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T11:37:01+08:00">2018-05-16</time>
+            
+
+            
+            
+              
+                
+              
+            
+
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-16T11:37:01+08:00">2018-05-16</time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/Tomcat/" itemprop="url" rel="index"><span itemprop="name">Tomcat</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="解压jdk-tomcat"><a href="#解压jdk-tomcat" class="headerlink" title="解压jdk/tomcat"></a>解压jdk/tomcat</h2><p>解压jdk，tomcat<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget --no-check-certificate --no-cookies --header <span class="string">"Cookie: oraclelicense=accept-securebackup-cookie"</span> http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz</span><br><span class="line">tar xzf jdk-8u171-linux-x64.tar.gz -C /opt/software/</span><br><span class="line">wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz</span><br><span class="line">tar xzf apache-tomcat-9.0.8.tar.gz -C /opt/software/</span><br></pre></td></tr></table></figure></p>
+<h2 id="编译安装apr-openssl"><a href="#编译安装apr-openssl" class="headerlink" title="编译安装apr/openssl"></a>编译安装apr/openssl</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line"><span class="comment"># 下载包</span></span><br><span class="line">wget http://mirror.bit.edu.cn/apache//apr/apr-1.6.3.tar.gz</span><br><span class="line">wget http://mirror.bit.edu.cn/apache//apr/apr-util-1.6.1.tar.gz</span><br><span class="line">wget http://mirror.bit.edu.cn/apache//apr/apr-iconv-1.2.2.tar.gz</span><br><span class="line">wget https://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.0h.tar.gz</span><br><span class="line"></span><br><span class="line">&lt;!-- more --&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压包</span></span><br><span class="line">tar xzf apr-1.6.3.tar.gz</span><br><span class="line">tar xzf apr-util-1.6.1.tar.gz</span><br><span class="line">tar xzf apr-iconv-1.2.2.tar.gz</span><br><span class="line">tar xzf openssl-1.1.0h.tar.gz</span><br><span class="line"><span class="comment"># 编译安装apr</span></span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/apr-1.6.3/</span><br><span class="line">./configure --prefix=/opt/software/apr-1.6.3</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="comment"># 编译安装apr-util</span></span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/apr-util-1.6.1/</span><br><span class="line">./configure --prefix=/opt/software/apr-util-1.6.1 --with-apr=/opt/software/apr-1.6.3</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="comment"># 编译安装apr-iconv</span></span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/apr-iconv-1.2.2/</span><br><span class="line">./configure --prefix=/opt/software/apr-iconv-1.2.2 --with-apr=/opt/software/apr-1.6.3</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"><span class="comment"># 编译安装openssl -fPIC静态 enable-shared动态</span></span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/openssl-1.1.0h/</span><br><span class="line">./config -fPIC --prefix=/opt/software/openssl-1.1.0h <span class="built_in">enable</span>-shared</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h2 id="编译安装tomcat-apr"><a href="#编译安装tomcat-apr" class="headerlink" title="编译安装tomcat-apr"></a>编译安装tomcat-apr</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install autoconf</span><br><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/tomcat-native.tar.gz /opt/<span class="built_in">source</span>/</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">tar xzf tomcat-native.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/tomcat-native-1.2.16-src/native/</span><br><span class="line">./buildconf --with-apr=/opt/<span class="built_in">source</span>/apr-1.6.3</span><br><span class="line">./configure --prefix=/opt/software/tomcat-native-1.2.16 --with-apr=/opt/software/apr-1.6.3 --with-ssl=/opt/software/openssl-1.1.0h --with-java-home=/opt/software/jdk1.8.0_171</span><br></pre></td></tr></table></figure>
+<h2 id="配置tomcat环境"><a href="#配置tomcat环境" class="headerlink" title="配置tomcat环境"></a>配置tomcat环境</h2><p>设置java跟apr的环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/software/apache-tomcat-9.0.8/bin/setclasspath.sh</span><br></pre></td></tr></table></figure></p>
+<p>添加以下信息：</p>
+<pre>
+export JAVA_HOME=/opt/software/jdk1.8.0_171
+export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
+</pre>
+
+<p>设置开启apr<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/software/apache-tomcat-9.0.8/conf/server.xml</span><br></pre></td></tr></table></figure></p>
+<p>在<code>&lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;</code>中添加<code>useAprConnector=&quot;true&quot;</code>，设置为：</p>
+<pre>
+<listener classname="org.apache.catalina.core.AprLifecycleListener" sslengine="on" useaprconnector="true">
+</listener></pre>
+
+<p>测试tomcat启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash /opt/software/apache-tomcat-9.0.8/bin/configtest.sh</span><br></pre></td></tr></table></figure></p>
+<p>输出结果含有<code>INFO: Initializing ProtocolHandler [&quot;http-apr-8080&quot;]</code>，<code>INFO: Initializing ProtocolHandler [&quot;ajp-apr-8009&quot;]</code>即表示apr开启成功。</p>
+<pre>
+May 18, 2018 2:17:34 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+May 18, 2018 2:17:34 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+May 18, 2018 2:17:34 PM org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+INFO: APR/OpenSSL configuration: useAprConnector [true], useOpenSSL [true]
+May 18, 2018 2:17:34 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized [OpenSSL 1.1.0h  27 Mar 2018]
+May 18, 2018 2:17:34 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8080"]
+May 18, 2018 2:17:34 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+May 18, 2018 2:17:34 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1411 ms
+</pre>
+
+<h2 id="非root用户启动tomcat"><a href="#非root用户启动tomcat" class="headerlink" title="非root用户启动tomcat"></a>非root用户启动tomcat</h2><p>用root用户启动tomcat是一件非常危险的事，在这里设置为<code>nobody</code>启动。<br>编译生成<code>jsvc</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install libcap-devel</span><br><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/commons-daemon-native.tar.gz /opt/<span class="built_in">source</span>/</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">tar xzf commons-daemon-native.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/commons-daemon-1.1.0-native-src/unix/</span><br><span class="line">./configure --with-java=/opt/software/jdk1.8.0_171</span><br><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>复制<code>jsvc</code>到tomcat的bin目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/<span class="built_in">source</span>/commons-daemon-1.1.0-native-src/unix/jsvc /opt/software/apache-tomcat-9.0.8/bin/</span><br></pre></td></tr></table></figure></p>
+<p>编辑tomcat的bin目录下的daemon.sh，添加环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/software/apache-tomcat-9.0.8/bin/daemon.sh</span><br></pre></td></tr></table></figure></p>
+<p>添加的值为：</p>
+<p><pre><br>export JAVA_HOME=/opt/software/jdk1.8.0_171<br>export CATALINA_BASE=/opt/software/apache-tomcat-9.0.8<br>export CATALINA_HOME=/opt/software/apache-tomcat-9.0.8<br>export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib<br></pre><br>并将<code>test &quot;.$TOMCAT_USER&quot; = . &amp;&amp; TOMCAT_USER=tomcat</code>中的<code>tomcat</code>，更改为<code>nobody</code>：<br><code>test &quot;.$TOMCAT_USER&quot; = . &amp;&amp; TOMCAT_USER=nobody</code></p>
+<p>将tomcat目录的所属者跟所属组设置为nobody：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R nobody:nobody /opt/software/apache-tomcat-9.0.8</span><br></pre></td></tr></table></figure></p>
+<p>启动、停止、前台运行、查看版本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/opt/software/apache-tomcat-9.0.8/bin/daemon.sh  start</span><br><span class="line">/opt/software/apache-tomcat-9.0.8/bin/daemon.sh  stop</span><br><span class="line">/opt/software/apache-tomcat-9.0.8/bin/daemon.sh  run</span><br><span class="line">/opt/software/apache-tomcat-9.0.8/bin/daemon.sh  version</span><br></pre></td></tr></table></figure></p>
+<p>改成service启动方式：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/daemon.sh /etc/init.d/tomcat</span><br><span class="line">service tomcat version</span><br><span class="line">service tomcat start</span><br><span class="line">service tomcat stop</span><br><span class="line">service tomcat run</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/14/nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="家宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiayu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/14/nginx/" itemprop="url">
+                  nginx
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T10:42:08+08:00">2018-05-14</time>
+            
+
+            
+            
+              
+                
+              
+            
+
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-14T10:42:08+08:00">2018-05-14</time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/Nginx/" itemprop="url" rel="index"><span itemprop="name">Nginx</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="CentOS7编译安装Nginx"><a href="#CentOS7编译安装Nginx" class="headerlink" title="CentOS7编译安装Nginx"></a>CentOS7编译安装Nginx</h2><p>创建存放源代码以及安装目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/&#123;<span class="built_in">source</span>,software&#125;</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://nginx.org/download/nginx-1.14.0.tar.gz</span><br><span class="line">tar xzf nginx-1.14.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-1.14.0/</span><br><span class="line">yum install gcc gcc-c++ pcre-devel zlib-devel openssl-devel libxslt-devel gd-devel GeoIP-devel gperftools-devel libatomic_ops-devel perl-ExtUtils-Embed</span><br><span class="line">./configure --prefix=/opt/software/nginx-1.14.0 --user=nobody --group=nobody --with-select_module --with-poll_module --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module --with-http_image_filter_module --with-http_geoip_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module --with-mail --with-mail_ssl_module --with-stream --with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module --with-stream_ssl_preread_module --with-google_perftools_module --with-cpp_test_module --with-compat --with-pcre --with-pcre-jit --with-libatomic --with-debug</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/nginx/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -428,21 +822,15 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>阿里云上的系统换成了<code>Debian</code>，记录下来。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>阿里云上的系统换成了<code>Debian</code>，记录下来。</p>
 <h2 id="阿里云ECS创建密钥对"><a href="#阿里云ECS创建密钥对" class="headerlink" title="阿里云ECS创建密钥对"></a>阿里云ECS创建密钥对</h2><p>推荐使用密钥登录，增强服务器安全性。在阿里云ECS<code>密钥对管理</code>中点击<code>创建密钥对</code>，输入符合格式的名称后确定，并下载该密钥对到本地。<br><img src="/2018/05/09/aliyun-debian/创建密钥对.png" title="[创建密钥对]"></p>
-<h2 id="阿里云ECS服务器换系统"><a href="#阿里云ECS服务器换系统" class="headerlink" title="阿里云ECS服务器换系统"></a>阿里云ECS服务器换系统</h2><p>停止阿里云ECS实例后，在<code>配置信息</code>，点击<code>更换系统盘</code>(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。<br><img src="/2018/05/09/aliyun-debian/确认更换系统盘.png" title="[更换系统盘]"></p>
-<p><code>安全设置</code>选择<code>设置密钥</code>，<code>密钥对</code>则选择先前创建的，确认更换。<br><img src="/2018/05/09/aliyun-debian/更换系统.png" title="[设置密钥登陆]"></p>
-<p>经过短信校验码核实后，等待实例自行启动。<br><img src="/2018/05/09/aliyun-debian/更换系统盘成功.png" title="[更换系统盘成功]"></p>
-<h2 id="Securecrt使用密钥登录"><a href="#Securecrt使用密钥登录" class="headerlink" title="Securecrt使用密钥登录"></a>Securecrt使用密钥登录</h2><p>先前下载的是<code>.pem</code>类型的密钥，需要生成公钥。<br>打开<code>Securecrt</code>，进入转换私钥的选项，途径为：<br><img src="/2018/05/09/aliyun-debian/生成私钥菜单.png" title="[生成私钥菜单]"></p>
-<p>浏览文件夹，选择下载的密钥：<br><img src="/2018/05/09/aliyun-debian/选择下载文件.png" title="[选择下载文件]"></p>
-<p>选中后，输入文件名，保存：<br><img src="/2018/05/09/aliyun-debian/保存私钥.png" title="[保存私钥]"></p>
-<p>生成了私/公钥，公钥待用：<br><img src="/2018/05/09/aliyun-debian/密钥列表.png" title="[密钥列表]"></p>
-<p><code>Securecrt</code>创建新的会话，设置为：<br><img src="/2018/05/09/aliyun-debian/会话设置.png" title="[会话设置]"></p>
-<p>密钥配置选择刚生成公钥：<br><img src="/2018/05/09/aliyun-debian/选择公钥.png" title="[选择公钥]"></p>
-<p>配置后便可密钥登陆。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/09/aliyun-debian/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -613,15 +1001,16 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
 <h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过letsencrypt申请免费的证书</p>
-<h3 id="CentOS7开启epel源"><a href="#CentOS7开启epel源" class="headerlink" title="CentOS7开启epel源"></a>CentOS7开启epel源</h3><p>epel(Extra Packages for Enterprise Linux)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装certbot-nginx"><a href="#安装certbot-nginx" class="headerlink" title="安装certbot-nginx"></a>安装certbot-nginx</h3><p>因为配置是在nginx上，所以选择了相对应的版本。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">sudo yum-config-manager --<span class="built_in">enable</span> rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional</span><br><span class="line">sudo yum install certbot-nginx</span><br></pre></td></tr></table></figure></p>
-<p>此时，界面显示:</p>
-<p><pre><br>Failed:<br>  python-urllib3.noarch 0:1.10.2-3.el7<br></pre><br>和系统自带的urllib3有冲突，解决方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pip uninstall urllib3</span><br><span class="line">sudo yum install python-urllib3</span><br><span class="line">sudo pip install --upgrade urllib3</span><br><span class="line">sudo pip install pyOpenSSL</span><br></pre></td></tr></table></figure></p>
-
-          
+<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod u+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br><span class="line">./certbot-auto --nginx</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/07/http-https/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1514,6 +1903,7 @@ username   ALL=(ALL)       ALL
       
         
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
+<h2 id="手动方式卸载云盾安骑士Agent"><a href="#手动方式卸载云盾安骑士Agent" class="headerlink" title="手动方式卸载云盾安骑士Agent"></a>手动方式卸载云盾安骑士Agent</h2><p>执行以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://update.aegis.aliyun.com/download/uninstall.sh</span><br><span class="line">chmod u+x uninstall.sh</span><br><span class="line">./uninstall.sh</span><br><span class="line"><span class="built_in">kill</span> -9 aliyun-service</span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/aegis</span><br><span class="line">rm -rf /usr/sbin/aliyun*</span><br><span class="line">chkconfig --del netconsole</span><br><span class="line">chkconfig --del agentwatch</span><br><span class="line">rm -rf /etc/init.d/agentwatch</span><br><span class="line">rm -rf /etc/systemd/system/aliyun.service</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure></p>
 <h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
 <pre>
 140.205.201.0/28
@@ -1764,203 +2154,13 @@ username   ALL=(ALL)       ALL
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/05/github-pages-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/05/github-pages-hexo/" itemprop="url">
-                  GitHub Pages + Hexo 实现静态 Blog
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T13:45:22+08:00">2018-01-05</time>
-            
-
-            
-            
-              
-                
-              
-            
-
-            
-              
-              <span class="post-meta-divider">|</span>
-              
-
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于：</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-11T16:45:32+08:00">2018-01-11</time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/Github-Pages/" itemprop="url" rel="index"><span itemprop="name">Github Pages</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Blog/Github-Pages/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>很多同行会把自己的代码托管于<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>，同时部分Coder在各Blog平台上分享技术贴。现可以通过<a href="https://pages.github.com/" target="_blank" rel="noopener">Github Pages</a>将二者结合，达到Blog文章可展示、内容修订历史可追溯的效果。在此文章中仅提供一个思路，具体细节步骤还需各位看官自行解决。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>所需的平台以及技术，相关教程自行搜索学习。</p>
-<ul>
-<li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a></li>
-<li><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></li>
-<li><a href="https://daringfireball.net/projects/markdown/syntax/" target="_blank" rel="noopener">Markdown</a></li>
-</ul>
-<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><code>GitHub</code>特殊仓库(xxx.github.io，<code>xxx</code>为用户账号名)，开启<code>GitHub Pages</code>(对该仓库做特殊处理，以支持静态页面)功能后，获得专属网络地址<code>https://xxx.github.io/</code>。<code>Hexo</code>是一个生成静态Blog的框架，通过本地生成静态内容推送至<code>xxx.github.io</code>仓库的<code>master</code>分支上，用户访问专属网络地址，就可以浏览其静态WEB内容。为了追溯内容变更历史，方便用户回退先前版本，在这个仓库新建一个分支专用于内容更改(撰写)，平时只需要维护专属分支上的内容即可。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/05/github-pages-hexo/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2001,7 +2201,7 @@ username   ALL=(ALL)       ALL
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2040,7 +2240,13 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2079,7 +2285,13 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
