@@ -16,6 +16,8 @@ tags:
 推荐使用密钥登录，增强服务器安全性。在阿里云ECS`密钥对管理`中点击`创建密钥对`，输入符合格式的名称后确定，并下载该密钥对到本地。
 {% asset_img 创建密钥对.png [创建密钥对] %}
 
+<!-- more -->
+
 ## 阿里云ECS服务器换系统
 停止阿里云ECS实例后，在`配置信息`，点击`更换系统盘`(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。
 {% asset_img 确认更换系统盘.png [更换系统盘] %}
@@ -47,3 +49,21 @@ tags:
 {% asset_img 选择公钥.png [选择公钥] %}
 
 配置后便可密钥登陆。
+
+## 更新Debian系统软件
+``` bash
+apt update
+apt list --upgradable
+apt upgrade
+apt autoremove
+pip install --upgrade pip
+```
+创建swap：
+``` bash
+dd if=/dev/zero of=/swapfile bs=1024k count=2000
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
+reboot
+```

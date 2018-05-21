@@ -15,30 +15,14 @@ tags:
 ## 申请免费的证书
 通过letsencrypt申请免费的证书
 
-### CentOS7开启epel源
-epel(Extra Packages for Enterprise Linux)
+### 下载certbot-auto脚本
+用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto
 ``` bash
-sudo yum install epel-release
+wget https://dl.eff.org/certbot-auto
+chmod u+x certbot-auto
+vim certbot-auto # 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`
+./certbot-auto --help
+./certbot-auto certificates
+./certbot-auto --nginx
 ```
-
-### 安装certbot-nginx
-因为配置是在nginx上，所以选择了相对应的版本。
-``` bash
-sudo yum install yum-utils
-sudo yum-config-manager --enable rhui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional
-sudo yum install certbot-nginx
-```
-
-此时，界面显示:
-
-<pre>
-Failed:
-  python-urllib3.noarch 0:1.10.2-3.el7
-</pre>
-和系统自带的urllib3有冲突，解决方法:
-``` bash
-sudo pip uninstall urllib3
-sudo yum install python-urllib3
-sudo pip install --upgrade urllib3
-sudo pip install pyOpenSSL
-```
+<!-- more -->

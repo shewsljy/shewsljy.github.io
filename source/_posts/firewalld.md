@@ -12,6 +12,22 @@ tags:
 ## 前言
 我在阿里云上购买了ECS云服务器，通过公共镜像安装了`CentOS 7`系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过[官方教程](https://help.aliyun.com/document_detail/31777.html)手动方式卸载了云盾安骑士客户端`Agent`，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。`CentOS 7`默认用`firewalld`替代了`iptables`，紧随时代趋势便用`firewalld`进行防火墙设置。
 
+## 手动方式卸载云盾安骑士Agent
+执行以下命令：
+``` bash
+wget http://update.aegis.aliyun.com/download/uninstall.sh
+chmod u+x uninstall.sh
+./uninstall.sh
+kill -9 aliyun-service
+rm -rf /usr/local/aegis
+rm -rf /usr/sbin/aliyun*
+chkconfig --del netconsole
+chkconfig --del agentwatch
+rm -rf /etc/init.d/agentwatch
+rm -rf /etc/systemd/system/aliyun.service
+systemctl daemon-reload
+```
+
 ## 查找云盾扫描云服务器的IP
 通过[官方安全公告](https://help.aliyun.com/knowledge_detail/37436.html)找到了云盾扫描云服务器的固定IP，如下:
 <pre>
