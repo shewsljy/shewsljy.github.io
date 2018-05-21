@@ -19,6 +19,8 @@ wget http://mirrors.hust.edu.cn/apache/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-
 tar xzf apache-tomcat-9.0.8.tar.gz -C /opt/software/
 ```
 
+<!-- more -->
+
 ## 编译安装apr/openssl
 ``` bash
 cd /opt/source/
@@ -27,8 +29,6 @@ wget http://mirror.bit.edu.cn/apache//apr/apr-1.6.3.tar.gz
 wget http://mirror.bit.edu.cn/apache//apr/apr-util-1.6.1.tar.gz
 wget http://mirror.bit.edu.cn/apache//apr/apr-iconv-1.2.2.tar.gz
 wget https://www.openssl.org/source/openssl-1.1.0h.tar.gz
-
-<!-- more -->
 
 # 解压包
 tar xzf apr-1.6.3.tar.gz
