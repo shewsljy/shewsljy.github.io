@@ -1,7 +1,7 @@
 ---
 title: nginx
 date: 2018-05-14 10:42:08
-updated: 2018-05-14 10:42:08
+updated: 2018-05-30 18:56:08
 categories:
     - Web
     - Nginx
@@ -24,3 +24,65 @@ make install
 ```
 
 <!-- more -->
+## 创建nginx软连接
+将nginx的软连接放在`/usr/local/sbin`下：
+``` bash
+ln -s /opt/software/nginx-1.14.0/sbin/nginx /usr/local/sbin/nginx
+```
+
+## nginx.conf配置
+<pre>
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # 非域名http(ip4/ip6)访问80端口返回444
+    server {
+        listen       80  default_server;
+        listen       [::]:80 default_server;
+        server_name  _;
+        return       444;
+    }
+
+    # 非域名https(ip4/ip6)访问443端口返回444
+    server {
+        listen       443 ssl default_server;
+        listen       [::]:443 ssl default_server;
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        return       444;
+    }
+
+    # http访问jiayuli.cn www.jiayuli.cn这两个域名跳转到https://www.jiayuli.cn
+    server {
+        listen       80;
+        listen       [::]:80;
+        server_name  jiayuli.cn www.jiayuli.cn;
+        return       301 https://www.jiayuli.cn$request_uri;
+    }
+
+    # ssl设置
+    server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  www.jiayuli.cn;
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+}
+</pre>
