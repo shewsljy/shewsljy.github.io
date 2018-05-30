@@ -309,6 +309,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/30/mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="家宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiayu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/30/mysql/" itemprop="url">
+                  CentOS7 解压安装 Mysql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-30T17:21:17+08:00">2018-05-30</time>
+            
+
+            
+            
+              
+                
+              
+            
+
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:17+08:00">2018-05-30</time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载解压mysql"><a href="#下载解压mysql" class="headerlink" title="下载解压mysql"></a>下载解压mysql</h2><p>下载以及解压，并设置软连接至<code>/usr/local/mysql</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">tar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz -C /opt/software/</span><br><span class="line">ln -s /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64 /usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装libaio依赖以及创建mysql用户"><a href="#安装libaio依赖以及创建mysql用户" class="headerlink" title="安装libaio依赖以及创建mysql用户"></a>安装libaio依赖以及创建mysql用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -r -g mysql -s /bin/<span class="literal">false</span> mysql</span><br></pre></td></tr></table></figure>
+<h2 id="创建my-cnf配置文件"><a href="#创建my-cnf配置文件" class="headerlink" title="创建my.cnf配置文件"></a>创建my.cnf配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/mysql/etc/my.cnf</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<pre>
+[client]
+port = 3306
+default-character-set = utf8
+socket = /usr/local/mysql/mysql.sock
+
+
+[mysqld]
+user = mysql
+port = 3306
+lower_case_table_names = 1
+basedir = /usr/local/mysql
+datadir = /usr/local/mysql/data
+plugin-dir = /usr/local/mysql/lib/plugin
+log-error = /usr/local/mysql/data/mysql.error.log
+pid-file = /usr/local/mysql/data/mysql.pid
+socket = /usr/local/mysql/mysql.sock
+character-set-server = utf8
+</pre>
+
+<h2 id="创建mariadb文件以及赋权mysql"><a href="#创建mariadb文件以及赋权mysql" class="headerlink" title="创建mariadb文件以及赋权mysql"></a>创建mariadb文件以及赋权mysql</h2><p><code>/usr/local/mysql/bin/mysqld_safe --user=mysql &amp;</code>会用到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">touch /var/<span class="built_in">log</span>/mariadb/mariadb.log</span><br><span class="line">chown -R mysql:mysql /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">mkdir -p /var/run/mariadb</span><br><span class="line">chown -R mysql:mysql /var/run/mariadb</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld --initialize --user=mysql</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql_ssl_rsa_setup</span><br><span class="line">chown -R mysql:mysql /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld_safe --user=mysql &amp;</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>初始密码通过<code>grep &#39;root@localhost&#39; /usr/local/mysql/data/mysql.error.log</code>查询出来，改密码可以用<code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;root&#39;;</code>。<br><code>SHOW VARIABLES LIKE &#39;char%&#39;;</code>,<code>SHOW VARIABLES LIKE &#39;collation%&#39;;</code>查询编码。mysql日志在<code>/var/log/mariadb/mariadb.log</code>。</p>
+<h2 id="启动停止mysql"><a href="#启动停止mysql" class="headerlink" title="启动停止mysql"></a>启动停止mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">service mysql start|stop|restart|reload|force-reload|status</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/16/tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -548,7 +742,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-14T10:42:08+08:00">2018-05-14</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:08+08:00">2018-05-30</time>
             
           </span>
 
@@ -905,7 +1099,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-07T15:09:29+08:00">2018-05-07</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:29+08:00">2018-05-30</time>
             
           </span>
 
@@ -963,9 +1157,9 @@
 
       
         
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
-<h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过letsencrypt申请免费的证书</p>
-<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod u+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br><span class="line">./certbot-auto --nginx</span><br></pre></td></tr></table></figure></p>
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将 http 换成 https ，通过 letsencrypt 申请免费的证书，nginx 配置。</p>
+<h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过 letsencrypt 申请免费的证书</p>
+<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用 yum 安装 certbot ，不是很顺利，遇到 Python 各种报错问题，故转而使用 certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod a+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/05/07/http-https/#more" rel="contents">
@@ -1931,191 +2125,6 @@ username   ALL=(ALL)       ALL
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/06/install-archlinux-mbr/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/06/install-archlinux-mbr/" itemprop="url">
-                  MBR 分区方式安装 ArchLinux
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T17:00:40+08:00">2018-01-06</time>
-            
-
-            
-            
-              
-                
-              
-            
-
-            
-              
-              <span class="post-meta-divider">|</span>
-              
-
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于：</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-12T17:30:24+08:00">2018-01-12</time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Arch/" itemprop="url" rel="index"><span itemprop="name">Arch</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我的电脑笔记本有些年头了，不太好使，故新加了块固态硬盘，并将原有的机械硬盘安装至光驱(光荣下岗)位置。固态硬盘安装了<code>Windows 10</code>系统，机械硬盘就安装个<code>ArchLinux</code>吧。固态硬盘当时的分区方式为MBR，为了和(不)谐(想)统(折)一(腾)，机械硬盘也沿用MBR分区方式。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>U盘、<code>ArchLinux</code>镜像以及正常(有线/无线)网络环境。</p>
-<ul>
-<li>U盘 容量4G起</li>
-<li><a href="https://sourceforge.net/projects/usbwriter/files/USBWriter-1.3.zip/download/" target="_blank" rel="noopener">USBWriter</a> 制作U盘启动的工具</li>
-<li><a href="https://www.archlinux.org/download/" target="_blank" rel="noopener">ArchLinux</a> 可选择<a href="http://mirrors.163.com/archlinux/iso/2018.01.01/archlinux-2018.01.01-x86_64.iso" target="_blank" rel="noopener">国内镜像</a>下载</li>
-</ul>
-<h3 id="制作ArchLinux的U盘镜像"><a href="#制作ArchLinux的U盘镜像" class="headerlink" title="制作ArchLinux的U盘镜像"></a>制作ArchLinux的U盘镜像</h3><p>在Windows上解压<code>USBWriter-1.3.zip</code>，并运行<code>USBWriter.exe</code>，选择<code>archlinux-2018.01.01-x86_64.iso</code>镜像单击<code>Writer</code>写入选定的U盘，等待进度条完成。So Easy!</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/06/install-archlinux-mbr/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2163,7 +2172,7 @@ username   ALL=(ALL)       ALL
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2208,7 +2217,9 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2253,7 +2264,9 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

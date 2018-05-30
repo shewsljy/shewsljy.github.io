@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="CentOS7编译安装Nginx创建存放源代码以及安装目录：123456789mkdir /opt/&amp;#123;source,software&amp;#125;cd /opt/source/wget http://nginx.org/download/nginx-1.14.0.tar.gztar xzf nginx-1.14.0.tar.gzcd nginx-1.14.0/yum install gcc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-14T02:42:08.000Z">
+<meta property="og:updated_time" content="2018-05-30T10:56:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx">
 <meta name="twitter:description" content="CentOS7编译安装Nginx创建存放源代码以及安装目录：123456789mkdir /opt/&amp;#123;source,software&amp;#125;cd /opt/source/wget http://nginx.org/download/nginx-1.14.0.tar.gztar xzf nginx-1.14.0.tar.gzcd nginx-1.14.0/yum install gcc">
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-14T10:42:08+08:00">2018-05-14</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:08+08:00">2018-05-30</time>
             
           </span>
 
@@ -425,6 +425,62 @@
       
         <h2 id="CentOS7编译安装Nginx"><a href="#CentOS7编译安装Nginx" class="headerlink" title="CentOS7编译安装Nginx"></a>CentOS7编译安装Nginx</h2><p>创建存放源代码以及安装目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/&#123;<span class="built_in">source</span>,software&#125;</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://nginx.org/download/nginx-1.14.0.tar.gz</span><br><span class="line">tar xzf nginx-1.14.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> nginx-1.14.0/</span><br><span class="line">yum install gcc gcc-c++ pcre-devel zlib-devel openssl-devel libxslt-devel gd-devel GeoIP-devel gperftools-devel libatomic_ops-devel perl-ExtUtils-Embed</span><br><span class="line">./configure --prefix=/opt/software/nginx-1.14.0 --user=nobody --group=nobody --with-select_module --with-poll_module --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_xslt_module --with-http_image_filter_module --with-http_geoip_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-http_perl_module --with-mail --with-mail_ssl_module --with-stream --with-stream_ssl_module --with-stream_realip_module --with-stream_geoip_module --with-stream_ssl_preread_module --with-google_perftools_module --with-cpp_test_module --with-compat --with-pcre --with-pcre-jit --with-libatomic --with-debug</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
+<h2 id="创建nginx软连接"><a href="#创建nginx软连接" class="headerlink" title="创建nginx软连接"></a>创建nginx软连接</h2><p>将nginx的软连接放在<code>/usr/local/sbin</code>下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /opt/software/nginx-1.14.0/sbin/nginx /usr/<span class="built_in">local</span>/sbin/nginx</span><br></pre></td></tr></table></figure></p>
+<h2 id="nginx-conf配置"><a href="#nginx-conf配置" class="headerlink" title="nginx.conf配置"></a>nginx.conf配置</h2><pre>
+worker_processes  1;
+events {
+    worker_connections  1024;
+}
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # 非域名http(ip4/ip6)访问80端口返回444
+    server {
+        listen       80  default_server;
+        listen       [::]:80 default_server;
+        server_name  _;
+        return       444;
+    }
+
+    # 非域名https(ip4/ip6)访问443端口返回444
+    server {
+        listen       443 ssl default_server;
+        listen       [::]:443 ssl default_server;
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        return       444;
+    }
+
+    # http访问jiayuli.cn www.jiayuli.cn这两个域名跳转到https://www.jiayuli.cn
+    server {
+        listen       80;
+        listen       [::]:80;
+        server_name  jiayuli.cn www.jiayuli.cn;
+        return       301 https://www.jiayuli.cn$request_uri;
+    }
+
+    # ssl设置
+    server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  www.jiayuli.cn;
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+}
+</pre>
 
       
     </div>
@@ -546,7 +602,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -591,7 +647,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -636,7 +694,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -672,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS7编译安装Nginx"><span class="nav-number">1.</span> <span class="nav-text">CentOS7编译安装Nginx</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CentOS7编译安装Nginx"><span class="nav-number">1.</span> <span class="nav-text">CentOS7编译安装Nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建nginx软连接"><span class="nav-number">2.</span> <span class="nav-text">创建nginx软连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-conf配置"><span class="nav-number">3.</span> <span class="nav-text">nginx.conf配置</span></a></li></ol></div>
             
 
           </div>

@@ -99,25 +99,25 @@
 
 
 
-  <meta name="description" content="前言一直在用root账号密码的方式登录服务器，最近发觉每天都有此类信息提示:  Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty There were 12 failed login attempts since the last successful login.   显示从上一次登">
-<meta name="keywords" content="SSH">
+  <meta name="description" content="下载解压mysql下载以及解压，并设置软连接至/usr/local/mysql：1234cd /opt/source/wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gztar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.">
+<meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="禁用 root 通过 SSH 登录服务器">
-<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/26/ssh/index.html">
+<meta property="og:title" content="CentOS7 解压安装 Mysql">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/05/30/mysql/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言一直在用root账号密码的方式登录服务器，最近发觉每天都有此类信息提示:  Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty There were 12 failed login attempts since the last successful login.   显示从上一次登">
+<meta property="og:description" content="下载解压mysql下载以及解压，并设置软连接至/usr/local/mysql：1234cd /opt/source/wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gztar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T03:26:05.000Z">
+<meta property="og:updated_time" content="2018-05-30T10:56:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="禁用 root 通过 SSH 登录服务器">
-<meta name="twitter:description" content="前言一直在用root账号密码的方式登录服务器，最近发觉每天都有此类信息提示:  Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty There were 12 failed login attempts since the last successful login.   显示从上一次登">
+<meta name="twitter:title" content="CentOS7 解压安装 Mysql">
+<meta name="twitter:description" content="下载解压mysql下载以及解压，并设置软连接至/usr/local/mysql：1234cd /opt/source/wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gztar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/26/ssh/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/05/30/mysql/"/>
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>禁用 root 通过 SSH 登录服务器 | Jiayu's Blog</title>
+  <title>CentOS7 解压安装 Mysql | Jiayu's Blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/26/ssh/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/30/mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">禁用 root 通过 SSH 登录服务器
+          <h1 class="post-title" itemprop="name headline">CentOS7 解压安装 Mysql
               
             
           </h1>
@@ -345,7 +345,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T09:44:01+08:00">2018-01-26</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-30T17:21:17+08:00">2018-05-30</time>
             
 
             
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T11:26:05+08:00">2018-03-07</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:17+08:00">2018-05-30</time>
             
           </span>
 
@@ -382,14 +382,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/SSH/" itemprop="url" rel="index"><span itemprop="name">SSH</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
 
                 
                 
@@ -423,41 +416,34 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直在用<code>root</code>账号密码的方式登录服务器，最近发觉每天都有此类信息提示:</p>
+        <h2 id="下载解压mysql"><a href="#下载解压mysql" class="headerlink" title="下载解压mysql"></a>下载解压mysql</h2><p>下载以及解压，并设置软连接至<code>/usr/local/mysql</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">tar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz -C /opt/software/</span><br><span class="line">ln -s /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64 /usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装libaio依赖以及创建mysql用户"><a href="#安装libaio依赖以及创建mysql用户" class="headerlink" title="安装libaio依赖以及创建mysql用户"></a>安装libaio依赖以及创建mysql用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -r -g mysql -s /bin/<span class="literal">false</span> mysql</span><br></pre></td></tr></table></figure>
+<h2 id="创建my-cnf配置文件"><a href="#创建my-cnf配置文件" class="headerlink" title="创建my.cnf配置文件"></a>创建my.cnf配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/mysql/etc/my.cnf</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
 <pre>
-Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty
-There were 12 failed login attempts since the last successful login.
+[client]
+port = 3306
+default-character-set = utf8
+socket = /usr/local/mysql/mysql.sock
+
+
+[mysqld]
+user = mysql
+port = 3306
+lower_case_table_names = 1
+basedir = /usr/local/mysql
+datadir = /usr/local/mysql/data
+plugin-dir = /usr/local/mysql/lib/plugin
+log-error = /usr/local/mysql/data/mysql.error.log
+pid-file = /usr/local/mysql/data/mysql.pid
+socket = /usr/local/mysql/mysql.sock
+character-set-server = utf8
 </pre>
 
-<p>显示从上一次登陆成功到本次登陆成功，中间有若干次尝试登陆<code>root</code>账户失败的情况。我的SSH端口22没改，为了防止暴力破解导致服务器被黑，需禁用<code>root</code>账号登录，并更改SSH服务的22端口。用拥有<code>sudo</code>权限的普通用户登录服务器。</p>
-<h2 id="授以普通用户sudo权限"><a href="#授以普通用户sudo权限" class="headerlink" title="授以普通用户sudo权限"></a>授以普通用户sudo权限</h2><p>假设普通用户名为<code>username</code>，先用<code>root</code>用户执行<code>visudo</code>命令，在<code>root    ALL=(ALL)       ALL</code>这一行下添加<code>username   ALL=(ALL)       ALL</code>，如：</p>
-<pre>
-root    ALL=(ALL)       ALL
-username   ALL=(ALL)       ALL
-</pre>
-
-<a id="more"></a>
-<p>若是想要普通用户执行<code>sudo</code>命令时免密码输入，则可修改为：</p>
-<pre>
-root    ALL=(ALL)       ALL
-username   ALL=(ALL)       NOPASSWD: ALL
-</pre>
-
-<h2 id="禁用root账号SSH登录"><a href="#禁用root账号SSH登录" class="headerlink" title="禁用root账号SSH登录"></a>禁用root账号SSH登录</h2><p>这个推荐用拥有<code>sudo</code>权限的普通用户操作，将<code>/etc/ssh/sshd_config</code>中的<code>PermitRootLogin yes</code>改为<code>PermitRootLogin no</code>，并重启<code>sshd</code>服务：</p>
-<pre>
-PermitRootLogin no
-</pre>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
-<h2 id="更改SSH服务默认的22端口"><a href="#更改SSH服务默认的22端口" class="headerlink" title="更改SSH服务默认的22端口"></a>更改SSH服务默认的22端口</h2><p>这个推荐用拥有<code>sudo</code>权限的普通用户操作，将<code>/etc/ssh/sshd_config</code>中<code>#Port 22</code>前面的注释<code>#</code>去除，另增一行<code>Port 10022</code>，并重启<code>sshd</code>服务：</p>
-<pre>
-Port 22
-Port 10022
-</pre>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
-<p>这里开启双端口是为了保险，防止新的<code>10022</code>端口被其他服务占用导致重启<code>sshd</code>服务后连不上去(虽说可以用<code>netstat -an|grep 10022</code>查看是否被占用，但留条退路也是应该的)。通过新端口连上去后，就可以把<code>Port 22</code>注释掉，并再次重启<code>sshd</code>服务。</p>
-<h2 id="防火墙开放新端口"><a href="#防火墙开放新端口" class="headerlink" title="防火墙开放新端口"></a>防火墙开放新端口</h2><p>如果还设置了防火墙，记得开放新端口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-port=10022/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line">sudo firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
+<h2 id="创建mariadb文件以及赋权mysql"><a href="#创建mariadb文件以及赋权mysql" class="headerlink" title="创建mariadb文件以及赋权mysql"></a>创建mariadb文件以及赋权mysql</h2><p><code>/usr/local/mysql/bin/mysqld_safe --user=mysql &amp;</code>会用到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">touch /var/<span class="built_in">log</span>/mariadb/mariadb.log</span><br><span class="line">chown -R mysql:mysql /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">mkdir -p /var/run/mariadb</span><br><span class="line">chown -R mysql:mysql /var/run/mariadb</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld --initialize --user=mysql</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql_ssl_rsa_setup</span><br><span class="line">chown -R mysql:mysql /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld_safe --user=mysql &amp;</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>初始密码通过<code>grep &#39;root@localhost&#39; /usr/local/mysql/data/mysql.error.log</code>查询出来，改密码可以用<code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;root&#39;;</code>。<br><code>SHOW VARIABLES LIKE &#39;char%&#39;;</code>,<code>SHOW VARIABLES LIKE &#39;collation%&#39;;</code>查询编码。mysql日志在<code>/var/log/mariadb/mariadb.log</code>。</p>
+<h2 id="启动停止mysql"><a href="#启动停止mysql" class="headerlink" title="启动停止mysql"></a>启动停止mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">service mysql start|stop|restart|reload|force-reload|status</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -478,7 +464,7 @@ Port 10022
       
         <div class="post-tags">
           
-            <a href="/tags/SSH/" rel="tag"># SSH</a>
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
           
         </div>
       
@@ -491,8 +477,8 @@ Port 10022
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/25/docker/" rel="next" title="Docker 在 CentOS 7.4 平台上的运用">
-                <i class="fa fa-chevron-left"></i> Docker 在 CentOS 7.4 平台上的运用
+              <a href="/2018/05/16/tomcat/" rel="next" title="tomcat">
+                <i class="fa fa-chevron-left"></i> tomcat
               </a>
             
           </div>
@@ -500,10 +486,6 @@ Port 10022
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/26/dockerfile/" rel="prev" title="通过 Dockerfile 构建 Docker 镜像">
-                通过 Dockerfile 构建 Docker 镜像 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -707,7 +689,7 @@ Port 10022
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授以普通用户sudo权限"><span class="nav-number">2.</span> <span class="nav-text">授以普通用户sudo权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用root账号SSH登录"><span class="nav-number">3.</span> <span class="nav-text">禁用root账号SSH登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改SSH服务默认的22端口"><span class="nav-number">4.</span> <span class="nav-text">更改SSH服务默认的22端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙开放新端口"><span class="nav-number">5.</span> <span class="nav-text">防火墙开放新端口</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载解压mysql"><span class="nav-number">1.</span> <span class="nav-text">下载解压mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装libaio依赖以及创建mysql用户"><span class="nav-number">2.</span> <span class="nav-text">安装libaio依赖以及创建mysql用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建my-cnf配置文件"><span class="nav-number">3.</span> <span class="nav-text">创建my.cnf配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建mariadb文件以及赋权mysql"><span class="nav-number">4.</span> <span class="nav-text">创建mariadb文件以及赋权mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装mysql"><span class="nav-number">5.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动停止mysql"><span class="nav-number">6.</span> <span class="nav-text">启动停止mysql</span></a></li></ol></div>
             
 
           </div>

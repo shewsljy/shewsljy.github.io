@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
+  <meta name="description" content="前言将 http 换成 https ，通过 letsencrypt 申请免费的证书，nginx 配置。 申请免费的证书通过 letsencrypt 申请免费的证书 下载certbot-auto脚本用 yum 安装 certbot ，不是很顺利，遇到 Python 各种报错问题，故转而使用 certbot-auto12345wget https://dl.eff.org/certbot-autoch">
 <meta name="keywords" content="Http,Https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="http-https">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/05/07/http-https/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
+<meta property="og:description" content="前言将 http 换成 https ，通过 letsencrypt 申请免费的证书，nginx 配置。 申请免费的证书通过 letsencrypt 申请免费的证书 下载certbot-auto脚本用 yum 安装 certbot ，不是很顺利，遇到 Python 各种报错问题，故转而使用 certbot-auto12345wget https://dl.eff.org/certbot-autoch">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-07T07:09:29.000Z">
+<meta property="og:updated_time" content="2018-05-30T10:56:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http-https">
-<meta name="twitter:description" content="前言将http换成https，通过letsencrypt申请免费的证书，nginx配置。 申请免费的证书通过letsencrypt申请免费的证书 下载certbot-auto脚本用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto123456wget https://dl.eff.org/certbot-autochmod u+x certbot">
+<meta name="twitter:description" content="前言将 http 换成 https ，通过 letsencrypt 申请免费的证书，nginx 配置。 申请免费的证书通过 letsencrypt 申请免费的证书 下载certbot-auto脚本用 yum 安装 certbot ，不是很顺利，遇到 Python 各种报错问题，故转而使用 certbot-auto12345wget https://dl.eff.org/certbot-autoch">
 
 
 
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-07T15:09:29+08:00">2018-05-07</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:29+08:00">2018-05-30</time>
             
           </span>
 
@@ -423,10 +423,31 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将http换成https，通过letsencrypt申请免费的证书，nginx配置。</p>
-<h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过letsencrypt申请免费的证书</p>
-<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用yum安装certbot，不是很顺利，遇到Python各种报错问题，故转而使用certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod u+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br><span class="line">./certbot-auto --nginx</span><br></pre></td></tr></table></figure></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>将 http 换成 https ，通过 letsencrypt 申请免费的证书，nginx 配置。</p>
+<h2 id="申请免费的证书"><a href="#申请免费的证书" class="headerlink" title="申请免费的证书"></a>申请免费的证书</h2><p>通过 letsencrypt 申请免费的证书</p>
+<h3 id="下载certbot-auto脚本"><a href="#下载certbot-auto脚本" class="headerlink" title="下载certbot-auto脚本"></a>下载certbot-auto脚本</h3><p>用 yum 安装 certbot ，不是很顺利，遇到 Python 各种报错问题，故转而使用 certbot-auto<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.eff.org/certbot-auto</span><br><span class="line">chmod a+x certbot-auto</span><br><span class="line">vim certbot-auto <span class="comment"># 将`export VENV_PATH="/opt/eff.org/certbot/venv"`的路径改为`export VENV_PATH="/opt/software/certbot/venv"`</span></span><br><span class="line">./certbot-auto --<span class="built_in">help</span></span><br><span class="line">./certbot-auto certificates</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
+<h2 id="certbot-certbot-auto-的两种工作方式"><a href="#certbot-certbot-auto-的两种工作方式" class="headerlink" title="certbot / certbot-auto 的两种工作方式"></a>certbot / certbot-auto 的两种工作方式</h2><p>certbot (实际上是 certbot-auto )有两种方式生成证书：<br>standalone 方式：<br>certbot 会自己运行一个 web server 来进行验证。如果我们自己的服务器上已经有 web server 正在运行 (比如 Nginx 或 Apache )，用 standalone 方式的话需要先关掉它，以免冲突。<br>webroot 方式：<br>certbot 会利用既有的 web server，在其 web root目录下创建隐藏文件， Let’s Encrypt 服务端会通过域名来访问这些隐藏文件，以确认你的确拥有对应域名的控制权。</p>
+<h2 id="letsencrypt-生成证书"><a href="#letsencrypt-生成证书" class="headerlink" title="letsencrypt 生成证书"></a>letsencrypt 生成证书</h2><p>事先应该把nginx的命令放在PATH中，我建立了软连接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /opt/software/nginx-1.14.0/sbin/nginx /usr/<span class="built_in">local</span>/sbin/nginx</span><br><span class="line">./certbot-auto certonly --email shewsljy@163.com --webroot -w /opt/software/nginx-1.14.0/html -d jiayuli.cn -d www.jiayuli.cn</span><br></pre></td></tr></table></figure></p>
+<p><code>certonly</code> 的意思是只生成证书，不改写<code>nginx.conf</code>中的配置信息。<code>--email</code>接着自己的邮箱地址。<code>--webroot</code>是运行现有的<code>web server</code>来进行，<code>-w</code> 后面跟着<code>nginx</code>的<code>web</code>目录，<code>-d</code>跟着域名。我这里带了一级跟二级域名。</p>
+<h2 id="配置nginx中ssl"><a href="#配置nginx中ssl" class="headerlink" title="配置nginx中ssl"></a>配置nginx中ssl</h2><pre>
+server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  www.jiayuli.cn;
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+    }
+</pre>
 
       
     </div>
@@ -548,7 +569,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -593,7 +614,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -638,7 +661,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -674,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请免费的证书"><span class="nav-number">2.</span> <span class="nav-text">申请免费的证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载certbot-auto脚本"><span class="nav-number">2.1.</span> <span class="nav-text">下载certbot-auto脚本</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请免费的证书"><span class="nav-number">2.</span> <span class="nav-text">申请免费的证书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载certbot-auto脚本"><span class="nav-number">2.1.</span> <span class="nav-text">下载certbot-auto脚本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#certbot-certbot-auto-的两种工作方式"><span class="nav-number">3.</span> <span class="nav-text">certbot / certbot-auto 的两种工作方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#letsencrypt-生成证书"><span class="nav-number">4.</span> <span class="nav-text">letsencrypt 生成证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置nginx中ssl"><span class="nav-number">5.</span> <span class="nav-text">配置nginx中ssl</span></a></li></ol></div>
             
 
           </div>
