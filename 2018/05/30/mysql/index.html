@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
 <meta property="og:description" content="下载解压mysql下载以及解压，并设置软连接至/usr/local/mysql：1234cd /opt/source/wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gztar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-30T10:56:17.000Z">
+<meta property="og:updated_time" content="2018-06-05T11:40:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7 解压安装 Mysql">
 <meta name="twitter:description" content="下载解压mysql下载以及解压，并设置软连接至/usr/local/mysql：1234cd /opt/source/wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gztar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.">
@@ -366,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-30T18:56:17+08:00">2018-05-30</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T19:40:17+08:00">2018-06-05</time>
             
           </span>
 
@@ -418,6 +418,7 @@
       
         <h2 id="下载解压mysql"><a href="#下载解压mysql" class="headerlink" title="下载解压mysql"></a>下载解压mysql</h2><p>下载以及解压，并设置软连接至<code>/usr/local/mysql</code>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line">tar xzf mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz -C /opt/software/</span><br><span class="line">ln -s /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64 /usr/<span class="built_in">local</span>/mysql</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装libaio依赖以及创建mysql用户"><a href="#安装libaio依赖以及创建mysql用户" class="headerlink" title="安装libaio依赖以及创建mysql用户"></a>安装libaio依赖以及创建mysql用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -r -g mysql -s /bin/<span class="literal">false</span> mysql</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="创建my-cnf配置文件"><a href="#创建my-cnf配置文件" class="headerlink" title="创建my.cnf配置文件"></a>创建my.cnf配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/mysql/etc/my.cnf</span><br></pre></td></tr></table></figure>
 <p>配置如下：</p>
 <pre>
@@ -442,7 +443,7 @@ character-set-server = utf8
 
 <h2 id="创建mariadb文件以及赋权mysql"><a href="#创建mariadb文件以及赋权mysql" class="headerlink" title="创建mariadb文件以及赋权mysql"></a>创建mariadb文件以及赋权mysql</h2><p><code>/usr/local/mysql/bin/mysqld_safe --user=mysql &amp;</code>会用到<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">touch /var/<span class="built_in">log</span>/mariadb/mariadb.log</span><br><span class="line">chown -R mysql:mysql /var/<span class="built_in">log</span>/mariadb</span><br><span class="line">mkdir -p /var/run/mariadb</span><br><span class="line">chown -R mysql:mysql /var/run/mariadb</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld --initialize --user=mysql</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql_ssl_rsa_setup</span><br><span class="line">chown -R mysql:mysql /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld_safe --user=mysql &amp;</span><br><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysql -u root -p</span><br></pre></td></tr></table></figure>
-<p>初始密码通过<code>grep &#39;root@localhost&#39; /usr/local/mysql/data/mysql.error.log</code>查询出来，改密码可以用<code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;root&#39;;</code>。<br><code>SHOW VARIABLES LIKE &#39;char%&#39;;</code>,<code>SHOW VARIABLES LIKE &#39;collation%&#39;;</code>查询编码。mysql日志在<code>/var/log/mariadb/mariadb.log</code>。</p>
+<p>初始密码通过<code>grep &#39;root@localhost&#39; /usr/local/mysql/data/mysql.error.log</code>查询出来，改密码可以用<code>alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;xxxxxx&#39;;</code>。<br><code>SHOW VARIABLES LIKE &#39;char%&#39;;</code>,<code>SHOW VARIABLES LIKE &#39;collation%&#39;;</code>查询编码。mysql日志在<code>/var/log/mariadb/mariadb.log</code>。</p>
 <h2 id="启动停止mysql"><a href="#启动停止mysql" class="headerlink" title="启动停止mysql"></a>启动停止mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/init.d/mysql</span><br><span class="line">service mysql start|stop|restart|reload|force-reload|status</span><br></pre></td></tr></table></figure>
 
       
@@ -486,6 +487,10 @@ character-set-server = utf8
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/01/jenkins/" rel="prev" title="jenkins">
+                jenkins <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -559,7 +564,7 @@ character-set-server = utf8
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -606,7 +611,9 @@ character-set-server = utf8
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -653,7 +660,9 @@ character-set-server = utf8
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
