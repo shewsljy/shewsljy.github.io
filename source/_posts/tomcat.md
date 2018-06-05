@@ -1,7 +1,7 @@
 ---
 title: tomcat
 date: 2018-05-16 11:37:01
-updated: 2018-05-16 11:37:01
+updated: 2018-06-05 19:37:01
 categories:
     - Web
     - Tomcat
@@ -85,7 +85,7 @@ vim /opt/software/apache-tomcat-9.0.8/conf/server.xml
 ```
 在`<Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />`中添加`useAprConnector="true"`，设置为：
 <pre>
-<Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" useAprConnector="true" />
+< Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" useAprConnector="true" />
 </pre>
 
 测试tomcat启动：
@@ -137,6 +137,7 @@ export CATALINA_BASE=/opt/software/apache-tomcat-9.0.8
 export CATALINA_HOME=/opt/software/apache-tomcat-9.0.8
 export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
 </pre>
+
 并将`test ".$TOMCAT_USER" = . && TOMCAT_USER=tomcat`中的`tomcat`，更改为`nobody`：
 `test ".$TOMCAT_USER" = . && TOMCAT_USER=nobody`
 
@@ -161,3 +162,44 @@ service tomcat start
 service tomcat stop
 service tomcat run
 ```
+
+## 配合Nginx反向代理设置Https
+
+nginx的配置：
+<pre>
+ # 反向代理tomcat应用jenkins
+upstream jenkins {
+    server localhost:8080;
+}
+
+# 代理jenkins
+location /jenkins/ {
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+    proxy_pass         http://jenkins/jenkins/;
+    proxy_redirect     off;
+}
+</pre>
+
+tomcat的配置：
+将`/opt/software/apache-tomcat-9.0.8/conf/server.xml`设置为：
+<pre>
+< Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="443"
+               proxyPort="443" />
+
+< Connector port="8009" protocol="AJP/1.3" redirectPort="443" />
+
+< Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log" suffix=".txt"
+               pattern="%{X-Forwarded-For}i %l %u %t &quot;%r&quot; %s %b" />
+
+< Valve className="org.apache.catalina.valves.RemoteIpValve"
+               remoteIpHeader="X-Forwarded-For"
+               remoteIpProxiesHeader="X-Forwarded-By"
+               protocolHeader="X-Forwarded-Proto"
+               protocolHeaderHttpsValue="https" />
+</pre>

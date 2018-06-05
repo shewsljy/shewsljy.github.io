@@ -1,7 +1,7 @@
 ---
 title: http-https
 date: 2018-05-07 15:09:29
-updated: 2018-05-30 18:56:29
+updated: 2018-06-05 18:56:29
 categories:
     - Http
     - https
@@ -37,7 +37,7 @@ certbot 会利用既有的 web server，在其 web root目录下创建隐藏文�
 事先应该把nginx的命令放在PATH中，我建立了软连接：
 ``` bash
 ln -s /opt/software/nginx-1.14.0/sbin/nginx /usr/local/sbin/nginx
-./certbot-auto certonly --email shewsljy@163.com --webroot -w /opt/software/nginx-1.14.0/html -d jiayuli.cn -d www.jiayuli.cn
+./certbot-auto certonly --email youremail@163.com --webroot -w /opt/software/nginx-1.14.0/html -d yourdomain.cn -d www.yourdomain.cn
 ```
 `certonly` 的意思是只生成证书，不改写`nginx.conf`中的配置信息。`--email`接着自己的邮箱地址。`--webroot`是运行现有的`web server`来进行，`-w` 后面跟着`nginx`的`web`目录，`-d`跟着域名。我这里带了一级跟二级域名。
 
@@ -46,9 +46,9 @@ ln -s /opt/software/nginx-1.14.0/sbin/nginx /usr/local/sbin/nginx
 server {
         listen       443 ssl;
         listen       [::]:443 ssl;
-        server_name  www.jiayuli.cn;
-        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
-        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        server_name  www.yourdomain.cn;
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
         ssl_session_cache    shared:SSL:1m;
         ssl_session_timeout  5m;
         ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;

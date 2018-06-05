@@ -39,7 +39,7 @@ after_script:
   - mv .deploy_git/.git/ ./public/   # 这一步之前的操作是为了保留master分支的提交记录，不然每次git init的话只有1条commit
   - cd ./public
   - git config user.name "shewsljy"  #修改name
-  - git config user.email "1214942360@qq.com"  #修改email
+  - git config user.email "shewsljy@163.com"  #修改email
   - git add .
   - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master  #GH_TOKEN是在Travis跟Github的通信串码
@@ -57,6 +57,6 @@ env:
 # https://docs.travis-ci.com/user/notifications/
 notifications:
   email:
-    - 1214942360@qq.com
+    - shewsljy@163.com
   on_success: change
   on_failure: always

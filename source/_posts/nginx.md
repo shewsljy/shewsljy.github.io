@@ -1,7 +1,7 @@
 ---
 title: nginx
 date: 2018-05-14 10:42:08
-updated: 2018-05-30 18:56:08
+updated: 2018-06-05 19:40:08
 categories:
     - Web
     - Nginx
@@ -39,8 +39,12 @@ events {
 http {
     include       mime.types;
     default_type  application/octet-stream;
+
+    server_tokens   off;
     sendfile        on;
+    tcp_nopush      on;
     keepalive_timeout  65;
+    gzip  on;
 
     # 非域名http(ip4/ip6)访问80端口返回444
     server {
@@ -54,34 +58,61 @@ http {
     server {
         listen       443 ssl default_server;
         listen       [::]:443 ssl default_server;
-        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
-        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
         return       444;
     }
 
-    # http访问jiayuli.cn www.jiayuli.cn这两个域名跳转到https://www.jiayuli.cn
+    # http访问 yourdomain.cn 这个域名跳转到https://www.yourdomain.cn
     server {
         listen       80;
         listen       [::]:80;
-        server_name  jiayuli.cn www.jiayuli.cn;
-        return       301 https://www.jiayuli.cn$request_uri;
+        server_name  yourdomain.cn;
+        return       301 https://www.yourdomain.cn$request_uri;
     }
 
-    # ssl设置
+    # https访问 yourdomain.cn 这个域名跳转到https://www.yourdomain.cn
     server {
         listen       443 ssl;
         listen       [::]:443 ssl;
-        server_name  www.jiayuli.cn;
-        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
-        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+        server_name  yourdomain.cn;
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
+        return       301 https://www.yourdomain.cn$request_uri;
+    }
+
+    # http/https访问 www.yourdomain.cn 这个域名跳转到https://www.yourdomain.cn
+    server {
+        listen       80;
+        listen       [::]:80;
+        server_name  www.yourdomain.cn;
+        charset utf-8;
+        return       301 https://www.yourdomain.cn$request_uri;
+    }
+
+    # https访问 www.yourdomain.cn
+    server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  www.yourdomain.cn;
+
+        ssl on;
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
         ssl_session_cache    shared:SSL:1m;
         ssl_session_timeout  5m;
         ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
         ssl_ciphers  HIGH:!aNULL:!MD5;
         ssl_prefer_server_ciphers  on;
+
+        # 根目录
         location / {
             root   html;
             index  index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
         }
     }
 }

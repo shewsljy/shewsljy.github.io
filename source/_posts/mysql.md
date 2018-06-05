@@ -1,7 +1,7 @@
 ---
 title: CentOS7 解压安装 Mysql
 date: 2018-05-30 17:21:17
-updated: 2018-05-30 18:56:17
+updated: 2018-06-05 19:40:17
 categories:
     - Mysql
 tags:
@@ -22,6 +22,8 @@ yum install libaio
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
 ```
+
+<!-- more -->
 
 ## 创建my.cnf配置文件
 ``` bash
@@ -66,7 +68,7 @@ chown -R mysql:mysql /opt/software/mysql-8.0.11-linux-glibc2.12-x86_64
 /usr/local/mysql/bin/mysqld_safe --user=mysql &
 /usr/local/mysql/bin/mysql -u root -p
 ```
-初始密码通过`grep 'root@localhost' /usr/local/mysql/data/mysql.error.log`查询出来，改密码可以用`alter user 'root'@'localhost' identified by 'root';`。
+初始密码通过`grep 'root@localhost' /usr/local/mysql/data/mysql.error.log`查询出来，改密码可以用`alter user 'root'@'localhost' identified by 'xxxxxx';`。
 `SHOW VARIABLES LIKE 'char%';`,`SHOW VARIABLES LIKE 'collation%';`查询编码。mysql日志在`/var/log/mariadb/mariadb.log`。
 
 ## 启动停止mysql
