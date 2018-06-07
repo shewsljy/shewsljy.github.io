@@ -28,7 +28,7 @@ chown -R git:git /home/git/git-shell-commands
 mkdir -p /home/git/.ssh
 touch /home/git/.ssh/authorized_keys
 chmod 700 /home/git/.ssh
-chmod 644 /home/git/.ssh/authorized_keys
+chmod 600 /home/git/.ssh/authorized_keys
 chown -R git:git /home/git/.ssh
 ```
 
