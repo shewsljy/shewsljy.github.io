@@ -99,27 +99,25 @@
 
 
 
-  <meta name="description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
-<meta name="keywords" content="Firewalld">
+  <meta name="description" content="下载编译git12345678cd /opt/source/wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.1.tar.gztar xzf git-2.17.1.tar.gzcd /opt/source/git-2.17.1/./configure --prefix=/opt/software/git-2.17.">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta property="og:url" content="http://blog.jiayuli.cn/2018/01/24/firewalld/index.html">
+<meta property="og:title" content="git">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/06/06/git/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
+<meta property="og:description" content="下载编译git12345678cd /opt/source/wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.1.tar.gztar xzf git-2.17.1.tar.gzcd /opt/source/git-2.17.1/./configure --prefix=/opt/software/git-2.17.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
-<meta property="og:updated_time" content="2018-01-24T09:08:25.000Z">
+<meta property="og:updated_time" content="2018-06-07T02:59:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS 7 防火墙(firewalld)设置">
-<meta name="twitter:description" content="前言我在阿里云上购买了ECS云服务器，通过公共镜像安装了CentOS 7系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过官方教程手动方式卸载了云盾安骑士客户端Agent，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。CentOS 7默认用firewalld替代了iptables，紧随时代趋势便用firewalld进行防火墙设置。 手动方式卸载">
-<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/01/24/firewalld/list_all.png">
+<meta name="twitter:title" content="git">
+<meta name="twitter:description" content="下载编译git12345678cd /opt/source/wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.1.tar.gztar xzf git-2.17.1.tar.gzcd /opt/source/git-2.17.1/./configure --prefix=/opt/software/git-2.17.">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/2018/01/24/firewalld/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/06/06/git/"/>
 
 
 
@@ -129,7 +127,7 @@
   };
 </script>
 
-  <title>CentOS 7 防火墙(firewalld)设置 | Jiayu's Blog</title>
+  <title>git | Jiayu's Blog</title>
   
 
 
@@ -311,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/24/firewalld/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/06/06/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -328,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS 7 防火墙(firewalld)设置
+          <h1 class="post-title" itemprop="name headline">git
               
             
           </h1>
@@ -347,7 +345,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T14:51:25+08:00">2018-01-24</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T14:50:57+08:00">2018-06-06</time>
             
 
             
@@ -368,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-01-24T17:08:25+08:00">2018-01-24</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-07T10:59:23+08:00">2018-06-07</time>
             
           </span>
 
@@ -384,21 +382,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/CentOS-7/" itemprop="url" rel="index"><span itemprop="name">CentOS 7</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/CentOS-7/Firewalld/" itemprop="url" rel="index"><span itemprop="name">Firewalld</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
@@ -432,46 +416,29 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在阿里云上购买了ECS云服务器，通过公共镜像安装了<code>CentOS 7</code>系统。后来发觉阿里默认安装了云盾安骑士，其服务一直在服务器上扫描，很是不喜。随即通过<a href="https://help.aliyun.com/document_detail/31777.html" target="_blank" rel="noopener">官方教程</a>手动方式卸载了云盾安骑士客户端<code>Agent</code>，但发觉云盾安骑士的服务端还是会通过IP来扫描，此时需要屏蔽其IP。<code>CentOS 7</code>默认用<code>firewalld</code>替代了<code>iptables</code>，紧随时代趋势便用<code>firewalld</code>进行防火墙设置。</p>
-<h2 id="手动方式卸载云盾安骑士Agent"><a href="#手动方式卸载云盾安骑士Agent" class="headerlink" title="手动方式卸载云盾安骑士Agent"></a>手动方式卸载云盾安骑士Agent</h2><p>执行以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://update.aegis.aliyun.com/download/uninstall.sh</span><br><span class="line">chmod u+x uninstall.sh</span><br><span class="line">./uninstall.sh</span><br><span class="line"><span class="built_in">kill</span> -9 aliyun-service</span><br><span class="line">rm -rf /usr/<span class="built_in">local</span>/aegis</span><br><span class="line">rm -rf /usr/sbin/aliyun*</span><br><span class="line">chkconfig --del netconsole</span><br><span class="line">chkconfig --del agentwatch</span><br><span class="line">rm -rf /etc/init.d/agentwatch</span><br><span class="line">rm -rf /etc/systemd/system/aliyun.service</span><br><span class="line">systemctl daemon-reload</span><br></pre></td></tr></table></figure></p>
-<h2 id="查找云盾扫描云服务器的IP"><a href="#查找云盾扫描云服务器的IP" class="headerlink" title="查找云盾扫描云服务器的IP"></a>查找云盾扫描云服务器的IP</h2><p>通过<a href="https://help.aliyun.com/knowledge_detail/37436.html" target="_blank" rel="noopener">官方安全公告</a>找到了云盾扫描云服务器的固定IP，如下:</p>
+        <h2 id="下载编译git"><a href="#下载编译git" class="headerlink" title="下载编译git"></a>下载编译git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.1.tar.gz</span><br><span class="line">tar xzf git-2.17.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/git-2.17.1/</span><br><span class="line">./configure --prefix=/opt/software/git-2.17.1</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">ln -s /opt/software/git-2.17.1/bin/git* /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
+<h2 id="创建git用户"><a href="#创建git用户" class="headerlink" title="创建git用户"></a>创建git用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /usr/bin/git-shell git</span><br><span class="line">passwd git</span><br><span class="line">cp -R /opt/<span class="built_in">source</span>/git-2.17.1/contrib/git-shell-commands /home/git/</span><br><span class="line">chown -R git:git /home/git/git-shell-commands</span><br><span class="line">mkdir -p /home/git/.ssh</span><br><span class="line">touch /home/git/.ssh/authorized_keys</span><br><span class="line">chmod 700 /home/git/.ssh</span><br><span class="line">chmod 644 /home/git/.ssh/authorized_keys</span><br><span class="line">chown -R git:git /home/git/.ssh</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="本地用git账号ssh登录服务器"><a href="#本地用git账号ssh登录服务器" class="headerlink" title="本地用git账号ssh登录服务器"></a>本地用git账号ssh登录服务器</h2><p>前面两步操作，已经在服务器上安装了git以及设定git用户登录默认方式是<code>git-shell</code>，此时配置本地用git账号通过<code>ssh</code>方式登录服务器。<br>先在本地生成公钥，然后把公钥拷贝到服务器上git用户的authorized_keys上。<br>本地操作：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>服务器上操作，将本地公钥拷贝到authorized_keys：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /home/git/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>本地ssh登录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh git@xxx.xx.xxx.xxx</span><br><span class="line">或者指定端口xxxx</span><br><span class="line">ssh git@xxx.xx.xxx.xxx -p xxxx</span><br></pre></td></tr></table></figure></p>
+<p>出现类似提示则成功，随后<code>exit</code>退出：</p>
 <pre>
-140.205.201.0/28
-140.205.201.16/29
-140.205.201.32/28
-140.205.225.192/29
-140.205.225.200/30
-140.205.225.184/29
-140.205.225.183/32
-140.205.225.206/32
-140.205.225.205/32
-140.205.225.195/32
-140.205.225.204/32
-106.11.224.0/26
-106.11.224.64/26
-106.11.224.128/26
-106.11.224.192/26
-106.11.222.64/26
-106.11.222.128/26
-106.11.222.192/26
-106.11.223.0/26
+Last login: Thu Jun  7 10:21:41 2018 from xxx.xxx.xxx.xxx
+
+Welcome to Alibaba Cloud Elastic Compute Service !
+
+Run 'help' for help, or 'exit' to leave.  Available commands:
+list
+git> exit
+Connection to xxx.xxx.xxx.xxx closed.
 </pre>
 
-<a id="more"></a>
-<h2 id="firewalld相关配置"><a href="#firewalld相关配置" class="headerlink" title="firewalld相关配置"></a>firewalld相关配置</h2><p>分服务及配置两部分，都是用<code>root</code>执行相关命令。</p>
-<h3 id="firewalld服务"><a href="#firewalld服务" class="headerlink" title="firewalld服务"></a>firewalld服务</h3><p>安装、启动、停止、查看状态以及开机自启。<br>安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld</span><br></pre></td></tr></table></figure></p>
-<p>启动:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure></p>
-<p>查看状态:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure></p>
-<p>停止:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure></p>
-<p>开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<p>取消开机自启:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure></p>
-<h3 id="firewalld配置"><a href="#firewalld配置" class="headerlink" title="firewalld配置"></a>firewalld配置</h3><p>配置规则、查看配置以及生效配置。<br>配置规则(屏蔽指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(取消被屏蔽的指定IP段):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-rich-rule=<span class="string">'rule family=ipv4 source address="140.205.201.0/28" reject'</span></span><br></pre></td></tr></table></figure></p>
-<p>配置规则(开放80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>配置规则(关闭80端口):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-port=80/tcp</span><br></pre></td></tr></table></figure></p>
-<p>生效配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
-<p>查看配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure></p>
-<img src="/2018/01/24/firewalld/list_all.png" title="[查看firewalld配置规则]">
+<h2 id="创建git仓库存储目录和权限"><a href="#创建git仓库存储目录和权限" class="headerlink" title="创建git仓库存储目录和权限"></a>创建git仓库存储目录和权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/git/repositories</span><br><span class="line">chmod 755 /home/git/repositories</span><br><span class="line"><span class="built_in">cd</span> /home/git/repositories/</span><br><span class="line">git init --bare wechat.git</span><br><span class="line">chown -R git:git /home/git/repositories</span><br></pre></td></tr></table></figure>
+<h2 id="把远程服务器上的仓库clone到本地"><a href="#把远程服务器上的仓库clone到本地" class="headerlink" title="把远程服务器上的仓库clone到本地"></a>把远程服务器上的仓库clone到本地</h2><p>若是本地没有仓库，可以之间将服务器上的仓库clone到本地，在本地添加文件后push服务器上：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@xxx.xxx.xxx.xxx:/home/git/repositories/wechat.git</span><br><span class="line">或者指定ssh端口xxxx</span><br><span class="line">git <span class="built_in">clone</span> ssh://git@xxx.xxx.xxx.xxx:xxxx/home/git/repositories/wechat.git</span><br></pre></td></tr></table></figure></p>
+<h2 id="将本地仓库与远程服务器上的仓库关联"><a href="#将本地仓库与远程服务器上的仓库关联" class="headerlink" title="将本地仓库与远程服务器上的仓库关联"></a>将本地仓库与远程服务器上的仓库关联</h2><p>若是本地存在了仓库，可以先将本地仓库与远程服务器上的仓库关联，本地添加文件后，再push服务器上：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@xxx.xxx.xxx.xxx:/home/git/repositories/wechat.git</span><br><span class="line">git push -u origin master</span><br><span class="line">或者指定ssh端口xxxx</span><br><span class="line">git remote add origin ssh://git@xxx.xxx.xxx.xxx:xxxx/home/git/repositories/wechat.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<h2 id="user-name-email-全局跟局部设置"><a href="#user-name-email-全局跟局部设置" class="headerlink" title="user.{name,email}全局跟局部设置"></a>user.{name,email}全局跟局部设置</h2><p>全局配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global --list</span><br><span class="line">git config --global user.name <span class="string">"global"</span></span><br><span class="line">git config --global user.email <span class="string">"global@xxx.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>局部配置(需要进入仓库执行)：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> --list</span><br><span class="line">git config user.name <span class="string">"local"</span></span><br><span class="line">git config user.email <span class="string">"local@xxx.com"</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -492,7 +459,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Firewalld/" rel="tag"># Firewalld</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
         </div>
       
@@ -505,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/06/install-archlinux-mbr/" rel="next" title="MBR 分区方式安装 ArchLinux">
-                <i class="fa fa-chevron-left"></i> MBR 分区方式安装 ArchLinux
+              <a href="/2018/06/01/jenkins/" rel="next" title="jenkins">
+                <i class="fa fa-chevron-left"></i> jenkins
               </a>
             
           </div>
@@ -514,10 +481,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/25/docker/" rel="prev" title="Docker 在 CentOS 7.4 平台上的运用">
-                Docker 在 CentOS 7.4 平台上的运用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -729,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动方式卸载云盾安骑士Agent"><span class="nav-number">2.</span> <span class="nav-text">手动方式卸载云盾安骑士Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找云盾扫描云服务器的IP"><span class="nav-number">3.</span> <span class="nav-text">查找云盾扫描云服务器的IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#firewalld相关配置"><span class="nav-number">4.</span> <span class="nav-text">firewalld相关配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld服务"><span class="nav-number">4.1.</span> <span class="nav-text">firewalld服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld配置"><span class="nav-number">4.2.</span> <span class="nav-text">firewalld配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载编译git"><span class="nav-number">1.</span> <span class="nav-text">下载编译git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建git用户"><span class="nav-number">2.</span> <span class="nav-text">创建git用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地用git账号ssh登录服务器"><span class="nav-number">3.</span> <span class="nav-text">本地用git账号ssh登录服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建git仓库存储目录和权限"><span class="nav-number">4.</span> <span class="nav-text">创建git仓库存储目录和权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把远程服务器上的仓库clone到本地"><span class="nav-number">5.</span> <span class="nav-text">把远程服务器上的仓库clone到本地</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将本地仓库与远程服务器上的仓库关联"><span class="nav-number">6.</span> <span class="nav-text">将本地仓库与远程服务器上的仓库关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#user-name-email-全局跟局部设置"><span class="nav-number">7.</span> <span class="nav-text">user.{name,email}全局跟局部设置</span></a></li></ol></div>
             
 
           </div>
