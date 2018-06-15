@@ -99,18 +99,27 @@
 
 
 
-  <meta name="description" content="下载以及放置Jenkins到tomcat下123cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.war /opt/software/apache-tomcat-9.0.8/webapps/ 设置Jenkins的家目录添加在/opt/software/a">
+  <meta name="description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
 <meta name="keywords" content="Jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/06/01/jenkins/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="下载以及放置Jenkins到tomcat下123cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.war /opt/software/apache-tomcat-9.0.8/webapps/ 设置Jenkins的家目录添加在/opt/software/a">
+<meta property="og:description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-05T11:42:56.000Z">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/initial-passwd.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/waiting.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/select-plugins.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/install-plugins.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/create-admin.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/start.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/dashboard.png">
+<meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/upgrade.png">
+<meta property="og:updated_time" content="2018-06-15T07:30:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins">
-<meta name="twitter:description" content="下载以及放置Jenkins到tomcat下123cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.war /opt/software/apache-tomcat-9.0.8/webapps/ 设置Jenkins的家目录添加在/opt/software/a">
+<meta name="twitter:description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
+<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/initial-passwd.png">
 
 
 
@@ -366,7 +375,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T19:42:56+08:00">2018-06-05</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:30:51+08:00">2018-06-15</time>
             
           </span>
 
@@ -416,13 +425,29 @@
       
 
       
-        <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/apache-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
-<h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>添加在<code>/opt/software/apache-tomcat-9.0.8/bin/setclasspath.sh</code>，<code>/etc/init.d/tomcat</code>添加环境变量<code>JENKINS_HOME</code>：<code>export JENKINS_HOME=/opt/software/apache-tomcat-9.0.8/.jenkins</code></p>
+        <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
+<h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>在<code>/opt/software/jenkins-tomcat-9.0.8/bin/setclasspath.sh</code>添加下列信息：</p>
+<pre>
+export JAVA_HOME=/opt/software/jdk1.8.0_171
+export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
+export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
+</pre>
+在`/opt/software/apache-tomcat-9.0.8/bin/daemon.sh`添加下列信息：
+<pre>
+export JAVA_HOME=/opt/software/jdk1.8.0_171
+export CATALINA_BASE=/opt/software/jenkins-tomcat-9.0.8
+export CATALINA_HOME=/opt/software/jenkins-tomcat-9.0.8
+export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
+export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
+</pre>
+
+<p>设置守护进程启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/daemon.sh /etc/init.d/jenkins</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>在<code>nginx.conf</code>中的<code>http</code>添加下列信息：</p>
 <pre>
 # 反向代理tomcat应用jenkins
-upstream jenkins {
-    server localhost:8080;
+upstream tomcat_jenkins {
+    server localhost:8085;
 }
 
 # 代理jenkins
@@ -431,10 +456,53 @@ location /jenkins/ {
     proxy_set_header   X-Real-IP $remote_addr;
     proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header   X-Forwarded-Proto $scheme;
-    proxy_pass         http://jenkins/jenkins/;
+    proxy_pass         http://tomcat_jenkins/jenkins/;
     proxy_redirect     off;
 }
 </pre>
+
+<h2 id="启动tomcat"><a href="#启动tomcat" class="headerlink" title="启动tomcat"></a>启动tomcat</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service jenkins start</span><br><span class="line">tail -f /opt/software/jenkins-tomcat-9.0.8/logs/catalina-daemon.out</span><br></pre></td></tr></table></figure>
+<p>日志刷出下列信息后，稍等一会儿：</p>
+<pre>
+*************************************************************
+*************************************************************
+*************************************************************
+
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+This may also be found at: /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/initialAdminPassword
+
+*************************************************************
+*************************************************************
+*************************************************************
+</pre>
+
+<p>直到tomcat完全启动：</p>
+<pre>
+14-Jun-2018 20:17:00.814 INFO [Finalizing set up] hudson.model.UpdateSite.updateData Obtained the latest update center data file for UpdateSource default
+14-Jun-2018 20:17:00.827 INFO [Download metadata thread] hudson.model.UpdateSite.updateData Obtained the latest update center data file for UpdateSource default
+14-Jun-2018 20:17:00.941 INFO [pool-6-thread-2] jenkins.InitReactorRunner$1.onAttained Completed initialization
+14-Jun-2018 20:17:01.033 INFO [Jenkins initialization thread] hudson.WebAppMain$3.run Jenkins is fully up and running
+14-Jun-2018 20:17:01.592 INFO [Download metadata thread] hudson.model.DownloadService$Downloadable.load Obtained the updated data file for hudson.tasks.Maven.MavenInstaller
+14-Jun-2018 20:17:04.596 INFO [Download metadata thread] hudson.model.DownloadService$Downloadable.load Obtained the updated data file for hudson.tools.JDKInstaller
+14-Jun-2018 20:17:04.600 INFO [Download metadata thread] hudson.model.AsyncPeriodicWork$1.run Finished Download metadata. 21,917 ms
+14-Jun-2018 20:19:22.574 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [169,068] milliseconds.
+14-Jun-2018 20:19:23.820 INFO [main] org.springframework.context.support.AbstractApplicationContext.prepareRefresh Refreshing org.springframework.web.context.support.StaticWebApplicationContext@47a1b2f7: display name [Root WebApplicationContext]; startup date [Thu Jun 14 20:19:23 CST 2018]; root of context hierarchy
+14-Jun-2018 20:19:23.821 INFO [main] org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@47a1b2f7]: org.springframework.beans.factory.support.DefaultListableBeanFactory@406efe63
+14-Jun-2018 20:19:23.843 INFO [main] org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@406efe63: defining beans [authenticationManager]; root of factory hierarchy
+14-Jun-2018 20:19:24.382 INFO [main] org.springframework.context.support.AbstractApplicationContext.prepareRefresh Refreshing org.springframework.web.context.support.StaticWebApplicationContext@79401d4f: display name [Root WebApplicationContext]; startup date [Thu Jun 14 20:19:24 CST 2018]; root of context hierarchy
+14-Jun-2018 20:19:24.383 INFO [main] org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory Bean factory for application context [org.springframework.web.context.support.StaticWebApplicationContext@79401d4f]: org.springframework.beans.factory.support.DefaultListableBeanFactory@444456cb
+14-Jun-2018 20:19:24.383 INFO [main] org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@444456cb: defining beans [filter,legacy]; root of factory hierarchy
+14-Jun-2018 20:19:24.584 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [/opt/software/jenkins-tomcat-9.0.8/webapps/jenkins.war] has finished in [179,790] ms
+14-Jun-2018 20:19:24.592 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-apr-8085"]
+14-Jun-2018 20:19:24.713 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-apr-8009"]
+14-Jun-2018 20:19:24.716 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 180081 ms
+</pre>
+
+<h2 id="浏览器访问jenkins"><a href="#浏览器访问jenkins" class="headerlink" title="浏览器访问jenkins"></a>浏览器访问jenkins</h2><p>浏览器访问：<code>http://aaa.bbb.ccc/jenkins</code><br><img src="/2018/06/01/jenkins/initial-passwd.png" title="[填入初始密码]"><br>如图提示，将<code>cat /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/initialAdminPassword</code>所得的初始密码填入，点击<code>继续</code><br>等待一会儿：<br><img src="/2018/06/01/jenkins/waiting.png" title="[等待]"><br>选择默认插件<br><img src="/2018/06/01/jenkins/select-plugins.png" title="[选择默认插件]"><br>安装默认插件<br><img src="/2018/06/01/jenkins/install-plugins.png" title="[安装默认插件]"><br>创建admin账户<br><img src="/2018/06/01/jenkins/create-admin.png" title="[创建admin账户]"><br>jenkins开始<br><img src="/2018/06/01/jenkins/start.png" title="[jenkins开始]"><br>仪表盘<br><img src="/2018/06/01/jenkins/dashboard.png" title="[仪表盘]"><br>更新版本<br><img src="/2018/06/01/jenkins/upgrade.png" title="[更新版本]"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">rm -rf jenkins.war</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br><span class="line">service jenkins stop</span><br><span class="line">service jenkins start</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -554,7 +622,7 @@ location /jenkins/ {
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -605,7 +673,9 @@ location /jenkins/ {
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -656,7 +726,9 @@ location /jenkins/ {
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -692,7 +764,7 @@ location /jenkins/ {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载以及放置Jenkins到tomcat下"><span class="nav-number">1.</span> <span class="nav-text">下载以及放置Jenkins到tomcat下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Jenkins的家目录"><span class="nav-number">2.</span> <span class="nav-text">设置Jenkins的家目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置"><span class="nav-number">3.</span> <span class="nav-text">Nginx配置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载以及放置Jenkins到tomcat下"><span class="nav-number">1.</span> <span class="nav-text">下载以及放置Jenkins到tomcat下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Jenkins的家目录"><span class="nav-number">2.</span> <span class="nav-text">设置Jenkins的家目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置"><span class="nav-number">3.</span> <span class="nav-text">Nginx配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动tomcat"><span class="nav-number">4.</span> <span class="nav-text">启动tomcat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器访问jenkins"><span class="nav-number">5.</span> <span class="nav-text">浏览器访问jenkins</span></a></li></ol></div>
             
 
           </div>

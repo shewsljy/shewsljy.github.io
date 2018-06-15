@@ -309,6 +309,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/06/13/gitweb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="家宇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiayu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/13/gitweb/" itemprop="url">
+                  gitweb
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T14:41:27+08:00">2018-06-13</time>
+            
+
+            
+            
+              
+                
+              
+            
+
+            
+              
+              <span class="post-meta-divider">|</span>
+              
+
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于：</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:41:54+08:00">2018-06-15</time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/Gitweb/" itemprop="url" rel="index"><span itemprop="name">Gitweb</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="安装spawn-fcgi"><a href="#安装spawn-fcgi" class="headerlink" title="安装spawn-fcgi"></a>安装spawn-fcgi</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gz</span><br><span class="line">tar xzf spawn-fcgi-1.6.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/spawn-fcgi-1.6.4/</span><br><span class="line">./configure --prefix=/opt/software/spawn-fcgi-1.6.4</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h2 id="安装fcgiwrap"><a href="#安装fcgiwrap" class="headerlink" title="安装fcgiwrap"></a>安装fcgiwrap</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://github.com/gnosek/fcgiwrap/archive/1.1.0.tar.gz -O fcgiwrap-1.1.0.tar.gz</span><br><span class="line">tar xzf fcgiwrap-1.1.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/fcgiwrap-1.1.0/</span><br><span class="line">yum install automake fcgi-devel</span><br><span class="line">autoreconf -i</span><br><span class="line">./configure --prefix=/opt/software/fcgiwrap-1.1.0</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/13/gitweb/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/06/06/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,7 +549,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-07T10:59:23+08:00">2018-06-07</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:44:23+08:00">2018-06-15</time>
             
           </span>
 
@@ -542,7 +721,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T19:42:56+08:00">2018-06-05</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:30:51+08:00">2018-06-15</time>
             
           </span>
 
@@ -593,28 +772,30 @@
 
       
         
-          
-            <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/apache-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
-<h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>添加在<code>/opt/software/apache-tomcat-9.0.8/bin/setclasspath.sh</code>，<code>/etc/init.d/tomcat</code>添加环境变量<code>JENKINS_HOME</code>：<code>export JENKINS_HOME=/opt/software/apache-tomcat-9.0.8/.jenkins</code></p>
-<h2 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a>Nginx配置</h2><p>在<code>nginx.conf</code>中的<code>http</code>添加下列信息：</p>
+          <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
+<h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>在<code>/opt/software/jenkins-tomcat-9.0.8/bin/setclasspath.sh</code>添加下列信息：</p>
 <pre>
-# 反向代理tomcat应用jenkins
-upstream jenkins {
-    server localhost:8080;
-}
-
-# 代理jenkins
-location /jenkins/ {
-    proxy_set_header   Host $host;
-    proxy_set_header   X-Real-IP $remote_addr;
-    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Proto $scheme;
-    proxy_pass         http://jenkins/jenkins/;
-    proxy_redirect     off;
-}
+export JAVA_HOME=/opt/software/jdk1.8.0_171
+export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
+export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
+</pre>
+在`/opt/software/apache-tomcat-9.0.8/bin/daemon.sh`添加下列信息：
+<pre>
+export JAVA_HOME=/opt/software/jdk1.8.0_171
+export CATALINA_BASE=/opt/software/jenkins-tomcat-9.0.8
+export CATALINA_HOME=/opt/software/jenkins-tomcat-9.0.8
+export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
+export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
 </pre>
 
-          
+<p>设置守护进程启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/daemon.sh /etc/init.d/jenkins</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/01/jenkins/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1889,195 +2070,6 @@ public class HelloWorld {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/01/26/ssh/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="家宇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiayu's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/26/ssh/" itemprop="url">
-                  禁用 root 通过 SSH 登录服务器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-26T09:44:01+08:00">2018-01-26</time>
-            
-
-            
-            
-              
-                
-              
-            
-
-            
-              
-              <span class="post-meta-divider">|</span>
-              
-
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于：</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T11:26:05+08:00">2018-03-07</time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/SSH/" itemprop="url" rel="index"><span itemprop="name">SSH</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直在用<code>root</code>账号密码的方式登录服务器，最近发觉每天都有此类信息提示:</p>
-<pre>
-Last failed login: Fri Jan 26 08:20:48 CST 2018 from 222.186.153.139 on ssh:notty
-There were 12 failed login attempts since the last successful login.
-</pre>
-
-<p>显示从上一次登陆成功到本次登陆成功，中间有若干次尝试登陆<code>root</code>账户失败的情况。我的SSH端口22没改，为了防止暴力破解导致服务器被黑，需禁用<code>root</code>账号登录，并更改SSH服务的22端口。用拥有<code>sudo</code>权限的普通用户登录服务器。</p>
-<h2 id="授以普通用户sudo权限"><a href="#授以普通用户sudo权限" class="headerlink" title="授以普通用户sudo权限"></a>授以普通用户sudo权限</h2><p>假设普通用户名为<code>username</code>，先用<code>root</code>用户执行<code>visudo</code>命令，在<code>root    ALL=(ALL)       ALL</code>这一行下添加<code>username   ALL=(ALL)       ALL</code>，如：</p>
-<pre>
-root    ALL=(ALL)       ALL
-username   ALL=(ALL)       ALL
-</pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/26/ssh/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2125,7 +2117,7 @@ username   ALL=(ALL)       ALL
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2176,7 +2168,9 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2227,7 +2221,9 @@ username   ALL=(ALL)       ALL
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

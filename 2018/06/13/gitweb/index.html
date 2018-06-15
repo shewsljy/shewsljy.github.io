@@ -99,36 +99,25 @@
 
 
 
-  <meta name="description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
-<meta name="keywords" content="Linux,Debian">
+  <meta name="description" content="安装spawn-fcgi1234567cd /opt/source/wget http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gztar xzf spawn-fcgi-1.6.4.tar.gzcd /opt/source/spawn-fcgi-1.6.4/./configure --prefix">
+<meta name="keywords" content="Git,Gitweb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阿里云上的debian设置">
-<meta property="og:url" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/index.html">
+<meta property="og:title" content="gitweb">
+<meta property="og:url" content="http://blog.jiayuli.cn/2018/06/13/gitweb/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
+<meta property="og:description" content="安装spawn-fcgi1234567cd /opt/source/wget http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gztar xzf spawn-fcgi-1.6.4.tar.gzcd /opt/source/spawn-fcgi-1.6.4/./configure --prefix">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/创建密钥对.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/确认更换系统盘.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/更换系统.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/更换系统盘成功.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/生成私钥菜单.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/选择下载文件.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/保存私钥.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/密钥列表.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/会话设置.png">
-<meta property="og:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/选择公钥.png">
-<meta property="og:updated_time" content="2018-05-09T08:07:38.000Z">
+<meta property="og:updated_time" content="2018-06-15T07:41:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="阿里云上的debian设置">
-<meta name="twitter:description" content="前言阿里云上的系统换成了Debian，记录下来。 阿里云ECS创建密钥对推荐使用密钥登录，增强服务器安全性。在阿里云ECS密钥对管理中点击创建密钥对，输入符合格式的名称后确定，并下载该密钥对到本地。">
-<meta name="twitter:image" content="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/创建密钥对.png">
+<meta name="twitter:title" content="gitweb">
+<meta name="twitter:description" content="安装spawn-fcgi1234567cd /opt/source/wget http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gztar xzf spawn-fcgi-1.6.4.tar.gzcd /opt/source/spawn-fcgi-1.6.4/./configure --prefix">
 
 
 
 
 
 
-  <link rel="canonical" href="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/"/>
+  <link rel="canonical" href="http://blog.jiayuli.cn/2018/06/13/gitweb/"/>
 
 
 
@@ -138,7 +127,7 @@
   };
 </script>
 
-  <title>阿里云上的debian设置 | Jiayu's Blog</title>
+  <title>gitweb | Jiayu's Blog</title>
   
 
 
@@ -320,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/05/09/aliyun-debian/">
+    <link itemprop="mainEntityOfPage" href="http://blog.jiayuli.cn/2018/06/13/gitweb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="家宇">
@@ -337,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">阿里云上的debian设置
+          <h1 class="post-title" itemprop="name headline">gitweb
               
             
           </h1>
@@ -356,7 +345,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T16:07:38+08:00">2018-05-09</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-13T14:41:27+08:00">2018-06-13</time>
             
 
             
@@ -377,7 +366,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-09T16:07:38+08:00">2018-05-09</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:41:54+08:00">2018-06-15</time>
             
           </span>
 
@@ -393,14 +382,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
 
                 
                 
                   ， 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/Debian/" itemprop="url" rel="index"><span itemprop="name">Debian</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/Gitweb/" itemprop="url" rel="index"><span itemprop="name">Gitweb</span></a></span>
 
                 
                 
@@ -434,21 +423,99 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>阿里云上的系统换成了<code>Debian</code>，记录下来。</p>
-<h2 id="阿里云ECS创建密钥对"><a href="#阿里云ECS创建密钥对" class="headerlink" title="阿里云ECS创建密钥对"></a>阿里云ECS创建密钥对</h2><p>推荐使用密钥登录，增强服务器安全性。在阿里云ECS<code>密钥对管理</code>中点击<code>创建密钥对</code>，输入符合格式的名称后确定，并下载该密钥对到本地。<br><img src="/2018/05/09/aliyun-debian/创建密钥对.png" title="[创建密钥对]"></p>
+        <h2 id="安装spawn-fcgi"><a href="#安装spawn-fcgi" class="headerlink" title="安装spawn-fcgi"></a>安装spawn-fcgi</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gz</span><br><span class="line">tar xzf spawn-fcgi-1.6.4.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/spawn-fcgi-1.6.4/</span><br><span class="line">./configure --prefix=/opt/software/spawn-fcgi-1.6.4</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h2 id="安装fcgiwrap"><a href="#安装fcgiwrap" class="headerlink" title="安装fcgiwrap"></a>安装fcgiwrap</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget https://github.com/gnosek/fcgiwrap/archive/1.1.0.tar.gz -O fcgiwrap-1.1.0.tar.gz</span><br><span class="line">tar xzf fcgiwrap-1.1.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/fcgiwrap-1.1.0/</span><br><span class="line">yum install automake fcgi-devel</span><br><span class="line">autoreconf -i</span><br><span class="line">./configure --prefix=/opt/software/fcgiwrap-1.1.0</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h2 id="阿里云ECS服务器换系统"><a href="#阿里云ECS服务器换系统" class="headerlink" title="阿里云ECS服务器换系统"></a>阿里云ECS服务器换系统</h2><p>停止阿里云ECS实例后，在<code>配置信息</code>，点击<code>更换系统盘</code>(运行中的实例此按钮不可点击)，确认更换后进入系统选择界面。<br><img src="/2018/05/09/aliyun-debian/确认更换系统盘.png" title="[更换系统盘]"></p>
-<p><code>安全设置</code>选择<code>设置密钥</code>，<code>密钥对</code>则选择先前创建的，确认更换。<br><img src="/2018/05/09/aliyun-debian/更换系统.png" title="[设置密钥登陆]"></p>
-<p>经过短信校验码核实后，等待实例自行启动。<br><img src="/2018/05/09/aliyun-debian/更换系统盘成功.png" title="[更换系统盘成功]"></p>
-<h2 id="Securecrt使用密钥登录"><a href="#Securecrt使用密钥登录" class="headerlink" title="Securecrt使用密钥登录"></a>Securecrt使用密钥登录</h2><p>先前下载的是<code>.pem</code>类型的密钥，需要生成公钥。<br>打开<code>Securecrt</code>，进入转换私钥的选项，途径为：<br><img src="/2018/05/09/aliyun-debian/生成私钥菜单.png" title="[生成私钥菜单]"></p>
-<p>浏览文件夹，选择下载的密钥：<br><img src="/2018/05/09/aliyun-debian/选择下载文件.png" title="[选择下载文件]"></p>
-<p>选中后，输入文件名，保存：<br><img src="/2018/05/09/aliyun-debian/保存私钥.png" title="[保存私钥]"></p>
-<p>生成了私/公钥，公钥待用：<br><img src="/2018/05/09/aliyun-debian/密钥列表.png" title="[密钥列表]"></p>
-<p><code>Securecrt</code>创建新的会话，设置为：<br><img src="/2018/05/09/aliyun-debian/会话设置.png" title="[会话设置]"></p>
-<p>密钥配置选择刚生成公钥：<br><img src="/2018/05/09/aliyun-debian/选择公钥.png" title="[选择公钥]"></p>
-<p>配置后便可密钥登陆。</p>
-<h2 id="更新Debian系统软件"><a href="#更新Debian系统软件" class="headerlink" title="更新Debian系统软件"></a>更新Debian系统软件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt list --upgradable</span><br><span class="line">apt upgrade</span><br><span class="line">apt autoremove</span><br><span class="line">pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<p>创建swap：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1024k count=2000</span><br><span class="line">chmod 600 /swapfile</span><br><span class="line">mkswap /swapfile</span><br><span class="line">swapon /swapfile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/swapfile swap swap defaults 0 0"</span> &gt;&gt; /etc/fstab</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置fcgiwrap启动脚本"><a href="#配置fcgiwrap启动脚本" class="headerlink" title="配置fcgiwrap启动脚本"></a>配置fcgiwrap启动脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/fcgiwrap</span><br><span class="line">chmod 755 /etc/init.d/fcgiwrap</span><br><span class="line">service fcgiwrap start|stop|restart|status</span><br></pre></td></tr></table></figure>
+<p>配置如下：</p>
+<pre>
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          fcgiwrap
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: FastCGI wrapper
+# Description:       Simple server for running CGI applications over FastCGI
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/software/spawn-fcgi-1.6.4/bin:/opt/software/fcgiwrap-1.1.0/sbin
+SPAWN_FCGI="/opt/software/spawn-fcgi-1.6.4/bin/spawn-fcgi"
+DAEMON="/opt/software/fcgiwrap-1.1.0/sbin/fcgiwrap"
+NAME="fcgiwrap"
+
+PIDFILE="/var/run/$NAME.pid"
+
+FCGI_SOCKET="/var/run/$NAME.socket"
+FCGI_USER="nobody"
+FCGI_GROUP="nobody"
+FORK_NUM=1
+SCRIPTNAME=/etc/init.d/$NAME
+
+case "$1" in
+    start)
+        echo -n "Starting $NAME... "
+
+        PID=`pidof $NAME`
+        if [ ! -z "$PID" ]; then
+            echo " $NAME already running"
+            exit 1
+        fi
+
+        $SPAWN_FCGI -u $FCGI_USER -g $FCGI_GROUP -s $FCGI_SOCKET -P $PIDFILE -F $FORK_NUM -f $DAEMON
+
+        if [ "$?" != 0 ]; then
+            echo " Start failed"
+            exit 1
+        else
+            echo " Start successed"
+        fi
+    ;;
+
+    stop)
+        echo -n "Stoping $NAME... "
+
+        PID=`pidof $NAME`
+        if [ ! -z "$PID" ]; then
+            kill `pidof $NAME`
+            if [ "$?" != 0 ]; then
+                echo " Stop failed. re-quit"
+                exit 1
+            else
+                rm -f $pid
+                echo " Stop successed"
+            fi
+        else
+            echo "$NAME is not running."
+            exit 1
+        fi
+    ;;
+
+    status)
+        PID=`pidof $NAME`
+        if [ ! -z "$PID" ]; then
+            echo "$NAME (pid $PID) is running..."
+        else
+            echo "$NAME is stopped"
+            exit 0
+        fi
+    ;;
+
+    restart)
+        $SCRIPTNAME stop
+        sleep 3
+        $SCRIPTNAME start
+    ;;
+
+    *)
+        echo "Usage: $SCRIPTNAME {start|stop|restart|status}"
+        exit 1
+    ;;
+esac
+</pre>
 
       
     </div>
@@ -469,9 +536,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
-            <a href="/tags/Debian/" rel="tag"># Debian</a>
+            <a href="/tags/Gitweb/" rel="tag"># Gitweb</a>
           
         </div>
       
@@ -484,8 +551,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/07/http-https/" rel="next" title="http-https">
-                <i class="fa fa-chevron-left"></i> http-https
+              <a href="/2018/06/06/git/" rel="next" title="git">
+                <i class="fa fa-chevron-left"></i> git
               </a>
             
           </div>
@@ -493,10 +560,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/14/nginx/" rel="prev" title="nginx">
-                nginx <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,7 +775,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS创建密钥对"><span class="nav-number">2.</span> <span class="nav-text">阿里云ECS创建密钥对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阿里云ECS服务器换系统"><span class="nav-number">3.</span> <span class="nav-text">阿里云ECS服务器换系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Securecrt使用密钥登录"><span class="nav-number">4.</span> <span class="nav-text">Securecrt使用密钥登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新Debian系统软件"><span class="nav-number">5.</span> <span class="nav-text">更新Debian系统软件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装spawn-fcgi"><span class="nav-number">1.</span> <span class="nav-text">安装spawn-fcgi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装fcgiwrap"><span class="nav-number">2.</span> <span class="nav-text">安装fcgiwrap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置fcgiwrap启动脚本"><span class="nav-number">3.</span> <span class="nav-text">配置fcgiwrap启动脚本</span></a></li></ol></div>
             
 
           </div>
