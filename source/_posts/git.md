@@ -1,7 +1,7 @@
 ---
 title: git
 date: 2018-06-06 14:50:57
-updated: 2018-06-07 10:59:23
+updated: 2018-06-15 15:44:23
 categories:
     - Git
 tags:
@@ -92,13 +92,13 @@ git push -u origin master
 ```
 
 ## user.{name,email}全局跟局部设置
-全局配置：
+本地全局配置：
 ``` bash
 git config --global --list
 git config --global user.name "global"
 git config --global user.email "global@xxx.com"
 ```
-局部配置(需要进入仓库执行)：
+本地局部配置(需要进入本地仓库执行)：
 ``` bash
 git config --local --list
 git config user.name "local"
