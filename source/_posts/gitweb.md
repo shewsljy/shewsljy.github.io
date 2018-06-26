@@ -1,7 +1,7 @@
 ---
 title: gitweb
 date: 2018-06-13 14:41:27
-updated: 2018-06-15 15:41:54
+updated: 2018-06-26 19:20:54
 categories:
     - Git
     - Gitweb
@@ -131,3 +131,62 @@ case "$1" in
     ;;
 esac
 </pre>
+
+## 配置gitweb
+复制gitweb目录到git用户下
+``` bash
+cp -r /opt/software/git-2.17.1/share/gitweb /home/git/
+chown -R git:git /home/git/gitweb
+vim /home/git/gitweb/gitweb.cgi
+```
+
+配置如下：
+<pre>
+our $projectroot = "/home/git/repositories";
+</pre>
+
+## 配置nginx
+配置如下：
+<pre>
+server {
+    error_log logs/git.error.log;  
+    access_log logs/git.access.log;  
+    listen       81;  
+        server_name  192.168.0.101;  
+    index       gitweb.cgi;  
+        root /home/git;  
+location ~ \.(cgi|pl).*$ {  
+            gzip off;  
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;  
+            fastcgi_param  SCRIPT_FILENAME    /home/git/gitweb.cgi;    
+                                      fastcgi_param  SCRIPT_NAME        gitweb.cgi;    
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+            include fastcgi_params;  
+}  
+ location ~ ^.*\.git/objects/([0-9a-f]+/[0-9a-f]+|pack/pack-[0-9a-f]+.(pack|idx))$ {  
+            root /home/git;  
+}  
+location ~ ^.*\.git/(HEAD|info/refs|objects/info/.*|git-(upload|receive)-pack)$ {  
+            root /home/git;  
+                                      fastcgi_param QUERY_STRING $query_string;  
+        fastcgi_param SCRIPT_FILENAME /usr/libexec/git-core/git-http-backend;  
+        fastcgi_param GIT_HTTP_EXPORT_ALL true;  
+        fastcgi_param GIT_PROJECT_ROOT /home/git/repositories;  
+        fastcgi_param PATH_INFO $uri;  
+        include fastcgi_params;  
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;           
+}  
+try_files $uri @gitweb;  
+            location @gitweb {  
+            fastcgi_pass unix:/var/run/fcgiwrap.socket;  
+            fastcgi_param SCRIPT_FILENAME /var/www/git/gitweb.cgi;  
+            fastcgi_param PATH_INFO $uri;  
+         fastcgi_param GITWEB_CONFIG /etc/gitweb.conf;  
+            include fastcgi_params;  
+    }  
+</pre>
+
+## 安装gitweb运行的依赖
+``` bash
+yum install perl-CGI perl-Time-HiRes perl-Digest-MD5
+```

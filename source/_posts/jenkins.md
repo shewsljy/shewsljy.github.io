@@ -1,7 +1,7 @@
 ---
 title: jenkins
 date: 2018-06-01 16:48:56
-updated: 2018-06-15 15:30:51
+updated: 2018-06-26 19:21:51
 categories:
     - Jenkins
 tags:
@@ -9,10 +9,12 @@ tags:
 ---
 ## 下载以及放置Jenkins到tomcat下
 ``` bash
+yum install unzip
 cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8
 cd /opt/source/
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-cp /opt/source/jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/
+unzip -q /opt/source/jenkins.war -d /opt/software/jenkins-tomcat-9.0.8/jenkins
+chown -R nobody:nobody /opt/software/jenkins-tomcat-9.0.8/jenkins
 ```
 
 ## 设置Jenkins的家目录
@@ -29,6 +31,11 @@ export CATALINA_BASE=/opt/software/jenkins-tomcat-9.0.8
 export CATALINA_HOME=/opt/software/jenkins-tomcat-9.0.8
 export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
 export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
+</pre>
+在`/opt/software/jdk1.8.0_171/jre/lib/security/java.security`替换以下信息：
+<pre>
+# securerandom.source=file:/dev/random
+securerandom.source=file:/dev/./urandom
 </pre>
 
 设置守护进程启动：
@@ -47,13 +54,45 @@ upstream tomcat_jenkins {
 }
 
 # 代理jenkins
-location /jenkins/ {
-    proxy_set_header   Host $host;
-    proxy_set_header   X-Real-IP $remote_addr;
-    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Proto $scheme;
-    proxy_pass         http://tomcat_jenkins/jenkins/;
-    proxy_redirect     off;
+server {
+        listen       80;
+        listen       [::]:80;
+        server_name  jenkins.yourdomain.cn;
+        charset utf-8;
+        return       301 https://jenkins.yourdomain.cn$request_uri;
+}
+
+
+server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  jenkins.yourdomain.cn;
+
+        charset utf-8;
+        #client_header_buffer_size 512k;
+        #large_client_header_buffers 4 512k;
+        ssl on;
+
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location / {
+            error_log           logs/jenkins.error.log;
+            access_log          logs/jenkins.access.log;
+            proxy_set_header    Host $host;
+            proxy_set_header    X-Real-IP $remote_addr;
+            proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header    X-Forwarded-Proto $scheme;
+            proxy_pass          http://tomcat_jenkins/;
+            proxy_redirect      off;
+        }   
 }
 </pre>
 
@@ -103,7 +142,7 @@ This may also be found at: /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/i
 </pre>
 
 ## 浏览器访问jenkins
-浏览器访问：`http://aaa.bbb.ccc/jenkins`
+浏览器访问：`http://jenkins.yourdomain.cn`
 {% asset_img initial-passwd.png [填入初始密码] %}
 如图提示，将`cat /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/initialAdminPassword`所得的初始密码填入，点击`继续`
 等待一会儿：
@@ -124,7 +163,7 @@ jenkins开始
 cd /opt/source/
 rm -rf jenkins.war
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-cp jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/
 service jenkins stop
+unzip -oq /opt/source/jenkins.war -d /opt/software/jenkins-tomcat-9.0.8/jenkins
 service jenkins start
 ```
