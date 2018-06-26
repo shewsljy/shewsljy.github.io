@@ -99,13 +99,13 @@
 
 
 
-  <meta name="description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
+  <meta name="description" content="下载以及放置Jenkins到tomcat下123456yum install unzipcp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warunzip">
 <meta name="keywords" content="Jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jenkins">
 <meta property="og:url" content="http://blog.jiayuli.cn/2018/06/01/jenkins/index.html">
 <meta property="og:site_name" content="Jiayu&#39;s Blog">
-<meta property="og:description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
+<meta property="og:description" content="下载以及放置Jenkins到tomcat下123456yum install unzipcp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warunzip">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/initial-passwd.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/waiting.png">
@@ -115,10 +115,10 @@
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/start.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/dashboard.png">
 <meta property="og:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/upgrade.png">
-<meta property="og:updated_time" content="2018-06-15T07:30:51.000Z">
+<meta property="og:updated_time" content="2018-06-26T11:21:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jenkins">
-<meta name="twitter:description" content="下载以及放置Jenkins到tomcat下1234cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warcp /opt/source/jenkins.wa">
+<meta name="twitter:description" content="下载以及放置Jenkins到tomcat下123456yum install unzipcp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8cd /opt/source/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.warunzip">
 <meta name="twitter:image" content="http://blog.jiayuli.cn/2018/06/01/jenkins/initial-passwd.png">
 
 
@@ -375,7 +375,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:30:51+08:00">2018-06-15</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-26T19:21:51+08:00">2018-06-26</time>
             
           </span>
 
@@ -425,7 +425,7 @@
       
 
       
-        <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
+        <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install unzip</span><br><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">unzip -q /opt/<span class="built_in">source</span>/jenkins.war -d /opt/software/jenkins-tomcat-9.0.8/jenkins</span><br><span class="line">chown -R nobody:nobody /opt/software/jenkins-tomcat-9.0.8/jenkins</span><br></pre></td></tr></table></figure>
 <h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>在<code>/opt/software/jenkins-tomcat-9.0.8/bin/setclasspath.sh</code>添加下列信息：</p>
 <pre>
 export JAVA_HOME=/opt/software/jdk1.8.0_171
@@ -440,6 +440,11 @@ export CATALINA_HOME=/opt/software/jenkins-tomcat-9.0.8
 export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
 export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
 </pre>
+在`/opt/software/jdk1.8.0_171/jre/lib/security/java.security`替换以下信息：
+<pre>
+# securerandom.source=file:/dev/random
+securerandom.source=file:/dev/./urandom
+</pre>
 
 <p>设置守护进程启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/daemon.sh /etc/init.d/jenkins</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -451,13 +456,45 @@ upstream tomcat_jenkins {
 }
 
 # 代理jenkins
-location /jenkins/ {
-    proxy_set_header   Host $host;
-    proxy_set_header   X-Real-IP $remote_addr;
-    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Proto $scheme;
-    proxy_pass         http://tomcat_jenkins/jenkins/;
-    proxy_redirect     off;
+server {
+        listen       80;
+        listen       [::]:80;
+        server_name  jenkins.yourdomain.cn;
+        charset utf-8;
+        return       301 https://jenkins.yourdomain.cn$request_uri;
+}
+
+
+server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  jenkins.yourdomain.cn;
+
+        charset utf-8;
+        #client_header_buffer_size 512k;
+        #large_client_header_buffers 4 512k;
+        ssl on;
+
+        ssl_certificate      /etc/letsencrypt/live/yourdomain.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/yourdomain.cn/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location / {
+            error_log           logs/jenkins.error.log;
+            access_log          logs/jenkins.access.log;
+            proxy_set_header    Host $host;
+            proxy_set_header    X-Real-IP $remote_addr;
+            proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header    X-Forwarded-Proto $scheme;
+            proxy_pass          http://tomcat_jenkins/;
+            proxy_redirect      off;
+        }   
 }
 </pre>
 
@@ -502,7 +539,7 @@ This may also be found at: /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/i
 14-Jun-2018 20:19:24.716 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 180081 ms
 </pre>
 
-<h2 id="浏览器访问jenkins"><a href="#浏览器访问jenkins" class="headerlink" title="浏览器访问jenkins"></a>浏览器访问jenkins</h2><p>浏览器访问：<code>http://aaa.bbb.ccc/jenkins</code><br><img src="/2018/06/01/jenkins/initial-passwd.png" title="[填入初始密码]"><br>如图提示，将<code>cat /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/initialAdminPassword</code>所得的初始密码填入，点击<code>继续</code><br>等待一会儿：<br><img src="/2018/06/01/jenkins/waiting.png" title="[等待]"><br>选择默认插件<br><img src="/2018/06/01/jenkins/select-plugins.png" title="[选择默认插件]"><br>安装默认插件<br><img src="/2018/06/01/jenkins/install-plugins.png" title="[安装默认插件]"><br>创建admin账户<br><img src="/2018/06/01/jenkins/create-admin.png" title="[创建admin账户]"><br>jenkins开始<br><img src="/2018/06/01/jenkins/start.png" title="[jenkins开始]"><br>仪表盘<br><img src="/2018/06/01/jenkins/dashboard.png" title="[仪表盘]"><br>更新版本<br><img src="/2018/06/01/jenkins/upgrade.png" title="[更新版本]"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">rm -rf jenkins.war</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br><span class="line">service jenkins stop</span><br><span class="line">service jenkins start</span><br></pre></td></tr></table></figure></p>
+<h2 id="浏览器访问jenkins"><a href="#浏览器访问jenkins" class="headerlink" title="浏览器访问jenkins"></a>浏览器访问jenkins</h2><p>浏览器访问：<code>http://jenkins.yourdomain.cn</code><br><img src="/2018/06/01/jenkins/initial-passwd.png" title="[填入初始密码]"><br>如图提示，将<code>cat /opt/software/jenkins-tomcat-9.0.8/.jenkins/secrets/initialAdminPassword</code>所得的初始密码填入，点击<code>继续</code><br>等待一会儿：<br><img src="/2018/06/01/jenkins/waiting.png" title="[等待]"><br>选择默认插件<br><img src="/2018/06/01/jenkins/select-plugins.png" title="[选择默认插件]"><br>安装默认插件<br><img src="/2018/06/01/jenkins/install-plugins.png" title="[安装默认插件]"><br>创建admin账户<br><img src="/2018/06/01/jenkins/create-admin.png" title="[创建admin账户]"><br>jenkins开始<br><img src="/2018/06/01/jenkins/start.png" title="[jenkins开始]"><br>仪表盘<br><img src="/2018/06/01/jenkins/dashboard.png" title="[仪表盘]"><br>更新版本<br><img src="/2018/06/01/jenkins/upgrade.png" title="[更新版本]"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">rm -rf jenkins.war</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">service jenkins stop</span><br><span class="line">unzip -oq /opt/<span class="built_in">source</span>/jenkins.war -d /opt/software/jenkins-tomcat-9.0.8/jenkins</span><br><span class="line">service jenkins start</span><br></pre></td></tr></table></figure></p>
 
       
     </div>

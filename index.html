@@ -370,7 +370,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:41:54+08:00">2018-06-15</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-26T19:20:54+08:00">2018-06-26</time>
             
           </span>
 
@@ -721,7 +721,7 @@
               
                 <span class="post-meta-item-text">更新于：</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-15T15:30:51+08:00">2018-06-15</time>
+              <time title="更新于" itemprop="dateModified" datetime="2018-06-26T19:21:51+08:00">2018-06-26</time>
             
           </span>
 
@@ -772,7 +772,7 @@
 
       
         
-          <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">cp /opt/<span class="built_in">source</span>/jenkins.war /opt/software/jenkins-tomcat-9.0.8/webapps/</span><br></pre></td></tr></table></figure>
+          <h2 id="下载以及放置Jenkins到tomcat下"><a href="#下载以及放置Jenkins到tomcat下" class="headerlink" title="下载以及放置Jenkins到tomcat下"></a>下载以及放置Jenkins到tomcat下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install unzip</span><br><span class="line">cp -rp /opt/software/apache-tomcat-9.0.8 /opt/software/jenkins-tomcat-9.0.8</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/</span><br><span class="line">wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war</span><br><span class="line">unzip -q /opt/<span class="built_in">source</span>/jenkins.war -d /opt/software/jenkins-tomcat-9.0.8/jenkins</span><br><span class="line">chown -R nobody:nobody /opt/software/jenkins-tomcat-9.0.8/jenkins</span><br></pre></td></tr></table></figure>
 <h2 id="设置Jenkins的家目录"><a href="#设置Jenkins的家目录" class="headerlink" title="设置Jenkins的家目录"></a>设置Jenkins的家目录</h2><p>在<code>/opt/software/jenkins-tomcat-9.0.8/bin/setclasspath.sh</code>添加下列信息：</p>
 <pre>
 export JAVA_HOME=/opt/software/jdk1.8.0_171
@@ -786,6 +786,11 @@ export CATALINA_BASE=/opt/software/jenkins-tomcat-9.0.8
 export CATALINA_HOME=/opt/software/jenkins-tomcat-9.0.8
 export LD_LIBRARY_PATH=/opt/software/tomcat-native-1.2.16/lib
 export JENKINS_HOME=/opt/software/jenkins-tomcat-9.0.8/.jenkins
+</pre>
+在`/opt/software/jdk1.8.0_171/jre/lib/security/java.security`替换以下信息：
+<pre>
+# securerandom.source=file:/dev/random
+securerandom.source=file:/dev/./urandom
 </pre>
 
 <p>设置守护进程启动：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/software/apache-tomcat-9.0.8/bin/daemon.sh /etc/init.d/jenkins</span><br></pre></td></tr></table></figure></p>
