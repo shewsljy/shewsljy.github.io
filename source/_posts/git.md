@@ -7,8 +7,14 @@ categories:
 tags:
     - Git
 ---
+## 安装git clone https时运行的依赖
+``` bash
+yum install curl-devel
+```
+
 ## 下载编译git
 ``` bash
+yum install curl-devel
 cd /opt/source/
 wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.17.1.tar.gz
 tar xzf git-2.17.1.tar.gz
@@ -19,88 +25,45 @@ make install
 ln -s /opt/software/git-2.17.1/bin/git* /usr/local/bin/
 ```
 
-## 创建git用户
+## 创建git以及appservice用户并配置
+创建git以及appservice用户，设置gitolite，免密码登录。
 ``` bash
-useradd -s /usr/bin/git-shell git
+useradd appservice
+passwd appservice
+useradd git
 passwd git
-cp -R /opt/source/git-2.17.1/contrib/git-shell-commands /home/git/
-chown -R git:git /home/git/git-shell-commands
-mkdir -p /home/git/.ssh
-touch /home/git/.ssh/authorized_keys
-chmod 700 /home/git/.ssh
-chmod 600 /home/git/.ssh/authorized_keys
-chown -R git:git /home/git/.ssh
+su - appservice
+ssh-keygen -t rsa
+mv $HOME/.ssh/id_rsa.pub $HOME/.ssh/appservice.pub
+scp $HOME/.ssh/appservice.pub git@localhost:/home/git/
+exit
+su - git
+git clone https://github.com/sitaramc/gitolite.git
+mkdir -p $HOME/bin
+gitolite/install -to $HOME/bin
+$HOME/bin/gitolite setup -pk $HOME/appservice.pub
+mv $HOME/appservice.pub $HOME/.ssh/
+exit
 ```
 
 <!-- more -->
 
-## 本地用git账号ssh登录服务器
-前面两步操作，已经在服务器上安装了git以及设定git用户登录默认方式是`git-shell`，此时配置本地用git账号通过`ssh`方式登录服务器。
-先在本地生成公钥，然后把公钥拷贝到服务器上git用户的authorized_keys上。
-本地操作：
+## 修改git目录文件的权限
+将用户nobody加入git组，把/home/git/.gitolite.rc中的UMASK值0077修改为0027
 ``` bash
-ssh-keygen -t rsa
-cat ~/.ssh/id_rsa.pub
+usermod -a -G git nobody
+su - git
+vim $HOME/.gitolite.rc
+exit
 ```
-服务器上操作，将本地公钥拷贝到authorized_keys：
-``` bash
-vim /home/git/.ssh/authorized_keys
-```
-本地ssh登录：
-``` bash
-ssh git@xxx.xx.xxx.xxx
-或者指定端口xxxx
-ssh git@xxx.xx.xxx.xxx -p xxxx
-```
-出现类似提示则成功，随后`exit`退出：
+
 <pre>
-Last login: Thu Jun  7 10:21:41 2018 from xxx.xxx.xxx.xxx
-
-Welcome to Alibaba Cloud Elastic Compute Service !
-
-Run 'help' for help, or 'exit' to leave.  Available commands:
-list
-git> exit
-Connection to xxx.xxx.xxx.xxx closed.
+    UMASK                           =>  0027,
 </pre>
 
-## 创建git仓库存储目录和权限
 ``` bash
-mkdir -p /home/git/repositories
-chmod 755 /home/git/repositories
-cd /home/git/repositories/
-git init --bare wechat.git
-chown -R git:git /home/git/repositories
-```
-
-## 把远程服务器上的仓库clone到本地
-若是本地没有仓库，可以之间将服务器上的仓库clone到本地，在本地添加文件后push服务器上：
-``` bash
-git clone git@xxx.xxx.xxx.xxx:/home/git/repositories/wechat.git
-或者指定ssh端口xxxx
-git clone ssh://git@xxx.xxx.xxx.xxx:xxxx/home/git/repositories/wechat.git
-```
-
-## 将本地仓库与远程服务器上的仓库关联
-若是本地存在了仓库，可以先将本地仓库与远程服务器上的仓库关联，本地添加文件后，再push服务器上：
-``` bash
-git remote add origin git@xxx.xxx.xxx.xxx:/home/git/repositories/wechat.git
-git push -u origin master
-或者指定ssh端口xxxx
-git remote add origin ssh://git@xxx.xxx.xxx.xxx:xxxx/home/git/repositories/wechat.git
-git push -u origin master
-```
-
-## user.{name,email}全局跟局部设置
-本地全局配置：
-``` bash
-git config --global --list
-git config --global user.name "global"
-git config --global user.email "global@xxx.com"
-```
-本地局部配置(需要进入本地仓库执行)：
-``` bash
-git config --local --list
-git config user.name "local"
-git config user.email "local@xxx.com"
+chmod 775 /home/git
+chmod 775 /home/git/projects.list
+chmod 775 -R /home/git/repositories
+chmod 700 -R /home/git/repositories/gitolite-admin.git
 ```

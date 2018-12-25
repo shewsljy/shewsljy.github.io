@@ -9,6 +9,11 @@ tags:
     - Git
     - Gitweb
 ---
+## 安装gitweb运行的依赖
+``` bash
+yum install perl-CGI perl-Time-HiRes perl-Digest-MD5 highlight
+```
+
 ## 安装spawn-fcgi
 ``` bash
 cd /opt/source/
@@ -133,60 +138,84 @@ esac
 </pre>
 
 ## 配置gitweb
-复制gitweb目录到git用户下
+新建配置文件
 ``` bash
-cp -r /opt/software/git-2.17.1/share/gitweb /home/git/
-chown -R git:git /home/git/gitweb
-vim /home/git/gitweb/gitweb.cgi
+vim /etc/gitweb.conf
 ```
 
 配置如下：
 <pre>
-our $projectroot = "/home/git/repositories";
+$projectroot = "/home/git/repositories";
+$projects_list = $projectroot;
+$strict_export = 1;
+$home_link = $my_uri || "/";
+@stylesheets = ("static/gitweb.css");
+$javascript = "static/gitweb.js";
+$logo = "static/git-logo.png";
+$favicon = "static/git-favicon.png";
+@diff_opts = ();
+$feature{'blame'}{'default'} = [1];
+$feature {'blame'}{'override'} = 1;
+$feature {'snapshot'}{'default'} = ['zip', 'tgz'];
+$feature {'snapshot'}{'override'} = 1;
+$feature{'highlight'}{'default'} = [1];
 </pre>
+
+## 配置网页gitweb的访问权限
+新建配置文件，其中user/password分别为账号密码
+``` bash
+htpasswd -cb /opt/software/nginx-1.14.0/conf/gitweb_user.db user password
+```
 
 ## 配置nginx
 配置如下：
 <pre>
 server {
-    error_log logs/git.error.log;  
-    access_log logs/git.access.log;  
-    listen       81;  
-        server_name  192.168.0.101;  
-    index       gitweb.cgi;  
-        root /home/git;  
-location ~ \.(cgi|pl).*$ {  
-            gzip off;  
-        fastcgi_pass unix:/var/run/fcgiwrap.socket;  
-            fastcgi_param  SCRIPT_FILENAME    /home/git/gitweb.cgi;    
-                                      fastcgi_param  SCRIPT_NAME        gitweb.cgi;    
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
-            include fastcgi_params;  
-}  
- location ~ ^.*\.git/objects/([0-9a-f]+/[0-9a-f]+|pack/pack-[0-9a-f]+.(pack|idx))$ {  
-            root /home/git;  
-}  
-location ~ ^.*\.git/(HEAD|info/refs|objects/info/.*|git-(upload|receive)-pack)$ {  
-            root /home/git;  
-                                      fastcgi_param QUERY_STRING $query_string;  
-        fastcgi_param SCRIPT_FILENAME /usr/libexec/git-core/git-http-backend;  
-        fastcgi_param GIT_HTTP_EXPORT_ALL true;  
-        fastcgi_param GIT_PROJECT_ROOT /home/git/repositories;  
-        fastcgi_param PATH_INFO $uri;  
-        include fastcgi_params;  
-        fastcgi_pass unix:/var/run/fcgiwrap.socket;           
-}  
-try_files $uri @gitweb;  
-            location @gitweb {  
-            fastcgi_pass unix:/var/run/fcgiwrap.socket;  
-            fastcgi_param SCRIPT_FILENAME /var/www/git/gitweb.cgi;  
-            fastcgi_param PATH_INFO $uri;  
-         fastcgi_param GITWEB_CONFIG /etc/gitweb.conf;  
-            include fastcgi_params;  
-    }  
-</pre>
+        listen       80;
+        listen       [::]:80;
+        server_name  gitweb.jiayuli.cn;
+        charset      utf-8;
+        return       301 https://gitweb.jiayuli.cn$request_uri;
+}
 
-## 安装gitweb运行的依赖
-``` bash
-yum install perl-CGI perl-Time-HiRes perl-Digest-MD5
-```
+
+server {
+        listen       443 ssl;
+        listen       [::]:443 ssl;
+        server_name  gitweb.jiayuli.cn;
+
+        charset utf-8;
+        #client_header_buffer_size 512k;
+        #large_client_header_buffers 4 512k;
+        ssl on;
+
+        ssl_certificate      /etc/letsencrypt/live/jiayuli.cn/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/jiayuli.cn/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        auth_basic "Git User Authentication";
+        auth_basic_user_file /opt/software/nginx-1.14.0/conf/gitweb_user.db;
+
+        location /gitweb.cgi {
+                fastcgi_pass unix:/run/fcgiwrap.socket;
+                fastcgi_param PATH_INFO $uri;
+                fastcgi_param GITWEB_CONFIG /etc/gitweb.conf;
+                fastcgi_param SCRIPT_FILENAME /opt/software/git-2.17.1/share/gitweb/gitweb.cgi;
+                include fastcgi_params;
+        }
+
+        location / {
+                root /opt/software/git-2.17.1/share/gitweb;
+                index gitweb.cgi;
+                error_log logs/gitweb.error.log;
+                access_log logs/gitweb.access.log;
+        }
+
+}
+</pre>
