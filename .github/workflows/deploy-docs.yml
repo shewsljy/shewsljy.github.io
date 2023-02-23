@@ -42,7 +42,7 @@ jobs:
       - name: deploy-blog
         uses: JamesIves/github-pages-deploy-action@v4
         # 环境变量
-         env:
+        env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_WORKFLOW_TOKEN }}
         with:
           # 这是文档部署到的分支名称
