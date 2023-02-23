@@ -1,5 +1,5 @@
 
-name: deploy-blog
+name: deploy github|gitee pages
 
 on:
   push:
@@ -8,10 +8,10 @@ on:
       - develop
 
 jobs:
-  deploy-master:
+  deploy-github:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout 当前分支
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -24,24 +24,22 @@ jobs:
           version: 7
           run_install: true
 
-
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: pnpm
 
-
-      - name: 构建文档
+      - name: 构建静态文件
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
           pnpm run docs:build
           > src/.vuepress/dist/.nojekyll
 
-      - name: deploy-blog
+      - name: 推送到 master
         uses: JamesIves/github-pages-deploy-action@v4
-        # 环境变量
+        # 环境变量 注意在 Settings->Secrets 配置 PERSONAL_WORKFLOW_TOKEN
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_WORKFLOW_TOKEN }}
         with:
