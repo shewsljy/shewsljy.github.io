@@ -19,6 +19,8 @@ export default hopeTheme({
   docsDir: "docs",
 
   blog: {
+    description: "一个开发者",
+    intro: "/intro.html",
     medias: {
       Baidu: "https://example.com",
       BiliBili: "https://example.com",
@@ -58,53 +60,68 @@ export default hopeTheme({
     },
   },
 
-  locales: {
-    "/": {
-      // navbar
-      navbar: enNavbar,
+  // 单语言，屏蔽 locales
+  // navbar
+  navbar: zhNavbar,
 
-      // sidebar
-      sidebar: enSidebar,
+  // sidebar
+  sidebar: zhSidebar,
 
-      footer: "Default footer",
+  footer: "默认页脚",
 
-      displayFooter: true,
+  displayFooter: true,
 
-      blog: {
-        description: "A FrontEnd programmer",
-        intro: "/intro.html",
-      },
-
-      metaLocales: {
-        editLink: "Edit this page on GitHub",
-      },
-    },
-
-    /**
-     * Chinese locale config
-     */
-    "/zh/": {
-      // navbar
-      navbar: zhNavbar,
-
-      // sidebar
-      sidebar: zhSidebar,
-
-      footer: "默认页脚",
-
-      displayFooter: true,
-
-      blog: {
-        description: "一个前端开发者",
-        intro: "/zh/intro.html",
-      },
-
-      // page meta
-      metaLocales: {
-        editLink: "在 GitHub 上编辑此页",
-      },
-    },
+  // page meta
+  metaLocales: {
+    editLink: "在 GitHub 上编辑此页",
   },
+  // locales: {
+  //   "/": {
+  //     // navbar
+  //     navbar: enNavbar,
+
+  //     // sidebar
+  //     sidebar: enSidebar,
+
+  //     footer: "Default footer",
+
+  //     displayFooter: true,
+
+  //     blog: {
+  //       description: "A FrontEnd programmer",
+  //       intro: "/intro.html",
+  //     },
+
+  //     metaLocales: {
+  //       editLink: "Edit this page on GitHub",
+  //     },
+  //   },
+
+  //   /**
+  //    * Chinese locale config
+  //    */
+  //   "/zh/": {
+  //     // navbar
+  //     navbar: zhNavbar,
+
+  //     // sidebar
+  //     sidebar: zhSidebar,
+
+  //     footer: "默认页脚",
+
+  //     displayFooter: true,
+
+  //     blog: {
+  //       description: "一个前端开发者",
+  //       intro: "/zh/intro.html",
+  //     },
+
+  //     // page meta
+  //     metaLocales: {
+  //       editLink: "在 GitHub 上编辑此页",
+  //     },
+  //   },
+  // },
 
   encrypt: {
     config: {
